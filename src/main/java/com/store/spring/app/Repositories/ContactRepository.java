@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.store.spring.app.Models.Contact;
 
-public interface ContactRepository extends JpaRepository<Contact, Long>{
+public interface ContactRepository extends JpaRepository<Contact, Integer>{
     
 }
