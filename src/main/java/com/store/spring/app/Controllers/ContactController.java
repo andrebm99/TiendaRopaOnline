@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.store.spring.app.Models.Contact;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 
 @CrossOrigin(origins = "http://localhost:8080")
+@Tag(name = "Contacto", description = "Endpoint para formulario de contacto.")
 @RestController
 @RequestMapping("/api/contact")
 public class ContactController {
@@ -29,6 +33,7 @@ public class ContactController {
     } 
 
     @GetMapping
+    @Operation(summary = "Mostrar Todo", description = "Mostrar todos los mensajes recibidos.")
     public ResponseEntity<List<Contact>> getAll() {
 
         try{
@@ -36,7 +41,6 @@ public class ContactController {
 
             if(contacts.isEmpty()){
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
             }
 
             return new ResponseEntity<>(contacts, HttpStatus.OK);
@@ -47,6 +51,7 @@ public class ContactController {
 
     
     @PostMapping
+    @Operation(summary = "Enviar", description = "Formulario de contacto para el sistema de ventas.")
     public ResponseEntity<Contact> create(@RequestBody Contact contact) {
         try{
             Contact newContact = contactInterface.createContact(contact); 
@@ -57,6 +62,7 @@ public class ContactController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Eliminar", description = "Eliminar por id")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Integer id){
         try{
             boolean isDeleted = contactInterface.deleteContact(id);
@@ -68,7 +74,5 @@ public class ContactController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
         }
     }
-    
-    
     
 }
