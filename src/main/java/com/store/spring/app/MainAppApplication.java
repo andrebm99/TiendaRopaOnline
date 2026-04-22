@@ -8,7 +8,7 @@ public class MainAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MainAppApplication.class, args);
-		System.out.println("La api corre en el puerto 8081");
+		System.out.println("La api corre en:  http://localhost:8080");
 	}
 
 }
