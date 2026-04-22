@@ -8,7 +8,8 @@ public class MainAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MainAppApplication.class, args);
-		System.out.println("La api corre en:  http://localhost:8080");
+		System.out.println("La api swagger corre en:  http://localhost:8080/swagger-ui/index.html");
+		System.out.println("La api html corre en:  http://localhost:8080/");
 	}
 
 }
