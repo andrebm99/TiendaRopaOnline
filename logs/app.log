@@ -1719,3 +1719,46 @@ Caused by: java.lang.Error: Unresolved compilation problem:
 2026-04-21T20:17:56.567-05:00  INFO 38984 --- [app] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-04-21T20:17:56.568-05:00  INFO 38984 --- [app] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown initiated...
 2026-04-21T20:17:56.575-05:00  INFO 38984 --- [app] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown completed.
+2026-04-21T21:54:36.260-05:00  INFO 67046 --- [app] [restartedMain] c.store.spring.app.MainAppApplication    : Starting MainAppApplication using Java 21.0.10 with PID 67046 (/home/ronaldo/universidad/DesarrolloWeb/app/target/classes started by ronaldo in /home/ronaldo/universidad/DesarrolloWeb/app)
+2026-04-21T21:54:36.262-05:00  INFO 67046 --- [app] [restartedMain] c.store.spring.app.MainAppApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-04-21T21:54:36.304-05:00  INFO 67046 --- [app] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-04-21T21:54:36.305-05:00  INFO 67046 --- [app] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-04-21T21:54:36.885-05:00  INFO 67046 --- [app] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-21T21:54:36.922-05:00  INFO 67046 --- [app] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 1 JPA repository interface.
+2026-04-21T21:54:37.348-05:00  INFO 67046 --- [app] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-04-21T21:54:37.360-05:00  INFO 67046 --- [app] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-21T21:54:37.361-05:00  INFO 67046 --- [app] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-04-21T21:54:37.392-05:00  INFO 67046 --- [app] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1086 ms
+2026-04-21T21:54:37.549-05:00  INFO 67046 --- [app] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-04-21T21:54:37.600-05:00  INFO 67046 --- [app] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-04-21T21:54:37.908-05:00  INFO 67046 --- [app] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-21T21:54:37.935-05:00  INFO 67046 --- [app] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-21T21:54:38.244-05:00  INFO 67046 --- [app] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@579b644f
+2026-04-21T21:54:38.246-05:00  INFO 67046 --- [app] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-21T21:54:38.288-05:00  WARN 67046 --- [app] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-21T21:54:38.300-05:00  INFO 67046 --- [app] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/desarrollo]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.45
+	Default catalog/schema: desarrollo/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-21T21:54:38.860-05:00  INFO 67046 --- [app] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-21T21:54:38.900-05:00  INFO 67046 --- [app] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-21T21:54:38.959-05:00  INFO 67046 --- [app] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-21T21:54:39.090-05:00  WARN 67046 --- [app] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-21T21:54:39.272-05:00  WARN 67046 --- [app] [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2026-04-21T21:54:39.419-05:00  INFO 67046 --- [app] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-04-21T21:54:39.424-05:00  INFO 67046 --- [app] [restartedMain] c.store.spring.app.MainAppApplication    : Started MainAppApplication in 3.526 seconds (process running for 3.953)
+2026-04-21T21:54:39.426-05:00  WARN 67046 --- [app] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-04-21T21:54:39.426-05:00  WARN 67046 --- [app] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-04-21T22:16:34.802-05:00  INFO 67046 --- [app] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-21T22:16:34.808-05:00  INFO 67046 --- [app] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-04-21T22:16:34.815-05:00  INFO 67046 --- [app] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-21T22:16:34.825-05:00  INFO 67046 --- [app] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-21T22:16:34.832-05:00  INFO 67046 --- [app] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

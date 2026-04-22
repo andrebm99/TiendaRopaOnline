@@ -15,7 +15,7 @@ public class SwaggerConfig {
             .info(new Info()
             .title("API SISTEMA DE VENTAS")
             .version("v1.0")
-            .description("Documentando de los endpoins para el sistema de ventas.")
+            .description("Documentación de los endpoints del sistema.")
         );
     }
 }
