@@ -34,3 +34,5 @@ build/
 
 ### PROPIEDADES ###
 src/main/resources/application.properties
+
+.metals/metals.lock.db
