@@ -15,7 +15,7 @@ http://localhost:8080/swagger
 
 ### Configuración del application.properties
 
-1) Debemos crear el application.properties en la siguiente ruta: 
+1) Debemos crear el `application.properties` en la siguiente ruta: 
     src/main/resources/application.properties
 
 2) Debemos agregar la siguiente configuracion para que el proyecto funcione:
@@ -29,8 +29,8 @@ http://localhost:8080/swagger
     logging.logback.rollingpolicy.max-file-size=20MB
 
     spring.datasource.url=jdbc:mysql://localhost:3306/desarrollo
-    spring.datasource.username=andrebm
-    spring.datasource.password=Hack4u1615;$!
+    spring.datasource.username=usuario
+    spring.datasource.password=contraseña
     spring.jpa.hibernate.ddl-auto=update
 
     spring.jpa.generate-ddl=false
@@ -41,9 +41,8 @@ http://localhost:8080/swagger
     springdoc.api-docs.path=/api-docs
 ```
 
-3) Para ello debemos crear la base de datos desarrollo
-    Con crear la base de datos el programa actualiza las tablas y las crea en nuestro mysql.
-
+3) Para ello debemos crear la base de datos `desarrollo`
+   
 ```sql
 CREATE DATABASE IF NOT EXISTS desarrollo;
 ```
