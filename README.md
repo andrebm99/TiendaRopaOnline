@@ -41,10 +41,10 @@ Debe ingresar su usuario y contraseña de `mysql` para que la configuracion func
 
     springdoc.swagger-ui.path=/swagger
     springdoc.api-docs.path=/api-docs
-```
+    ```
 
 3) Para ello debemos crear la base de datos `desarrollo`
    
-```sql
-CREATE DATABASE IF NOT EXISTS desarrollo;
-```
+    ```sql
+    CREATE DATABASE IF NOT EXISTS desarrollo;
+    ```
