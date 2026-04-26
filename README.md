@@ -1,1 +1,49 @@
-# PROYECTO DESARROLLO WEB INTEGRADO
+# TIENDA DE ROPA - DESARROLLO WEB INTEGRADO
+
+### LINK DONDE CORRE EL PROYECTO
+
+URL que nos manda a Swagger: 
+
+http://localhost:8080/swagger
+
+### Tecnologías implementadas
+
+- SpringBoot
+- MySQL
+- Postman
+- Swagger
+
+### Configuración del application.properties
+
+1) Debemos crear el application.properties en la siguiente ruta: 
+    src/main/resources/application.properties
+
+2) Debemos agregar la siguiente configuracion para que el proyecto funcione:
+
+```application.properties
+    spring.application.name=app
+
+    server.port=8080
+
+    logging.file.name=logs/app.log
+    logging.logback.rollingpolicy.max-file-size=20MB
+
+    spring.datasource.url=jdbc:mysql://localhost:3306/desarrollo
+    spring.datasource.username=andrebm
+    spring.datasource.password=Hack4u1615;$!
+    spring.jpa.hibernate.ddl-auto=update
+
+    spring.jpa.generate-ddl=false
+    spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+    spring.jpa.show-sql=false
+
+    springdoc.swagger-ui.path=/swagger
+    springdoc.api-docs.path=/api-docs
+```
+
+3) Para ello debemos crear la base de datos desarrollo
+    Con crear la base de datos el programa actualiza las tablas y las crea en nuestro mysql.
+
+```sql
+CREATE DATABASE IF NOT EXISTS desarrollo;
+```
