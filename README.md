@@ -19,6 +19,7 @@ http://localhost:8080/swagger
     src/main/resources/application.properties
 
 2) Debemos agregar la siguiente configuracion para que el proyecto funcione:
+Debe ingresar su usuario y contraseña de `mysql` para que la configuracion funcione.
 
 ```application.properties
     spring.application.name=app
