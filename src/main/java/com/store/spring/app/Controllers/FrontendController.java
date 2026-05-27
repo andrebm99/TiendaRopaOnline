@@ -17,7 +17,17 @@ public class FrontendController {
     }
 
     @GetMapping("/como-comprar")
-    public String howToBuy() {
+    public String showComoComprar() {
         return "como_comprar";
+    }
+
+    @GetMapping("/catalogo")
+    public String showCatalogo() {
+        return "catalogo";
+    }
+
+    @GetMapping("/bolsa")
+    public String showBolsa() {
+        return "bolsa";
     }
 }
