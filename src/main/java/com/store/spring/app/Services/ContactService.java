@@ -23,6 +23,11 @@ public class ContactService implements ContactInterface{
     }
 
     @Override
+    public Contact obtenerPorId(Integer id){
+        return repository.findById(id).orElse(null); 
+    }
+
+    @Override
     public Contact createContact(Contact contact) {
         return repository.save(contact); 
     }
@@ -35,6 +40,19 @@ public class ContactService implements ContactInterface{
 
         repository.deleteById(id);
         return true; 
+    }
+
+    @Override
+    public Contact actualizarContact(Integer id, Contact contact){
+        return repository.findById(id).map(p -> {
+            p.setName(contact.getName());
+            p.setLastname(contact.getLastname());
+            p.setEmail(contact.getEmail());
+            p.setPhone(contact.getPhone());
+            p.setMessage(contact.getMessage());
+
+            return repository.save(p);
+        }).orElse(null);
     }
     
 }

@@ -2,7 +2,6 @@ package com.store.spring.app.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,9 +23,11 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/api-docs/**","/swagger").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/productos/**").permitAll()
+                .requestMatchers("/api/productos/**").permitAll() // HttpMethod.GET, 
                 .requestMatchers("/api/role/**").permitAll()
                 .requestMatchers("/api/user/**").permitAll()
+                .requestMatchers("/api/contact/**").permitAll()
+                .requestMatchers("/api/pedidos/**").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

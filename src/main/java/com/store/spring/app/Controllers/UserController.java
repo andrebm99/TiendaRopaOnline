@@ -1,5 +1,6 @@
 package com.store.spring.app.Controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,10 +14,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.store.spring.app.Interface.UserInterface;
 import com.store.spring.app.Models.User;
+import com.store.spring.app.Repositories.ContactRepository;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @Tag(name = "Usuarios", description = "Endpoints para la gestión de usuarios (Admin, Vendedor, Cliente).")
@@ -24,10 +29,27 @@ import java.util.List;
 @RequestMapping("/api/user")
 public class UserController {
 
+    private final PasswordEncoder passwordEncoder;
     private final UserInterface userInterface;
+    ContactRepository repository;
 
-    public UserController(UserInterface userInterface) {
+    public UserController(UserInterface userInterface, PasswordEncoder passwordEncoder) {
         this.userInterface = userInterface;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @PostMapping
+    @Operation(summary = "Crear Usuario", description = "Registrar un nuevo usuario asignándole un rol.")
+    public ResponseEntity<User> create(@RequestBody User user) {
+        try {
+            String encryptedPassword = passwordEncoder.encode(user.getPassword());
+            user.setPassword(encryptedPassword);
+
+            User newUser = userInterface.createUser(user);
+            return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping
@@ -37,22 +59,15 @@ public class UserController {
             List<User> users = userInterface.getAllUsers();
             if (users.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
+            } 
             return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PostMapping
-    @Operation(summary = "Crear Usuario", description = "Registrar un nuevo usuario asignándole un rol.")
-    public ResponseEntity<User> create(@RequestBody User user) {
-        try {
-            User newUser = userInterface.createUser(user);
-            return new ResponseEntity<>(newUser, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public String getMethodName(@RequestParam String param) {
+        return new String();
     }
 
     @DeleteMapping("/{id}")

@@ -1,5 +1,6 @@
 package com.store.spring.app.Controllers;
 
+import com.store.spring.app.DTO.PedidoRequestDTO;
 import com.store.spring.app.Interface.PedidoInterface;
 import com.store.spring.app.Models.Pedido;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,10 +23,10 @@ public class PedidoController {
     }
 
     @PostMapping
-    @Operation(summary = "Crear Pedido", description = "Registra un nuevo pedido.")
-    public ResponseEntity<Pedido> create(@RequestBody Pedido pedido) {
+    @Operation(summary = "CREAR PEDIDO", description = "Registra un nuevo pedido.")
+    public ResponseEntity<Pedido> create(@RequestBody PedidoRequestDTO pedidoDTO) {
         try {
-            Pedido newPedido = pedidoInterface.crearPedido(pedido);
+            Pedido newPedido = pedidoInterface.crearPedido(pedidoDTO);
             return new ResponseEntity<>(newPedido, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -33,7 +34,7 @@ public class PedidoController {
     }
 
     @GetMapping
-    @Operation(summary = "Listar Pedidos", description = "Obtiene todos los pedidos registrados.")
+    @Operation(summary = "LISTAR TODOS LOS PEDIDOS", description = "Obtiene todos los pedidos registrados.")
     public ResponseEntity<List<Pedido>> getAll() {
         try {
             List<Pedido> pedidos = pedidoInterface.obtenerTodos();
@@ -44,7 +45,7 @@ public class PedidoController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Buscar Pedido", description = "Obtiene un pedido por su ID.")
+    @Operation(summary = "BUSCAR PEDIDO", description = "Obtiene un pedido por su ID.")
     public ResponseEntity<Pedido> getById(@PathVariable("id") Integer id) {
         try {
             Pedido pedido = pedidoInterface.obtenerPorId(id);
@@ -58,7 +59,7 @@ public class PedidoController {
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Actualizar Pedido", description = "Modifica los datos de un pedido existente.")
+    @Operation(summary = "ACTUALIZAR PEDIDO", description = "Modifica los datos de un pedido existente.")
     public ResponseEntity<Pedido> update(@PathVariable("id") Integer id, @RequestBody Pedido pedido) {
         try {
             Pedido updatedPedido = pedidoInterface.actualizarPedido(id, pedido);
@@ -72,7 +73,7 @@ public class PedidoController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Eliminar Pedido", description = "Elimina un pedido por su ID.")
+    @Operation(summary = "ELIMINAR PEDIDO", description = "Elimina un pedido por su ID.")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Integer id) {
         try {
             boolean isDeleted = pedidoInterface.eliminarPedido(id);

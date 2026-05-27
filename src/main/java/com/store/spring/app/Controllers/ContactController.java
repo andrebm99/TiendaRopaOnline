@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.store.spring.app.Models.Contact;
+import com.store.spring.app.Models.Producto;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -49,6 +51,21 @@ public class ContactController {
         }
     }
 
+    @GetMapping("/{id}")
+    @Operation(summary = "Buscar Mensaje", description = "Mostrar un mensaje recibido.")
+    public ResponseEntity<Contact> getById(@PathVariable("id") Integer id) {
+        try{
+            Contact contact = contactInterface.obtenerPorId(id); 
+
+            if(contact == null){
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+            }
+
+            return new ResponseEntity<>(contact, HttpStatus.OK);
+        } catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
+        }
+    }
     
     @PostMapping
     @Operation(summary = "Enviar", description = "Formulario de contacto para el sistema de ventas.")
@@ -72,6 +89,20 @@ public class ContactController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT); 
         } catch(Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
+        }
+    }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Actualizar Formulario de Contacto", description = "Modifica los datos de un formulario de contacto existente.")
+    public ResponseEntity<Contact> update(@PathVariable("id") Integer id, @RequestBody Contact contact) {
+        try {
+            Contact updatedContact  = contactInterface.actualizarContact(id, contact);
+            if (updatedContact == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(updatedContact, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
