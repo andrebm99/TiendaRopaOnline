@@ -17,6 +17,52 @@
   /* Shadows */
   --shadow-solid: 4px 4px 0px #111111;
   --shadow-solid-hover: 6px 6px 0px #111111;
+
+  /* STITCH Neo-Brutalist Variables missing from global */
+  --surface: #FFF0F1;
+  --on-surface: #111111;
+  --on-surface-variant: #666666;
+  --surface-container-low: #FFF0F1;
+  --surface-container-high: #f9f9f9;
+  --surface-container-lowest: #ffffff;
+  --surface-variant: #e6e6e6;
+  --surface-dim: #f3e6e8;
+  --primary: #FF2A6D;
+  --on-primary: #ffffff;
+  --primary-container: #ffd6e0;
+  --on-primary-container: #111111;
+  --border-black: #111111;
+  --secondary-container: #f0f0f0;
+
+  --container-margin-desktop: 64px;
+  --container-margin-mobile: 20px;
+  --stack-sm: 16px;
+  --stack-md: 24px;
+  --stack-lg: 48px;
+  --gutter: 24px;
+
+  --display-xl-size: 64px;
+  --display-xl-line-height: 1.1;
+  --display-xl-letter-spacing: -0.02em;
+  --display-xl-weight: 800;
+  --display-xl-mobile-size: 40px;
+
+  --headline-lg-size: 36px;
+  --headline-lg-mobile-size: 28px;
+
+  --font-syne: 'Syne', sans-serif;
+  --font-hanken: 'Inter', sans-serif;
+
+  --body-lg-size: 18px;
+  --body-md-size: 16px;
+  --body-md-line-height: 1.5;
+
+  --label-md-size: 12px;
+  --label-md-weight: 700;
+  --label-md-letter-spacing: 0.05em;
+
+  --button-size: 14px;
+  --button-weight: 700;
 }
 
 /* Reset */
