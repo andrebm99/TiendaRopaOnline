@@ -1,16 +1,15 @@
+/* --- SHIPPING SECTION --- */
 .page-title {
-  font-family: var(--font-heading);
+  font-family: 'Syne', sans-serif;
   font-size: 32px;
   font-weight: 700;
-  text-align: center;
+  color: var(--brand-black);
   text-transform: uppercase;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: 32px;
+  text-align: center;
 }
-
 @media (min-width: 768px) {
-  .page-title {
-    font-size: 48px;
-  }
+  .page-title { font-size: 48px; }
 }
 
 .shipping-grid {
@@ -19,65 +18,58 @@
   gap: 24px;
   margin-bottom: 32px;
 }
-
 @media (min-width: 768px) {
-  .shipping-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .shipping-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 .shipping-card {
-  background-color: var(--white);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--brand-black);
+  background-color: var(--brand-white);
   padding: 24px;
+  box-shadow: var(--shadow-solid);
   text-align: center;
-  box-shadow: 4px 4px 0px var(--border-color);
-  display: flex;
-  flex-direction: column;
 }
 
 .shipping-card-title {
-  font-family: var(--font-heading);
+  font-family: 'Syne', sans-serif;
   font-size: 24px;
   font-weight: 700;
+  color: var(--brand-black);
   text-transform: uppercase;
   margin-bottom: 16px;
 }
 
 .shipping-card-desc {
-  font-family: var(--font-body);
-  font-size: 16px;
-  color: #111111B3; /* 70% opacity */
+  font-family: 'Inter', sans-serif;
+  color: rgba(17, 17, 17, 0.7);
   margin-bottom: 16px;
-  flex-grow: 1;
 }
 
 .shipping-card-price {
-  font-family: var(--font-heading);
+  font-family: 'Syne', sans-serif;
   font-size: 32px;
   font-weight: 700;
+  color: var(--brand-black);
 }
-
 .shipping-card-price.accent {
-  color: var(--primary-color);
+  color: var(--fuchsia-accent);
 }
 
-.tracking-banner {
-  background-color: var(--border-color);
-  color: var(--white);
-  border: 1px solid var(--border-color);
+.shipping-banner {
+  border: 1px solid var(--brand-black);
+  background-color: var(--brand-black);
   padding: 24px;
+  box-shadow: var(--shadow-solid);
   text-align: center;
-  box-shadow: 4px 4px 0px var(--border-color);
 }
 
-.tracking-banner-text {
-  font-family: var(--font-body);
-  font-size: 16px;
+.shipping-banner-text {
+  font-family: 'Inter', sans-serif;
+  color: var(--brand-white);
 }
 
-.tracking-banner-accent {
-  color: var(--primary-color);
+.shipping-banner-accent {
+  color: var(--fuchsia-accent);
   font-weight: 700;
   text-transform: uppercase;
 }

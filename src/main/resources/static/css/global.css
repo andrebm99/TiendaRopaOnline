@@ -1,100 +1,77 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Hanken+Grotesk:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Syne:wght@700;800&display=swap');
 
 :root {
-  --primary-color: #FF2A6D; /* Electric Pink */
-  --secondary-color: #72594d;
+  /* Colors */
+  --fuchsia-accent: #FF2A6D;
+  --brand-black: #111111;
+  --brand-white: #ffffff;
   --bg-color: #FBF9F6;
-  --text-color: #111111; /* Matte Black */
-  --border-color: #111111;
-  --white: #ffffff;
   
-  --font-heading: 'Syne', sans-serif;
-  --font-body: 'Hanken Grotesk', sans-serif;
+  /* Spacing */
+  --spacing-container-mobile: 20px;
+  --spacing-container-desktop: 64px;
+  --spacing-gutter: 24px;
+  --spacing-stack-md: 24px;
+  --spacing-stack-lg: 48px;
 
-  --spacing-base: 8px;
-  --spacing-sm: 12px;
-  --spacing-md: 24px;
-  --spacing-lg: 48px;
-  --container-desktop: 64px;
-  --container-mobile: 20px;
+  /* Shadows */
+  --shadow-solid: 4px 4px 0px #111111;
+  --shadow-solid-hover: 6px 6px 0px #111111;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { line-height: 1.5; -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+a { color: inherit; text-decoration: inherit; }
+img, svg { display: block; max-width: 100%; }
+input, button { font: inherit; outline: none; }
 
+/* Base Styles */
 body {
-  font-family: var(--font-body);
+  font-family: 'Inter', sans-serif;
+  color: var(--brand-black);
   background-color: var(--bg-color);
-  color: var(--text-color);
-  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.2;
-}
+/* Typography Utilities */
+.font-syne { font-family: 'Syne', sans-serif; }
+.font-body { font-family: 'Inter', sans-serif; }
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.uppercase { text-transform: uppercase; }
+.text-center { text-align: center; }
 
-a {
-  text-decoration: none;
-  color: inherit;
-  transition: color 0.3s ease;
+/* Main Container (px-container-margin-mobile md:px-container-margin-desktop py-stack-lg) */
+.main-container {
+  padding: var(--spacing-stack-lg) var(--spacing-container-mobile);
 }
-
-a:hover {
-  color: var(--primary-color);
-}
-
-.btn-primary {
-  display: inline-block;
-  background-color: var(--primary-color);
-  color: var(--white);
-  font-family: var(--font-body);
-  font-weight: 700;
-  text-transform: uppercase;
-  padding: 16px 32px;
-  border: 1px solid var(--text-color);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
-  text-align: center;
-}
-
-.btn-primary:hover {
-  box-shadow: 4px 4px 0px var(--text-color);
-  transform: translateY(-2px);
-}
-
-.btn-outline {
-  display: inline-block;
-  background-color: transparent;
-  color: var(--text-color);
-  font-family: var(--font-body);
-  font-weight: 700;
-  text-transform: uppercase;
-  padding: 16px 32px;
-  border: 1px solid var(--text-color);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
-  text-align: center;
-}
-
-.btn-outline:hover {
-  background-color: #E2C2B3; /* neo-nude */
-  box-shadow: 4px 4px 0px var(--text-color);
-  transform: translateY(-2px);
-}
-
-.container {
-  padding: 0 var(--container-mobile);
-}
-
 @media (min-width: 768px) {
-  .container {
-    padding: 0 var(--container-desktop);
+  .main-container {
+    padding: var(--spacing-stack-lg) var(--spacing-container-desktop);
   }
+}
+
+/* Colors Utilities */
+.text-fuchsia { color: var(--fuchsia-accent); }
+.bg-fuchsia { background-color: var(--fuchsia-accent); }
+.text-white { color: var(--brand-white); }
+.bg-white { background-color: var(--brand-white); }
+.bg-brand { background-color: var(--brand-black); }
+
+/* Borders & Shadows */
+.border-brand {
+  border: 1px solid var(--brand-black);
+}
+.shadow-solid {
+  box-shadow: var(--shadow-solid);
+}
+.hover-shadow-solid {
+  transition: all 0.2s ease-in-out;
+}
+.hover-shadow-solid:hover {
+  box-shadow: var(--shadow-solid-hover);
+  transform: translateY(-2px);
 }

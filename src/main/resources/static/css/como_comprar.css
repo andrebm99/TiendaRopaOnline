@@ -1,20 +1,19 @@
+/* --- HOW TO BUY SECTION --- */
 .page-title {
-  font-family: var(--font-heading);
+  font-family: 'Syne', sans-serif;
   font-size: 32px;
   font-weight: 700;
-  text-align: center;
+  color: var(--brand-black);
   text-transform: uppercase;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: 32px;
+  text-align: center;
 }
-
 @media (min-width: 768px) {
-  .page-title {
-    font-size: 48px;
-  }
+  .page-title { font-size: 48px; }
 }
 
-.section-spacing {
-  margin-bottom: var(--spacing-lg);
+.section-wrapper {
+  margin-bottom: var(--spacing-stack-lg);
 }
 
 .grid-3-col {
@@ -22,78 +21,95 @@
   grid-template-columns: 1fr;
   gap: 24px;
 }
-
 @media (min-width: 768px) {
-  .grid-3-col {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .grid-3-col { grid-template-columns: repeat(3, 1fr); }
 }
 
+/* Steps Cards */
 .step-card {
-  background-color: var(--white);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--brand-black);
+  background-color: var(--brand-white);
   padding: 24px;
+  box-shadow: var(--shadow-solid);
   text-align: center;
-  box-shadow: 4px 4px 0px var(--border-color);
 }
 
 .step-number {
   width: 48px;
   height: 48px;
-  background-color: var(--primary-color);
-  color: var(--white);
-  font-family: var(--font-heading);
+  background-color: var(--fuchsia-accent);
+  color: var(--brand-white);
+  font-family: 'Syne', sans-serif;
   font-size: 24px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  margin: 0 auto 16px;
-  border: 1px solid var(--border-color);
+  border-radius: 9999px; /* full rounded */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 16px;
+  border: 1px solid var(--brand-black);
 }
 
 .step-title {
-  font-family: var(--font-heading);
+  font-family: 'Syne', sans-serif;
   font-size: 24px;
   font-weight: 700;
+  color: var(--brand-black);
   text-transform: uppercase;
   margin-bottom: 8px;
 }
 
 .step-desc {
-  font-family: var(--font-body);
-  font-size: 16px;
-  color: #111111B3;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(17, 17, 17, 0.7);
 }
 
+/* Store Cards */
 .store-card {
-  background-color: var(--white);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--brand-black);
+  background-color: var(--brand-white);
   padding: 24px;
-  box-shadow: 4px 4px 0px var(--border-color);
+  box-shadow: var(--shadow-solid);
   display: flex;
   flex-direction: column;
 }
 
 .store-title {
-  font-family: var(--font-heading);
+  font-family: 'Syne', sans-serif;
   font-size: 24px;
   font-weight: 700;
+  color: var(--brand-black);
   text-transform: uppercase;
   margin-bottom: 16px;
 }
 
 .store-info {
-  font-family: var(--font-body);
-  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  color: var(--brand-black);
   margin-bottom: 8px;
 }
 
-.store-info strong {
-  font-weight: 700;
+.store-info-last {
+  margin-bottom: 24px;
 }
 
 .store-btn {
   margin-top: auto;
-  padding-top: 24px;
+  background-color: var(--fuchsia-accent);
+  color: var(--brand-black);
+  border: 1px solid var(--brand-black);
+  padding: 8px 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-align: center;
+  transition: all 0.2s;
+}
+.store-btn:hover {
+  box-shadow: var(--shadow-solid-hover);
+  transform: translateY(-2px);
 }

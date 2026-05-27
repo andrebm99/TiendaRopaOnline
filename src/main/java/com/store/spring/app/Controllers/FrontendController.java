@@ -8,7 +8,7 @@ public class FrontendController {
 
     @GetMapping("/")
     public String index() {
-        return "inicio";
+        return "Home";
     }
 
     @GetMapping("/envios")

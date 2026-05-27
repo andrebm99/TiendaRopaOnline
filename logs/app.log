@@ -79,3 +79,167 @@
 2026-05-27T01:02:43.704-05:00  INFO 41156 --- [app] [http-nio-9080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2026-05-27T01:02:43.707-05:00  INFO 41156 --- [app] [http-nio-9080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2026-05-27T01:02:43.711-05:00  INFO 41156 --- [app] [http-nio-9080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2026-05-27T02:35:58.673-05:00  INFO 476 --- [app] [restartedMain] c.store.spring.app.MainAppApplication    : Starting MainAppApplication using Java 21.0.9 with PID 476 (C:\Users\sergi\OneDrive\Documentos\UTP\Desarrollo web integrado\proyecto\TiendaRopaOnline\target\classes started by sergi in C:\Users\sergi\OneDrive\Documentos\UTP\Desarrollo web integrado\proyecto\TiendaRopaOnline)
+2026-05-27T02:35:58.682-05:00  INFO 476 --- [app] [restartedMain] c.store.spring.app.MainAppApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-05-27T02:35:58.793-05:00  INFO 476 --- [app] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-27T02:35:58.793-05:00  INFO 476 --- [app] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-27T02:36:00.923-05:00  INFO 476 --- [app] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-27T02:36:01.048-05:00  INFO 476 --- [app] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 100 ms. Found 2 JPA repository interfaces.
+2026-05-27T02:36:03.094-05:00  INFO 476 --- [app] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 9080 (http)
+2026-05-27T02:36:03.172-05:00  INFO 476 --- [app] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-27T02:36:03.175-05:00  INFO 476 --- [app] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-27T02:36:03.581-05:00  INFO 476 --- [app] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 4785 ms
+2026-05-27T02:36:04.717-05:00  INFO 476 --- [app] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-27T02:36:05.017-05:00  INFO 476 --- [app] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-05-27T02:36:06.062-05:00  INFO 476 --- [app] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-27T02:36:06.137-05:00  INFO 476 --- [app] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-27T02:36:06.987-05:00  INFO 476 --- [app] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@32f5b380
+2026-05-27T02:36:06.990-05:00  INFO 476 --- [app] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-27T02:36:07.120-05:00  WARN 476 --- [app] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-27T02:36:07.159-05:00  INFO 476 --- [app] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/desarrollo]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 9.5
+	Default catalog/schema: desarrollo/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-27T02:36:08.537-05:00  INFO 476 --- [app] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-27T02:36:08.696-05:00  INFO 476 --- [app] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-27T02:36:08.867-05:00  INFO 476 --- [app] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-27T02:36:09.264-05:00  WARN 476 --- [app] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-27T02:36:10.257-05:00  INFO 476 --- [app] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 9080 (http) with context path '/'
+2026-05-27T02:36:10.270-05:00  INFO 476 --- [app] [restartedMain] c.store.spring.app.MainAppApplication    : Started MainAppApplication in 12.582 seconds (process running for 13.598)
+2026-05-27T02:36:10.280-05:00  WARN 476 --- [app] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-05-27T02:36:10.281-05:00  WARN 476 --- [app] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-05-27T02:36:20.268-05:00  INFO 476 --- [app] [http-nio-9080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-27T02:36:20.271-05:00  INFO 476 --- [app] [http-nio-9080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-27T02:36:20.274-05:00  INFO 476 --- [app] [http-nio-9080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-05-27T02:36:29.309-05:00  INFO 476 --- [app] [http-nio-9080-exec-2] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 679 ms
+2026-05-27T03:15:55.009-05:00  INFO 476 --- [app] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-05-27T03:15:55.023-05:00  INFO 476 --- [app] [Thread-1] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-27T03:15:55.043-05:00  INFO 476 --- [app] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-05-27T03:15:55.052-05:00  INFO 476 --- [app] [Thread-1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-27T03:15:55.060-05:00  INFO 476 --- [app] [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-27T03:15:55.074-05:00  INFO 476 --- [app] [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-27T03:15:55.313-05:00  INFO 476 --- [app] [restartedMain] c.store.spring.app.MainAppApplication    : Starting MainAppApplication using Java 21.0.9 with PID 476 (C:\Users\sergi\OneDrive\Documentos\UTP\Desarrollo web integrado\proyecto\TiendaRopaOnline\target\classes started by sergi in C:\Users\sergi\OneDrive\Documentos\UTP\Desarrollo web integrado\proyecto\TiendaRopaOnline)
+2026-05-27T03:15:55.315-05:00  INFO 476 --- [app] [restartedMain] c.store.spring.app.MainAppApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-05-27T03:15:56.079-05:00  INFO 476 --- [app] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-27T03:15:56.110-05:00  INFO 476 --- [app] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28 ms. Found 2 JPA repository interfaces.
+2026-05-27T03:15:56.366-05:00  INFO 476 --- [app] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 9080 (http)
+2026-05-27T03:15:56.370-05:00  INFO 476 --- [app] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-27T03:15:56.370-05:00  INFO 476 --- [app] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-27T03:15:56.425-05:00  INFO 476 --- [app] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1095 ms
+2026-05-27T03:15:56.529-05:00  INFO 476 --- [app] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-27T03:15:56.587-05:00  INFO 476 --- [app] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-27T03:15:56.590-05:00  INFO 476 --- [app] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-05-27T03:15:56.614-05:00  INFO 476 --- [app] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6416fa9b
+2026-05-27T03:15:56.614-05:00  INFO 476 --- [app] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-05-27T03:15:56.620-05:00  WARN 476 --- [app] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-27T03:15:56.623-05:00  INFO 476 --- [app] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/desarrollo]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 9.5
+	Default catalog/schema: desarrollo/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-27T03:15:56.755-05:00  INFO 476 --- [app] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-27T03:15:56.781-05:00  INFO 476 --- [app] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-27T03:15:56.952-05:00  WARN 476 --- [app] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-27T03:15:57.243-05:00  INFO 476 --- [app] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 9080 (http) with context path '/'
+2026-05-27T03:15:57.250-05:00  INFO 476 --- [app] [restartedMain] c.store.spring.app.MainAppApplication    : Started MainAppApplication in 2.02 seconds (process running for 2400.577)
+2026-05-27T03:15:57.252-05:00  WARN 476 --- [app] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-05-27T03:15:57.252-05:00  WARN 476 --- [app] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-05-27T03:15:57.256-05:00  INFO 476 --- [app] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-05-27T03:17:14.212-05:00  INFO 476 --- [app] [http-nio-9080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-27T03:17:14.212-05:00  INFO 476 --- [app] [http-nio-9080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-27T03:17:14.214-05:00  INFO 476 --- [app] [http-nio-9080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-05-27T03:17:32.165-05:00  INFO 42572 --- [app] [restartedMain] c.store.spring.app.MainAppApplication    : Starting MainAppApplication using Java 21.0.9 with PID 42572 (C:\Users\sergi\OneDrive\Documentos\UTP\Desarrollo web integrado\proyecto\TiendaRopaOnline\target\classes started by sergi in C:\Users\sergi\OneDrive\Documentos\UTP\Desarrollo web integrado\proyecto\TiendaRopaOnline)
+2026-05-27T03:17:32.178-05:00  INFO 42572 --- [app] [restartedMain] c.store.spring.app.MainAppApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-05-27T03:17:32.326-05:00  INFO 42572 --- [app] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-27T03:17:32.329-05:00  INFO 42572 --- [app] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-27T03:17:34.848-05:00  INFO 42572 --- [app] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-27T03:17:34.951-05:00  INFO 42572 --- [app] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 85 ms. Found 2 JPA repository interfaces.
+2026-05-27T03:17:36.268-05:00  INFO 42572 --- [app] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 9080 (http)
+2026-05-27T03:17:36.304-05:00  INFO 42572 --- [app] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-27T03:17:36.305-05:00  INFO 42572 --- [app] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-27T03:17:36.415-05:00  INFO 42572 --- [app] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 4084 ms
+2026-05-27T03:17:36.938-05:00  INFO 42572 --- [app] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-27T03:17:37.113-05:00  INFO 42572 --- [app] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-05-27T03:17:38.188-05:00  INFO 42572 --- [app] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-27T03:17:38.270-05:00  INFO 42572 --- [app] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-27T03:17:38.916-05:00  INFO 42572 --- [app] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7e04bfd4
+2026-05-27T03:17:38.920-05:00  INFO 42572 --- [app] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-27T03:17:39.026-05:00  WARN 42572 --- [app] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-27T03:17:39.066-05:00  INFO 42572 --- [app] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/desarrollo]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 9.5
+	Default catalog/schema: desarrollo/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-27T03:17:40.377-05:00  INFO 42572 --- [app] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-27T03:17:40.467-05:00  INFO 42572 --- [app] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-27T03:17:40.632-05:00  INFO 42572 --- [app] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-27T03:17:41.085-05:00  WARN 42572 --- [app] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-27T03:17:42.030-05:00  INFO 42572 --- [app] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 9080 (http) with context path '/'
+2026-05-27T03:17:42.040-05:00  INFO 42572 --- [app] [restartedMain] c.store.spring.app.MainAppApplication    : Started MainAppApplication in 10.792 seconds (process running for 11.678)
+2026-05-27T03:17:42.048-05:00  WARN 42572 --- [app] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-05-27T03:17:42.050-05:00  WARN 42572 --- [app] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-05-27T03:17:55.747-05:00  INFO 42572 --- [app] [http-nio-9080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-27T03:17:55.748-05:00  INFO 42572 --- [app] [http-nio-9080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-27T03:17:55.753-05:00  INFO 42572 --- [app] [http-nio-9080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-05-27T03:23:35.366-05:00  INFO 28380 --- [app] [restartedMain] c.store.spring.app.MainAppApplication    : Starting MainAppApplication using Java 21.0.9 with PID 28380 (C:\Users\sergi\OneDrive\Documentos\UTP\Desarrollo web integrado\proyecto\TiendaRopaOnline\target\classes started by sergi in C:\Users\sergi\OneDrive\Documentos\UTP\Desarrollo web integrado\proyecto\TiendaRopaOnline)
+2026-05-27T03:23:35.374-05:00  INFO 28380 --- [app] [restartedMain] c.store.spring.app.MainAppApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-05-27T03:23:35.487-05:00  INFO 28380 --- [app] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-27T03:23:35.489-05:00  INFO 28380 --- [app] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-27T03:23:37.223-05:00  INFO 28380 --- [app] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-27T03:23:37.320-05:00  INFO 28380 --- [app] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 80 ms. Found 2 JPA repository interfaces.
+2026-05-27T03:23:38.350-05:00  INFO 28380 --- [app] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 9080 (http)
+2026-05-27T03:23:38.379-05:00  INFO 28380 --- [app] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-27T03:23:38.381-05:00  INFO 28380 --- [app] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.20]
+2026-05-27T03:23:38.480-05:00  INFO 28380 --- [app] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2988 ms
+2026-05-27T03:23:38.949-05:00  INFO 28380 --- [app] [restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-27T03:23:39.058-05:00  INFO 28380 --- [app] [restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.7.Final
+2026-05-27T03:23:39.793-05:00  INFO 28380 --- [app] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-27T03:23:39.838-05:00  INFO 28380 --- [app] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-27T03:23:40.268-05:00  INFO 28380 --- [app] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7e04bfd4
+2026-05-27T03:23:40.271-05:00  INFO 28380 --- [app] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-27T03:23:40.366-05:00  WARN 28380 --- [app] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-27T03:23:40.396-05:00  INFO 28380 --- [app] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/desarrollo]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 9.5
+	Default catalog/schema: desarrollo/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-27T03:23:41.512-05:00  INFO 28380 --- [app] [restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-27T03:23:41.636-05:00  INFO 28380 --- [app] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-27T03:23:41.753-05:00  INFO 28380 --- [app] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-27T03:23:42.052-05:00  WARN 28380 --- [app] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-27T03:23:42.906-05:00  INFO 28380 --- [app] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 9080 (http) with context path '/'
+2026-05-27T03:23:42.916-05:00  INFO 28380 --- [app] [restartedMain] c.store.spring.app.MainAppApplication    : Started MainAppApplication in 8.311 seconds (process running for 9.324)
+2026-05-27T03:23:42.924-05:00  WARN 28380 --- [app] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-05-27T03:23:42.924-05:00  WARN 28380 --- [app] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-05-27T03:23:53.906-05:00  INFO 28380 --- [app] [http-nio-9080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-27T03:23:53.907-05:00  INFO 28380 --- [app] [http-nio-9080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-27T03:23:53.912-05:00  INFO 28380 --- [app] [http-nio-9080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
