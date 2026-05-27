@@ -21,6 +21,8 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .cors(cors -> cors.configure(http))
             .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/css/**", "/js/**", "/img/**", "/images/**").permitAll()
+                .requestMatchers("/", "/envios", "/como-comprar", "/catalogo", "/bolsa").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/api-docs/**","/swagger").permitAll()
                 .requestMatchers("/api/productos/**").permitAll() // HttpMethod.GET, 
