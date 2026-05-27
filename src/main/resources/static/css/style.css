@@ -1,0 +1,47 @@
+
+/* Styles from index */
+
+        body {
+            background-color: #FBF9F6;
+            color: #111111;
+        }
+        .border-brand {
+            border-color: #111111;
+        }
+        .bg-fuchsia-accent {
+            background-color: #FF2A6D;
+        }
+        .text-fuchsia-accent {
+            color: #FF2A6D;
+        }
+        .shadow-solid {
+            box-shadow: 4px 4px 0px 0px rgba(17,17,17,1);
+        }
+        .hover-shadow-solid:hover {
+            box-shadow: 4px 4px 0px 0px rgba(17,17,17,1);
+            transform: translate(-2px, -2px);
+        }
+      
+/* Styles from shipping */
+
+        .neo-brutalism-shadow {
+            box-shadow: 4px 4px 0px 0px #111111;
+        }
+        .neo-brutalism-shadow-sm {
+            box-shadow: 2px 2px 0px 0px #111111;
+        }
+        .neo-brutalism-hover:hover {
+            box-shadow: 4px 4px 0px 0px #111111;
+            transform: translate(-2px, -2px);
+        }
+    
+/* Styles from how_to_buy */
+
+        .neo-border { border: 1px solid #111111; }
+        .neo-shadow { box-shadow: 2px 2px 0px 0px #111111; transition: transform 0.2s, box-shadow 0.2s; }
+        .neo-shadow:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0px 0px #111111; }
+        .bg-fuchsia-electric { background-color: #FF2A6D; }
+        .text-fuchsia-electric { color: #FF2A6D; }
+        .bg-crema { background-color: #FBF9F6; }
+        .text-mate { color: #111111; }
+    

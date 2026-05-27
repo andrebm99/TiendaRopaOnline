@@ -23,6 +23,7 @@ target/
 /nbproject/private/
 /nbbuild/
 /dist/
+/logs/
 /nbdist/
 /.nb-gradle/
 build/
@@ -36,6 +37,5 @@ build/
 src/main/resources/application.properties
 
 .metals/metals.lock.db
-
 logs/
 

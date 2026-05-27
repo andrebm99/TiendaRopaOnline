@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head th:replace="~{fragments :: head('Tienda de Ropa Online - Inicio')}"></head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav th:replace="~{fragments :: navbar}"></nav>
+
+    <main class="main-container" id="home-view">
+
+        <!-- Hero Banner -->
+        <section class="hero-wrapper group">
+            <img alt="Hero Banner" class="hero-bg-img"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHl97Bo2XedT7iVu2IyPX1JNoTyRbk3XRbItdv4fIj_r0Z7bih6n_n8eqXTKwFStdP31DywuBTEfyHU87K_X3l0I-4o9R2pRarC8ir98K6vH9--B1EpsM1C1iZsOrtFg7Zye-DcBsAPFPthSeR9_PoIgmdhs5u6B7dPCcoqx_3RfPA31lyVsQkUexBYvilkhvUMtjSK70ygN9K4D5qW8jdhKOqW_fyovBUOuvix01fYakT5wIY5bU1vLBMxvA-PAyIxvi5xJWQzbmm">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h2 class="hero-title">
+                    NUEVA TEMPORADA <br><span class="hero-title-accent">// POTENCIA TU ESTILO</span>
+                </h2>
+                <a class="hero-btn" th:href="@{/catalogo}">
+                    VER TODO
+                </a>
+            </div>
+        </section>
+
+        <!-- Category Grid -->
+        <section class="category-section">
+            <div class="category-grid">
+
+                <!-- Category 1 -->
+                <a class="category-card" th:href="@{/}">
+                    <img alt="Lo Nuevo" class="category-img"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI5d2dRcdkw1yWYwJ4UMh8QMJ4yxbpgx91fq9LDlJPUxifzBLhMmdH7C6uqfNTrhxbbYpOJNxYUqx-4egmTj6WjeW45OM8lfnQhSxGsFonP5LTWtX4w410MzXD2o0a7XqQ70xu9tUezq-TDC29vQvuZIk-Jqwt1wb9IwYm6syom0izoLZWGTUdJ6-LJjVv97umqQmm53wjQeFFEXi59QHWmxk4ggfRcicIjNdYqgZRVyxKGvoBn0A4CMY-3ohcJL8c-vUV5CwLoOA4">
+                    <div class="category-badge">
+                        HOT 🔥
+                    </div>
+                    <div class="category-footer">
+                        <h3 class="category-title">LO NUEVO</h3>
+                        <span class="category-icon material-symbols-outlined">arrow_forward</span>
+                    </div>
+                </a>
+
+                <!-- Category 2 -->
+                <a class="category-card" th:href="@{/catalogo}">
+                    <img alt="Casacas" class="category-img" th:src="@{/img/img1.jpeg}">
+                    <div class="category-footer">
+                        <h3 class="category-title">CASACAS</h3>
+                        <span class="category-icon material-symbols-outlined">arrow_forward</span>
+                    </div>
+                </a>
+
+                <!-- Category 3 -->
+                <a class="category-card" th:href="@{/catalogo}">
+                    <img alt="Faldas" class="category-img" th:src="@{/img/img2.jpeg}">
+                    <div class="category-footer">
+                        <h3 class="category-title">FALDAS</h3>
+                        <span class="category-icon material-symbols-outlined">arrow_forward</span>
+                    </div>
+                </a>
+
+                <!-- Category 4 -->
+                <a class="category-card" th:href="@{/catalogo}">
+                    <img alt="Polos" class="category-img" th:src="@{/img/img3.jpg}">
+                    <div class="category-footer">
+                        <h3 class="category-title">POLOS</h3>
+                        <span class="category-icon material-symbols-outlined">arrow_forward</span>
+                    </div>
+                </a>
+
+                <!-- Category 5 -->
+                <a class="category-card" th:href="@{/catalogo}">
+                    <img alt="Corsets" class="category-img" th:src="@{/img/img4.jpg}">
+                    <div class="category-footer">
+                        <h3 class="category-title">CORSETS</h3>
+                        <span class="category-icon material-symbols-outlined">arrow_forward</span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Brand Manifesto -->
+        <section class="manifesto-section">
+            <h2 class="manifesto-title">
+                "Diseñado con pasión,<br>
+                orgullosamente hecho en <span class="manifesto-accent">Perú</span>"
+            </h2>
+            <div class="manifesto-divider"></div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer th:replace="~{fragments :: footer}"></footer>
+
+</body>
+
+</html>
