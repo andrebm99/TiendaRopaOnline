@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="~{fragments :: head('Tienda de Ropa Online - Inicio')}"></head>
+<body class="font-body text-brand antialiased bg-[#FBF9F6]">
+
+    <!-- NAVBAR -->
+    <nav th:replace="~{fragments :: navbar}"></nav>
+
+    <main class="px-container-margin-mobile md:px-container-margin-desktop py-stack-lg" id="home-view">
+        
+        <!-- Hero Banner -->
+        <section class="relative w-full h-[716px] md:h-[870px] border border-brand overflow-hidden group">
+            <img alt="Hero Banner" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHl97Bo2XedT7iVu2IyPX1JNoTyRbk3XRbItdv4fIj_r0Z7bih6n_n8eqXTKwFStdP31DywuBTEfyHU87K_X3l0I-4o9R2pRarC8ir98K6vH9--B1EpsM1C1iZsOrtFg7Zye-DcBsAPFPthSeR9_PoIgmdhs5u6B7dPCcoqx_3RfPA31lyVsQkUexBYvilkhvUMtjSK70ygN9K4D5qW8jdhKOqW_fyovBUOuvix01fYakT5wIY5bU1vLBMxvA-PAyIxvi5xJWQzbmm">
+            <div class="absolute inset-0 bg-[#111111]/20"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+                <h2 class="font-display text-display-xl-mobile md:text-display-xl font-bold text-white uppercase mb-4 drop-shadow-md">
+                    NUEVA TEMPORADA <br><span class="text-fuchsia-accent" style="text-shadow: 3px 3px 0px #111111;">// POTENCIA TU ESTILO</span>
+                </h2>
+                <a class="mt-stack-md bg-fuchsia-accent text-[#111111] border border-brand px-8 py-4 font-button font-bold uppercase transition-all duration-200 shadow-solid hover-shadow-solid" th:href="@{/}">
+                    VER TODO
+                </a>
+            </div>
+        </section>
+
+        <!-- Category Grid -->
+        <section class="mt-stack-lg md:mt-[120px]">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                
+                <!-- Category 1 -->
+                <a class="block relative h-[400px] border border-brand group overflow-hidden bg-white shadow-solid hover-shadow-solid transition-all" th:href="@{/}">
+                    <img alt="Lo Nuevo" class="absolute inset-0 w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI5d2dRcdkw1yWYwJ4UMh8QMJ4yxbpgx91fq9LDlJPUxifzBLhMmdH7C6uqfNTrhxbbYpOJNxYUqx-4egmTj6WjeW45OM8lfnQhSxGsFonP5LTWtX4w410MzXD2o0a7XqQ70xu9tUezq-TDC29vQvuZIk-Jqwt1wb9IwYm6syom0izoLZWGTUdJ6-LJjVv97umqQmm53wjQeFFEXi59QHWmxk4ggfRcicIjNdYqgZRVyxKGvoBn0A4CMY-3ohcJL8c-vUV5CwLoOA4">
+                    <div class="absolute top-4 right-4 bg-fuchsia-accent text-[#111111] border border-brand px-3 py-1 font-label-md uppercase shadow-solid z-10 font-bold">
+                        HOT 🔥
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-white/90 border-t border-brand backdrop-blur-sm flex justify-between items-center transform translate-y-0 transition-transform">
+                        <h3 class="font-syne text-[24px] font-bold text-[#111111] uppercase">LO NUEVO</h3>
+                        <span class="material-symbols-outlined text-[24px]">arrow_forward</span>
+                    </div>
+                </a>
+
+                <!-- Category 2 -->
+                <a class="block relative h-[400px] border border-brand group overflow-hidden bg-white shadow-solid hover-shadow-solid transition-all" th:href="@{/}">
+                    <img alt="Vestidos" class="absolute inset-0 w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk1TnRMhU-OuwVKl_uSqOwkKuIMYqQKVMxAadoZ4UU9RqKkUADFZ9hU-5stPY3Ivjt4H33t6bwBQnkEJ6F1I8OAH1XY_NH5JgCFnP72WNxHXVIdopSXo2dpKX4gTPD7MfNYTO5eg6D6c8PX69cd-NMwQWKrZvxlLzebJv8RRN5qEcuqKsMqgKBWRqhiCNkv5nj0DQuDmGvp3fRECX4gXz1u_Iadbhsl69bxUP9tqm_6mcR4i4i2GzYT1fuInfSJJd_raRTvMYyNX0c">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-white/90 border-t border-brand backdrop-blur-sm flex justify-between items-center">
+                        <h3 class="font-syne text-[24px] font-bold text-[#111111] uppercase">VESTIDOS</h3>
+                        <span class="material-symbols-outlined text-[24px]">arrow_forward</span>
+                    </div>
+                </a>
+
+                <!-- Category 3 -->
+                <a class="block relative h-[400px] border border-brand group overflow-hidden bg-white shadow-solid hover-shadow-solid transition-all" th:href="@{/}">
+                    <img alt="Blusas & Tops" class="absolute inset-0 w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbE5rMcUT_q368vs_ojDdXdmU2IQDJOYmjXDiV1Ysc1aCDItWtu12qkwSOP8mfWU29NH5pUlWGPC2vdE2LMk6Y8kP19Ri_bmddvCr86gxPnZbBWhoxEme7F2PhWgwh1ERY3IdDu2f6nd9ttD7tBLX-qEM4kuWwRF4bJxbc4qcrXnkaFyzibEiDEhzr6l9HwWw-MsJQGtFea_4VHpuVTRcxYBIU9Bbh0t1ASaa7QrXmm22O8Ghz2s8_jpQSwLEvmlwruB6lC0jVt5TQ">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-white/90 border-t border-brand backdrop-blur-sm flex justify-between items-center">
+                        <h3 class="font-syne text-[24px] font-bold text-[#111111] uppercase">BLUSAS & TOPS</h3>
+                        <span class="material-symbols-outlined text-[24px]">arrow_forward</span>
+                    </div>
+                </a>
+
+                <!-- Category 4 -->
+                <a class="block relative h-[400px] border border-brand group overflow-hidden bg-white shadow-solid hover-shadow-solid transition-all" th:href="@{/}">
+                    <img alt="Faldas & Pantalones" class="absolute inset-0 w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF-5Y-tibj5KSeoYyiOmKvTuRlDBkGuE1oFisr5amUSQp696_t3XixMSDooIQo9QfO9eo8MnPIlo7JUlZT4rzcibE1Y04gDh6xu89OzmRUGlRrsKU1d5JnJpYMnw0hQP95wZdiHrdy7fiylPS03bHnrFIOSnd6DVBxWttXQQRyUQbrVmnegJWsfhd_4izJbksB05bfa--E3Pief5Viij8AyVUpYfznpkG-wVCX1iTU_B9RtGP299fuQL5dxnJVoCq-wlYRVseB7tgN">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-white/90 border-t border-brand backdrop-blur-sm flex justify-between items-center">
+                        <h3 class="font-syne text-[24px] font-bold text-[#111111] uppercase">FALDAS & PANTALONES</h3>
+                        <span class="material-symbols-outlined text-[24px]">arrow_forward</span>
+                    </div>
+                </a>
+
+                <!-- Category 5 -->
+                <a class="block relative h-[400px] border border-brand group overflow-hidden bg-white shadow-solid hover-shadow-solid transition-all" th:href="@{/}">
+                    <img alt="Abrigos" class="absolute inset-0 w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKehSsAt_87nynsMayo4-F9cWxxrD-JTfZCGQq9zddkdfPlkdDA-7W7FELclPQICSsJ1HLMF2ZHFmTSNOUsR5r_J81-ccLI-98eeZku8bOUWef9A0b4ZfQDgDyHYQuFI7THYQ2j7nqcBwpEq4xTAd_ZepxWhHzasRTWKMxrxU2OnupQsRwKK0kiTZPtl_HhVKuIBMkqz1HoRUUxcDg4xQjCp_ii3YGraWYl2KR3hUWIhzXAx1DyC1KYd_WinJTc2iAgrDC3DQaOO7V">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-white/90 border-t border-brand backdrop-blur-sm flex justify-between items-center">
+                        <h3 class="font-syne text-[24px] font-bold text-[#111111] uppercase">ABRIGOS</h3>
+                        <span class="material-symbols-outlined text-[24px]">arrow_forward</span>
+                    </div>
+                </a>
+
+                <!-- Category 6 -->
+                <a class="block relative h-[400px] border border-brand group overflow-hidden bg-white shadow-solid hover-shadow-solid transition-all" th:href="@{/}">
+                    <img alt="Fiesta & Cocktail" class="absolute inset-0 w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUlz_vZxq-jOwJi09QK9hmpbXp2zncj0aOTJoJrTuEXPNo0HlZ63EgyGrKG3eCjkGdX-mGyOeNemZx1VzOCZoivFeXAghFQJcmcw5JZs9eaZktMAsk_3tS-VDgYcwcTv2kXJofeDBzeaYG2EK7Nnf7PQS3RJVgMLzCjM6dziNZuzj0rrW-zxjO5HbhclkZNrfp_wjc5fmIdZ1WHhowSOdjS5mnt3ImtxnZI5ppWO7GWD7s0SCaJ43NQMN4riUHjlmMACxsATRS4S4Q">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-white/90 border-t border-brand backdrop-blur-sm flex justify-between items-center">
+                        <h3 class="font-syne text-[24px] font-bold text-[#111111] uppercase">FIESTA & COCKTAIL</h3>
+                        <span class="material-symbols-outlined text-[24px]">arrow_forward</span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Brand Manifesto -->
+        <section class="my-[150px] md:my-[200px] text-center max-w-4xl mx-auto px-4">
+            <h2 class="font-syne text-[32px] md:text-[48px] font-bold text-[#111111] leading-tight">
+                "Diseñado con pasión,<br>
+                orgullosamente hecho en <span class="text-fuchsia-accent italic">Perú</span>"
+            </h2>
+            <div class="w-16 h-[2px] bg-[#111111] mx-auto mt-8"></div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer th:replace="~{fragments :: footer}"></footer>
+
+</body>
+</html>

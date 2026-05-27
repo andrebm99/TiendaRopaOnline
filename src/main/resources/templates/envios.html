@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="~{fragments :: head('Tienda de Ropa Online - Envíos')}"></head>
+<body class="font-body text-brand antialiased bg-[#FBF9F6]">
+
+    <!-- NAVBAR -->
+    <nav th:replace="~{fragments :: navbar}"></nav>
+
+    <main class="px-container-margin-mobile md:px-container-margin-desktop py-stack-lg" id="envios-view">
+        <h2 class="font-syne text-[32px] md:text-[48px] font-bold text-[#111111] uppercase mb-8 text-center">Envíos / Shipping</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="border border-brand bg-white p-6 shadow-solid text-center">
+                <h3 class="font-syne text-[24px] font-bold text-[#111111] uppercase mb-4">ENVÍO EXPRESS LIMA</h3>
+                <p class="font-body text-[#111111]/70 mb-4">Entrega en menos de 24 horas.</p>
+                <p class="font-syne text-fuchsia-accent font-bold text-[32px]">S/ 15.00</p>
+            </div>
+            
+            <div class="border border-brand bg-white p-6 shadow-solid text-center">
+                <h3 class="font-syne text-[24px] font-bold text-[#111111] uppercase mb-4">ENVÍO REGULAR NACIONAL</h3>
+                <p class="font-body text-[#111111]/70 mb-4">2 a 4 días hábiles vía Olva o Shalom.</p>
+                <p class="font-syne text-[#111111] font-bold text-[32px]">S/ 20.00</p>
+            </div>
+            
+            <div class="border border-brand bg-white p-6 shadow-solid text-center">
+                <h3 class="font-syne text-[24px] font-bold text-[#111111] uppercase mb-4">INTERNATIONAL SHIPPING</h3>
+                <p class="font-body text-[#111111]/70 mb-4">Global via DHL Express.</p>
+                <p class="font-syne text-[#111111] font-bold text-[32px]">Calculado al pagar</p>
+            </div>
+        </div>
+        
+        <div class="border border-brand bg-[#111111] p-6 shadow-solid text-center">
+            <p class="font-body text-white">
+                <span class="text-fuchsia-accent font-bold uppercase">Monitorea tu pedido:</span> 
+                Te enviaremos un código de seguimiento por WhatsApp y Correo apenas tu orden sea despachada.
+            </p>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer th:replace="~{fragments :: footer}"></footer>
+
+</body>
+</html>

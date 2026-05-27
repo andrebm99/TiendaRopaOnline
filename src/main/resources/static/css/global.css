@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Hanken+Grotesk:wght@400;600;700&display=swap');
+
+:root {
+  --primary-color: #FF2A6D; /* Electric Pink */
+  --secondary-color: #72594d;
+  --bg-color: #FBF9F6;
+  --text-color: #111111; /* Matte Black */
+  --border-color: #111111;
+  --white: #ffffff;
+  
+  --font-heading: 'Syne', sans-serif;
+  --font-body: 'Hanken Grotesk', sans-serif;
+
+  --spacing-base: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 24px;
+  --spacing-lg: 48px;
+  --container-desktop: 64px;
+  --container-mobile: 20px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+.btn-primary {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+}
+
+.btn-primary:hover {
+  box-shadow: 4px 4px 0px var(--text-color);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--text-color);
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+}
+
+.btn-outline:hover {
+  background-color: #E2C2B3; /* neo-nude */
+  box-shadow: 4px 4px 0px var(--text-color);
+  transform: translateY(-2px);
+}
+
+.container {
+  padding: 0 var(--container-mobile);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--container-desktop);
+  }
+}

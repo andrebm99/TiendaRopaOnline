@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head th:replace="~{fragments :: head('Tienda de Ropa Online - Dónde Comprar')}"></head>
+
+<body class="font-body text-brand antialiased bg-[#FBF9F6]">
+
+    <!-- NAVBAR -->
+    <nav th:replace="~{fragments :: navbar}"></nav>
+
+    <main class="px-container-margin-mobile md:px-container-margin-desktop py-stack-lg" id="comprar-view">
+
+        <section class="mb-stack-lg">
+            <h2 class="font-syne text-[32px] md:text-[48px] font-bold text-[#111111] uppercase mb-8 text-center">Cómo
+                Comprar Online</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="border border-brand bg-white p-6 shadow-solid text-center">
+                    <div
+                        class="w-12 h-12 bg-fuchsia-accent text-white font-syne text-[24px] font-bold flex items-center justify-center rounded-full mx-auto mb-4 border border-brand">
+                        1</div>
+                    <h3 class="font-syne text-[24px] font-bold text-[#111111] uppercase mb-2">Elige tu Drop</h3>
+                    <p class="font-body text-[14px] text-[#111111]/70">Explora nuestra colección y selecciona tus piezas
+                        favoritas.</p>
+                </div>
+
+                <div class="border border-brand bg-white p-6 shadow-solid text-center">
+                    <div
+                        class="w-12 h-12 bg-fuchsia-accent text-white font-syne text-[24px] font-bold flex items-center justify-center rounded-full mx-auto mb-4 border border-brand">
+                        2</div>
+                    <h3 class="font-syne text-[24px] font-bold text-[#111111] uppercase mb-2">Revisa tu Talla</h3>
+                    <p class="font-body text-[14px] text-[#111111]/70">Usa nuestra guía de tallas para encontrar el fit
+                        perfecto.</p>
+                </div>
+
+                <div class="border border-brand bg-white p-6 shadow-solid text-center">
+                    <div
+                        class="w-12 h-12 bg-fuchsia-accent text-white font-syne text-[24px] font-bold flex items-center justify-center rounded-full mx-auto mb-4 border border-brand">
+                        3</div>
+                    <h3 class="font-syne text-[24px] font-bold text-[#111111] uppercase mb-2">Paga Seguro</h3>
+                    <p class="font-body text-[14px] text-[#111111]/70">Aceptamos Yape/Plin o cualquier tarjeta de
+                        crédito/débito.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="font-syne text-[32px] md:text-[48px] font-bold text-[#111111] uppercase mb-8 text-center">
+                Nuestros Puntos de Venta</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="border border-brand bg-white p-6 shadow-solid flex flex-col">
+                    <h3 class="font-syne text-[24px] font-bold text-[#111111] uppercase mb-4">Tienda Gamarra</h3>
+                    <p class="font-body text-[#111111] mb-2"><span class="font-bold">Dirección:</span> Av. Larco 123,
+                        Of. 405</p>
+                    <p class="font-body text-[#111111] mb-6"><span class="font-bold">Horario:</span> Lun - Sáb: 10am -
+                        8pm</p>
+                    <a class="mt-auto bg-fuchsia-accent text-[#111111] border border-brand px-4 py-2 font-body font-bold text-[16px] uppercase text-center hover-shadow-solid transition-all"
+                        th:href="@{/}">VER MAPA</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer th:replace="~{fragments :: footer}"></footer>
+
+</body>
+
+</html>
