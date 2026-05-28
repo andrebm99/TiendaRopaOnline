@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.store.spring.app.Models.LoginRequest;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -20,10 +22,13 @@ public class AuthController {
     }
 
     @PostMapping("/login")
+    @Operation(summary = "LOGIN", description = "Iniciar sesión con email y contraseña")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         try {
             Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+                    new UsernamePasswordAuthenticationToken(
+                        loginRequest.getEmail(), loginRequest.getPassword())
+                    );
 
             return ResponseEntity.ok("Login exitoso. Aquí iría el JWT.");
         } catch (Exception e) {

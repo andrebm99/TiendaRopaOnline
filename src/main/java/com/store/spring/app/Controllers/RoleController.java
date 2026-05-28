@@ -31,7 +31,7 @@ public class RoleController {
     }
 
     @GetMapping
-    @Operation(summary = "Listar Roles", description = "Obtener la lista de todos los roles disponibles.")
+    @Operation(summary = "LISTAR ROLES", description = "Obtener la lista de todos los roles disponibles.")
     public ResponseEntity<List<Role>> getAll() {
         try {
             List<Role> roles = roleInterface.getAllRoles();
@@ -45,7 +45,7 @@ public class RoleController {
     }
 
     @PostMapping
-    @Operation(summary = "Crear Rol", description = "Registrar un nuevo rol en el sistema.")
+    @Operation(summary = "NUEVO ROL", description = "Registrar un nuevo rol en el sistema.")
     public ResponseEntity<Role> create(@RequestBody Role role) {
         try {
             Role newRole = roleInterface.createRole(role);
@@ -56,7 +56,7 @@ public class RoleController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Eliminar Rol", description = "Eliminar un rol por su ID.")
+    @Operation(summary = "ELIMINAR ROL", description = "Eliminar un rol por su ID.")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Integer id) {
         try {
             boolean isDeleted = roleInterface.deleteRole(id);

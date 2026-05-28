@@ -22,7 +22,7 @@ public class ProductoController {
     }
 
     @PostMapping
-    @Operation(summary = "Registrar Producto", description = "Crea un nuevo producto en el catálogo.")
+    @Operation(summary = "CREAR|REGISTRAR PRODUCTO", description = "Crea un nuevo producto en el catálogo.")
     public ResponseEntity<Producto> create(@RequestBody Producto producto) {
         try {
             Producto newProduct = productoInterface.crearProducto(producto);
@@ -33,7 +33,7 @@ public class ProductoController {
     }
 
     @GetMapping
-    @Operation(summary = "Listar Productos", description = "Obtiene todos los productos disponibles.")
+    @Operation(summary = "LISTAR TODOS LOS PRODUCTOS", description = "Obtiene todos los productos disponibles.")
     public ResponseEntity<List<Producto>> getAll() {
         try {
             List<Producto> productos = productoInterface.obtenerTodos();
@@ -44,7 +44,7 @@ public class ProductoController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Eliminar Producto", description = "Elimina un producto del catálogo por su ID.")
+    @Operation(summary = "ELIMINAR PRODUCTO", description = "Elimina un producto del catálogo por su ID.")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Integer id) {
         try {
             boolean isDeleted = productoInterface.eliminarProducto(id);
@@ -58,7 +58,7 @@ public class ProductoController {
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Actualizar Producto", description = "Modifica los datos de un producto existente.")
+    @Operation(summary = "ACTUALIZAR PRODUCTO", description = "Modifica los datos de un producto existente.")
     public ResponseEntity<Producto> update(@PathVariable("id") Integer id, @RequestBody Producto producto) {
         try {
             Producto updatedProduct = productoInterface.actualizarProducto(id, producto);

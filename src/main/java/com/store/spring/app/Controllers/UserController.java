@@ -1,6 +1,5 @@
 package com.store.spring.app.Controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -39,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping
-    @Operation(summary = "Crear Usuario", description = "Registrar un nuevo usuario asignándole un rol.")
+    @Operation(summary = "NUEVO USUARIO", description = "Registrar un nuevo usuario asignándole un rol.")
     public ResponseEntity<User> create(@RequestBody User user) {
         try {
             String encryptedPassword = passwordEncoder.encode(user.getPassword());
@@ -53,7 +52,7 @@ public class UserController {
     }
 
     @GetMapping
-    @Operation(summary = "Listar Usuarios", description = "Obtener todos los usuarios registrados en el negocio.")
+    @Operation(summary = "LISTAR TODOS LOS USUARIOS", description = "Obtener todos los usuarios registrados en el negocio.")
     public ResponseEntity<List<User>> getAll() {
         try {
             List<User> users = userInterface.getAllUsers();
@@ -71,7 +70,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Eliminar Usuario", description = "Eliminar un usuario por su ID.")
+    @Operation(summary = "ELIMINAR USUARIO", description = "Eliminar un usuario por su ID.")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Integer id) {
         try {
             boolean isDeleted = userInterface.deleteUser(id);

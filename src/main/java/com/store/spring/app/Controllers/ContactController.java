@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.store.spring.app.Models.Contact;
-import com.store.spring.app.Models.Producto;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -35,7 +34,7 @@ public class ContactController {
     } 
 
     @GetMapping
-    @Operation(summary = "Mostrar Todo", description = "Mostrar todos los mensajes recibidos.")
+    @Operation(summary = "LISTAR TODOS LOS MENSAJES", description = "Mostrar todos los mensajes recibidos.")
     public ResponseEntity<List<Contact>> getAll() {
 
         try{
@@ -52,7 +51,7 @@ public class ContactController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Buscar Mensaje", description = "Mostrar un mensaje recibido.")
+    @Operation(summary = "BUSCAR MENSAJE", description = "Mostrar un mensaje recibido.")
     public ResponseEntity<Contact> getById(@PathVariable("id") Integer id) {
         try{
             Contact contact = contactInterface.obtenerPorId(id); 
@@ -68,7 +67,7 @@ public class ContactController {
     }
     
     @PostMapping
-    @Operation(summary = "Enviar", description = "Formulario de contacto para el sistema de ventas.")
+        @Operation(summary = "NUEVO MENSAJE", description = "Formulario de contacto para el sistema de ventas.")
     public ResponseEntity<Contact> create(@RequestBody Contact contact) {
         try{
             Contact newContact = contactInterface.createContact(contact); 
@@ -79,7 +78,7 @@ public class ContactController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Eliminar", description = "Eliminar por id")
+    @Operation(summary = "ELIMINAR MENSAJE", description = "Eliminar por id")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Integer id){
         try{
             boolean isDeleted = contactInterface.deleteContact(id);
@@ -93,7 +92,7 @@ public class ContactController {
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Actualizar Formulario de Contacto", description = "Modifica los datos de un formulario de contacto existente.")
+    @Operation(summary = "ACTUALIZAR|MODIFICAR MENSAJE ENVIADO", description = "Modifica los datos de un formulario de contacto existente.")
     public ResponseEntity<Contact> update(@PathVariable("id") Integer id, @RequestBody Contact contact) {
         try {
             Contact updatedContact  = contactInterface.actualizarContact(id, contact);

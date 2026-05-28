@@ -29,6 +29,7 @@ public class PedidoController {
             Pedido newPedido = pedidoInterface.crearPedido(pedidoDTO);
             return new ResponseEntity<>(newPedido, HttpStatus.CREATED);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

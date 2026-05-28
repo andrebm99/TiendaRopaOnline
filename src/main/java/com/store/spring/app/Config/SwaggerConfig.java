@@ -16,6 +16,7 @@ public class SwaggerConfig {
             .title("API SISTEMA DE VENTAS")
             .version("v1.0")
             .description("Documentación de los endpoints del sistema.")
+            
         );
     }
 }

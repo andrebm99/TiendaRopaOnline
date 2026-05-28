@@ -17,9 +17,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
-    private String password;
-
     @Column(nullable = false, length = 100)
     private String fullName;
 
@@ -28,6 +25,9 @@ public class User {
 
     @Column(length = 15)
     private String phoneNumber;
+
+    @Column(nullable = false)
+    private String password;
 
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
