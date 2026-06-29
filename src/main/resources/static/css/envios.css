@@ -1,6 +1,6 @@
 /* --- SHIPPING SECTION --- */
 .page-title {
-  font-family: 'Syne', sans-serif;
+  font-family: "Syne", sans-serif;
   font-size: 32px;
   font-weight: 700;
   color: var(--brand-black);
@@ -9,7 +9,9 @@
   text-align: center;
 }
 @media (min-width: 768px) {
-  .page-title { font-size: 48px; }
+  .page-title {
+    font-size: 48px;
+  }
 }
 
 .shipping-grid {
@@ -19,7 +21,9 @@
   margin-bottom: 32px;
 }
 @media (min-width: 768px) {
-  .shipping-grid { grid-template-columns: repeat(3, 1fr); }
+  .shipping-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .shipping-card {
@@ -31,7 +35,7 @@
 }
 
 .shipping-card-title {
-  font-family: 'Syne', sans-serif;
+  font-family: "Syne", sans-serif;
   font-size: 24px;
   font-weight: 700;
   color: var(--brand-black);
@@ -40,13 +44,13 @@
 }
 
 .shipping-card-desc {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   color: rgba(17, 17, 17, 0.7);
   margin-bottom: 16px;
 }
 
 .shipping-card-price {
-  font-family: 'Syne', sans-serif;
+  font-family: "Syne", sans-serif;
   font-size: 32px;
   font-weight: 700;
   color: var(--brand-black);
@@ -64,7 +68,7 @@
 }
 
 .shipping-banner-text {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   color: var(--brand-white);
 }
 

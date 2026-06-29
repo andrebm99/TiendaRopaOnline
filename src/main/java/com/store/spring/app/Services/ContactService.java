@@ -37,7 +37,6 @@ public class ContactService implements ContactInterface{
         if(!repository.existsById(id)){
             return false; 
         }
-
         repository.deleteById(id);
         return true; 
     }
