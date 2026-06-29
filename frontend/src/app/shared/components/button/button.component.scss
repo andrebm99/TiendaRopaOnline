@@ -1,0 +1,72 @@
+@import '../../../../styles/variables';
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  font-family: $font-body;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0px; // Estética de marca de lujo (bordes rectos y limpios)
+  border: none;
+  cursor: pointer;
+  transition: $transition-smooth;
+  position: relative;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // Botón principal Rosa con contraste Noir
+  &.btn-primary {
+    background-color: $color-rose;
+    color: $color-noir;
+    
+    &:hover:not(:disabled) {
+      background-color: $color-rose-hover;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(229, 168, 168, 0.4);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+  }
+
+  // Botón secundario transparente con borde
+  &.btn-secondary {
+    background-color: transparent;
+    color: $color-white;
+    border: 1px solid $color-border;
+
+    &:hover:not(:disabled) {
+      border-color: $color-rose;
+      color: $color-rose;
+      transform: translateY(-2px);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+  }
+
+  // Botón de peligro/error
+  &.btn-danger {
+    background-color: $color-error;
+    color: $color-white;
+
+    &:hover:not(:disabled) {
+      background-color: #ff3b30;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 69, 58, 0.3);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+  }
+}

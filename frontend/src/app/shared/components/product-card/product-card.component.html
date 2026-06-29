@@ -1,0 +1,25 @@
+<div class="product-card" (click)="onViewDetails()">
+  <div class="product-image-wrapper">
+    <img 
+      [src]="producto.imagenUrl || 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format&fit=crop'" 
+      [alt]="producto.nombre" 
+      class="product-image"
+    />
+    <div class="product-badge" *ngIf="producto.stock <= 3 && producto.stock > 0">Últimas unidades</div>
+    <div class="product-badge out-of-stock" *ngIf="producto.stock === 0">Agotado</div>
+  </div>
+  
+  <div class="product-details">
+    <span class="product-category" *ngIf="producto.categoria">{{ producto.categoria }}</span>
+    <h3 class="product-title">{{ producto.nombre }}</h3>
+    <div class="product-meta">
+      <span class="product-price">{{ producto.precio | currencyPen }}</span>
+      <app-button 
+        *ngIf="producto.stock > 0"
+        variant="primary" 
+        label="Añadir"
+        (onClick)="onAddToCart($event)"
+      ></app-button>
+    </div>
+  </div>
+</div>

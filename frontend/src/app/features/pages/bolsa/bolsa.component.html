@@ -1,0 +1,121 @@
+<main class="bolsa-main-container" id="bolsa-view">
+    
+    <!-- Header -->
+    <div class="bolsa-header">
+        <h1 class="bolsa-title">TU BOLSA DE COMPRAS</h1>
+        <a class="bolsa-continue-link" routerLink="/catalogo">Seguir Comprando</a>
+    </div>
+
+    <!-- Empty Bolsa State -->
+    <div class="empty-state text-center" *ngIf="cartItems.length === 0" style="padding: 48px; border: 1px solid var(--brand-black); background-color: var(--brand-white); box-shadow: var(--shadow-solid);">
+        <p>Tu bolsa de compras está vacía.</p>
+        <a routerLink="/catalogo" class="store-btn" style="display: inline-block; margin-top: 16px; padding: 12px 24px; border: 1px solid var(--brand-black); background-color: var(--brand-black); color: var(--brand-white); font-weight: 700;">EXPLORAR CATÁLOGO</a>
+    </div>
+
+    <!-- Cart Table -->
+    <div class="bolsa-table-container" *ngIf="cartItems.length > 0">
+        
+        <!-- Header Row -->
+        <div class="bolsa-table-header">
+            <div class="bolsa-table-header-col">Producto</div>
+            <div class="bolsa-table-header-col">Cantidad</div>
+            <div class="bolsa-table-header-col">Total</div>
+        </div>
+
+        <!-- Cart Item Dynamic Loop -->
+        <div class="bolsa-item-row" *ngFor="let item of cartItems">
+            
+            <!-- Product Info -->
+            <div class="bolsa-item-info">
+                <div class="bolsa-item-img-wrap">
+                    <img 
+                      [alt]="item.producto.nombre" 
+                      class="bolsa-item-img" 
+                      [src]="item.producto.imagenUrl || 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format&fit=crop'"
+                    >
+                </div>
+                <div class="bolsa-item-details">
+                    <h3 class="bolsa-item-title">{{ item.producto.nombre }}</h3>
+                    <p class="bolsa-item-price">S/ {{ item.producto.precio | number:'1.2-2' }}</p>
+                    <div class="bolsa-item-size-badge" *ngIf="item.producto.categoria">
+                        <span>Categoría: {{ item.producto.categoria }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quantity -->
+            <div class="bolsa-item-quantity">
+                <span class="bolsa-item-quantity-label">Cantidad</span>
+                <div class="bolsa-quantity-selector">
+                    <button class="bolsa-quantity-btn minus" (click)="decrementQuantity(item)">-</button>
+                    <input class="bolsa-quantity-input" min="1" readonly type="number" [value]="item.cantidad">
+                    <button class="bolsa-quantity-btn plus" (click)="incrementQuantity(item)" [disabled]="item.cantidad >= item.producto.stock">+</button>
+                </div>
+                <button class="bolsa-item-delete mobile" (click)="removeItem(item)">
+                    <span class="material-symbols-outlined">delete</span>
+                </button>
+            </div>
+
+            <!-- Total & Actions -->
+            <div class="bolsa-item-total">
+                <span class="bolsa-item-quantity-label">Total</span>
+                <div style="display: flex; align-items: center; gap: 24px;">
+                    <span class="bolsa-item-total-val">S/ {{ (item.producto.precio * item.cantidad) | number:'1.2-2' }}</span>
+                    <button class="bolsa-item-delete desktop" (click)="removeItem(item)">
+                        <span class="material-symbols-outlined">delete</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Shipping Calculator & Payment Summary -->
+    <div class="bolsa-bottom-grid" *ngIf="cartItems.length > 0">
+        
+        <!-- Shipping Calculator -->
+        <div class="bolsa-shipping-calc">
+            <h2 class="bolsa-shipping-title">ESTIMAR ENVÍO</h2>
+            <form class="bolsa-shipping-form">
+                <div class="bolsa-form-group">
+                    <label class="bolsa-form-label">País</label>
+                    <select class="bolsa-form-select">
+                        <option>Perú</option>
+                        <option>Chile</option>
+                        <option>Colombia</option>
+                    </select>
+                </div>
+                <div class="bolsa-form-group">
+                    <label class="bolsa-form-label">Provincia</label>
+                    <select class="bolsa-form-select">
+                        <option>Lima Metropolitana</option>
+                        <option>Arequipa</option>
+                        <option>Cusco</option>
+                    </select>
+                </div>
+                <div class="bolsa-form-group">
+                    <label class="bolsa-form-label">Código Postal</label>
+                    <input class="bolsa-form-input" type="text" value="15076">
+                </div>
+                <div class="bolsa-calc-btn-wrap">
+                    <button class="bolsa-calc-btn" type="button">CALCULAR</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Payment Summary -->
+        <div class="bolsa-payment-summary">
+            <div class="bolsa-payment-details">
+                <h2 class="bolsa-payment-label">Total estimado</h2>
+                <p class="bolsa-payment-total">S/ {{ totalPrice | number:'1.2-2' }} <span>PEN</span></p>
+                <p class="bolsa-payment-note">Impuestos incluidos. Los gastos de envío se calculan en la pantalla de pago.</p>
+            </div>
+            <button class="bolsa-pay-btn" (click)="onPayOrder()" [disabled]="loading">
+              {{ loading ? 'PROCESANDO...' : 'PAGAR PEDIDO' }}
+            </button>
+        </div>
+
+    </div>
+
+</main>

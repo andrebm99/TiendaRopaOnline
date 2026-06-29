@@ -1,0 +1,84 @@
+<main class="catalog-main-container" id="catalogo-view">
+    
+    <!-- Page Title & Filter Bar -->
+    <section class="catalog-header-section">
+        <div class="catalog-header-top">
+            <h1 class="catalog-title">Catálogo</h1>
+            <span class="catalog-product-count">{{ productos.length }} productos</span>
+        </div>
+        
+        <div class="catalog-filters-wrapper">
+            <div class="catalog-filters-group">
+                <span class="catalog-filter-label">Filtrar:</span>
+                <button class="catalog-filter-btn">
+                    Tipo de producto <span class="material-symbols-outlined">expand_more</span>
+                </button>
+                <button class="catalog-filter-btn">
+                    Tamaño <span class="material-symbols-outlined">expand_more</span>
+                </button>
+                <button class="catalog-filter-btn">
+                    Más filtros <span class="material-symbols-outlined">expand_more</span>
+                </button>
+            </div>
+            <div class="catalog-filters-group">
+                <span class="catalog-filter-label">Ordenar por:</span>
+                <button class="catalog-filter-btn">
+                    Relevancia <span class="material-symbols-outlined">expand_more</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="catalog-grid-section">
+        <div class="loading-state text-center" *ngIf="loading" style="padding: 48px;">
+            <p>Cargando catálogo de prendas...</p>
+        </div>
+
+        <div class="error-state text-center" *ngIf="errorMessage" style="padding: 48px; color: var(--fuchsia-accent);">
+            <p>{{ errorMessage }}</p>
+        </div>
+
+        <div class="catalog-grid" *ngIf="!loading && !errorMessage">
+            
+            <!-- Product Card Dynamic Loop -->
+            <article 
+              class="catalog-product-card" 
+              *ngFor="let prod of productos"
+              (click)="onViewDetails(prod)"
+            >
+                <div class="catalog-img-container">
+                    <img 
+                      [alt]="prod.nombre" 
+                      class="catalog-product-img" 
+                      [src]="prod.imagenUrl || 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format&fit=crop'"
+                    >
+                    <div class="catalog-badges" *ngIf="prod.stock <= 3 && prod.stock > 0">
+                        <span class="catalog-badge-primary">ÚLTIMAS UNIDADES</span>
+                    </div>
+                    <div class="catalog-badges" *ngIf="prod.stock === 0">
+                        <span class="catalog-badge-surface">AGOTADO</span>
+                    </div>
+                    <div class="catalog-quick-add-wrapper">
+                        <button class="catalog-quick-add-btn" (click)="onAddToCart(prod, $event)">
+                            <span class="material-symbols-outlined">add</span> QUICK ADD
+                        </button>
+                    </div>
+                </div>
+                <div class="catalog-product-details">
+                    <h3 class="catalog-product-title">{{ prod.nombre }}</h3>
+                    <p class="catalog-product-price">S/. {{ prod.precio | number:'1.2-2' }} PEN</p>
+                </div>
+            </article>
+
+        </div>
+        
+        <!-- Load More Action -->
+        <div class="catalog-load-more-wrapper" *ngIf="!loading && productos.length > 0">
+            <button class="catalog-load-more-btn">
+                Cargar más productos
+            </button>
+        </div>
+    </section>
+
+</main>

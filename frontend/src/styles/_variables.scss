@@ -1,0 +1,21 @@
+// Paleta de Colores (Noir et Rose)
+$color-noir: #0c0c0c;          // Negro profundo para fondos
+$color-noir-surface: #141414;  // Negro intermedio para tarjetas y secciones
+$color-noir-elevation: #1e1e1e;// Gris oscuro para elementos flotantes o hover
+$color-rose: #e5a8a8;          // Rosa principal para botones y acentos
+$color-rose-hover: #d39393;    // Rosa hover para interacciones
+$color-rose-light: #f5dada;    // Rosa suave para etiquetas y textos sutiles
+$color-white: #ffffff;         // Blanco brillante para textos principales
+$color-text-muted: #8e8e93;    // Gris para textos secundarios y placeholders
+$color-border: #262626;        // Bordes sutiles oscuros
+$color-error: #ff453a;         // Rojo para alertas de error
+$color-success: #30d158;       // Verde para estados exitosos
+
+// Fuentes elegantes
+$font-headings: 'Playfair Display', Georgia, serif;
+$font-body: 'Outfit', 'Inter', system-ui, sans-serif;
+
+// Transiciones y sombras premium
+$transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+$shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.5);
+$shadow-floating: 0 8px 30px rgba(0, 0, 0, 0.7);
