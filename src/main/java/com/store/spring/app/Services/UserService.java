@@ -1,18 +1,24 @@
 package com.store.spring.app.Services;
 
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.store.spring.app.Interface.UserInterface;
 import com.store.spring.app.Models.User;
+import com.store.spring.app.Repositories.RoleRepository;
 import com.store.spring.app.Repositories.UserRepository;
 
 @Service
 public class UserService implements UserInterface {
 
     private final UserRepository repository;
+    
+    private final RoleRepository roleRepository;
 
-    public UserService(UserRepository repository) {
+    public UserService(UserRepository repository, RoleRepository roleRepository) {
         this.repository = repository;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -22,6 +28,12 @@ public class UserService implements UserInterface {
 
     @Override
     public User createUser(User user) {
+
+        var clientRole = roleRepository.findById(4)
+            .orElseThrow(() -> new RuntimeException("Error: El rol ROLE_CLIENT no existe en la base de datos")); 
+
+        user.setRole(clientRole);
+
         return repository.save(user);
     }
 
