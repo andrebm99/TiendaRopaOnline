@@ -1,0 +1,314 @@
+.login-wrapper {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  border-bottom: 1px solid var(--border-black);
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+// Columna Izquierda: Banner con imagen recortada de screen.png
+.login-banner {
+  width: 50%;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--brand-black);
+  display: flex;
+  align-items: flex-end;
+  padding: 48px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 300px;
+    padding: 24px;
+  }
+
+  .banner-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%; // Escala aumentada para posicionar el recorte de la chica
+    height: 100%;
+    object-fit: cover;
+    object-position: 2% 2%; // Enfocado en el cuadrante del banner izquierdo de la captura
+    z-index: 1;
+    filter: grayscale(20%);
+    
+    @media (max-width: 768px) {
+      width: 200%;
+      object-position: 2% 5%;
+    }
+  }
+
+  .banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(255, 42, 109, 0.4) 0%, rgba(17, 17, 17, 0.8) 100%);
+    z-index: 2;
+    mix-blend-mode: multiply;
+  }
+
+  .banner-text {
+    position: relative;
+    z-index: 3;
+    color: var(--brand-white);
+
+    .season-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+      color: var(--fuchsia-accent);
+    }
+
+    .brand-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      
+      @media (max-width: 992px) {
+        font-size: 36px;
+      }
+    }
+  }
+}
+
+// Columna Derecha: Formulario de Login Neobrutalista
+.login-form-container {
+  width: 50%;
+  background-color: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 32px 16px;
+  }
+}
+
+.login-form-content {
+  width: 100%;
+  max-width: 380px;
+
+  .form-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    color: var(--brand-black);
+    text-align: center;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .form-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--on-surface-variant);
+    text-align: center;
+    letter-spacing: 0.05em;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  .label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .form-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--brand-black);
+  }
+
+  .forgot-pass-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--fuchsia-accent);
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .form-control {
+    width: 100%;
+    border: 1px solid var(--brand-black);
+    background-color: var(--brand-white);
+    padding: 12px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--brand-black);
+    transition: all 0.2s;
+
+    &::placeholder {
+      color: rgba(17, 17, 17, 0.4);
+    }
+
+    &:focus {
+      box-shadow: var(--shadow-solid);
+    }
+
+    &.is-invalid {
+      border-color: var(--fuchsia-accent);
+    }
+  }
+
+  .password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .password-control {
+      padding-right: 48px;
+    }
+
+    .password-toggle-btn {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      color: var(--brand-black);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      
+      span {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.error-alert {
+  padding: 12px;
+  background-color: rgba(255, 42, 109, 0.1);
+  border: 1px solid var(--fuchsia-accent);
+  color: var(--fuchsia-accent);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.login-btn {
+  background-color: var(--brand-black);
+  color: var(--bg-color);
+  border: 1px solid var(--brand-black);
+  padding: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 10px;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+}
+
+// Conectarse con redes
+.social-login-section {
+  margin-top: 32px;
+  
+  .social-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 16px;
+
+    &::before, &::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+    }
+    
+    span {
+      padding: 0 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--on-surface-variant);
+    }
+  }
+
+  .social-buttons-grid {
+    display: flex;
+    gap: 12px;
+
+    .social-btn {
+      flex: 1;
+      border: 1px solid var(--brand-black);
+      background-color: var(--brand-white);
+      box-shadow: var(--shadow-solid);
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease-in-out;
+
+      span {
+        font-size: 20px;
+        color: var(--brand-black);
+      }
+
+      &:hover {
+        box-shadow: var(--shadow-solid-hover);
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+.signup-redirect {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  text-align: center;
+  margin-top: 32px;
+
+  a {
+    color: var(--fuchsia-accent);
+    font-weight: 700;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

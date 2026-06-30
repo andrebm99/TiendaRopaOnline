@@ -1,0 +1,93 @@
+<!-- NAVBAR -->
+<nav class="navbar-wrapper" *ngIf="showLayout">
+    <div class="navbar-left" [style.display]="isMobileMenuOpen ? 'flex' : ''" [style.flex-direction]="isMobileMenuOpen ? 'column' : ''">
+        <div class="search-container">
+            <span class="material-symbols-outlined" style="font-size: 20px; margin-right: 8px;">search</span>
+            <input class="search-input" placeholder="Buscar..." type="text">
+        </div>
+    </div>
+
+    <div class="navbar-center" [style.display]="isMobileMenuOpen ? 'flex' : ''" [style.flex-direction]="isMobileMenuOpen ? 'column' : ''">
+        <a class="nav-link" routerLink="/como-comprar">DÓNDE COMPRAR</a>
+
+        <div class="nav-logo-group">
+            <a routerLink="/" style="display: flex; align-items: center;">
+                <img src="/img/logoTIENDADEROPA.png" alt="Tienda de Ropa Online" class="nav-logo-img"
+                    onerror="this.outerHTML='<span class=\'nav-logo-text\'>TIENDA ONLINE</span>'">
+                <span style="margin-left: 4px; font-size: 20px;">▾</span>
+            </a>
+
+            <!-- Dropdown -->
+            <div class="dropdown-wrapper">
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" routerLink="/catalogo">-LO NUEVO: Otoño-Invierno</a>
+                    <a class="dropdown-item" routerLink="/catalogo">-Casacas</a>
+                    <a class="dropdown-item" routerLink="/catalogo">-Faldas</a>
+                    <a class="dropdown-item" routerLink="/catalogo">-Polos</a>
+                    <a class="dropdown-item" routerLink="/catalogo">-Corsets</a>
+                    <a class="dropdown-item highlight" routerLink="/catalogo">-Ofertas! Última oportunidad</a>
+                </div>
+            </div>
+        </div>
+
+        <a class="nav-link" routerLink="/envios">ENVÍOS / SHIPPING</a>
+    </div>
+
+    <!-- Mobile Center Logo -->
+    <div class="navbar-mobile-center">
+        <a routerLink="/">
+            <img src="/img/logoTIENDADEROPA.png" alt="Tienda de Ropa Online"
+                onerror="this.outerHTML='<span class=\'nav-logo-text\'>TIENDA ONLINE</span>'">
+        </a>
+    </div>
+
+    <div class="navbar-right">
+        <span class="nav-action desktop-action" *ngIf="currentUser" style="font-size: 14px; text-transform: uppercase; cursor: default;">Hola, {{ currentUser.fullName }}</span>
+        <a class="nav-action desktop-action" *ngIf="!currentUser" routerLink="/auth/login">Iniciar Sesión</a>
+        <a class="nav-action" routerLink="/bolsa">
+            <span class="material-symbols-outlined">shopping_bag</span> Bolsa ({{ cartCount }})
+        </a>
+        <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+    </div>
+</nav>
+
+<!-- MAIN VIEW CONTENT -->
+<router-outlet></router-outlet>
+
+<!-- FOOTER -->
+<footer class="footer-wrapper" *ngIf="showLayout">
+    <div class="footer-left">
+        <h4 class="footer-logo">
+            <img src="/img/logoTIENDADEROPA.png" alt="Tienda de Ropa Online"
+                onerror="this.outerHTML='<span style=\'font-family: Syne, sans-serif; font-size: 24px; font-weight: 700; color: #111111; text-transform: uppercase;\'>TIENDA ONLINE</span>'">
+        </h4>
+        <div class="footer-links-grid">
+            <a class="footer-link" routerLink="/">Guía de Tallas</a>
+            <a class="footer-link" routerLink="/">Cambios</a>
+            <a class="footer-link" routerLink="/envios">Info de Envíos</a>
+            <a class="footer-link" routerLink="/">Privacidad</a>
+            <a class="footer-link col-span-2" routerLink="/">Únete al Club</a>
+        </div>
+        <p class="footer-copyright">
+            Diseñado con pasión, orgullosamente hecho en Perú. © 2026
+        </p>
+    </div>
+
+    <div class="footer-right">
+        <div>
+            <h5 class="newsletter-title">ÚNETE AL CLUB.<br>OBTÉN 10% DSCTO</h5>
+            <p class="newsletter-desc">Suscríbete para recibir actualizaciones, acceso a ofertas exclusivas y más.</p>
+        </div>
+        <form class="newsletter-form">
+            <div class="input-group">
+                <label class="input-label">Correo Electrónico</label>
+                <input class="newsletter-input" placeholder="tu@ejemplo.com" type="email">
+            </div>
+            <button class="newsletter-btn hover-shadow-solid" type="submit">
+                SUSCRIBIRSE
+            </button>
+        </form>
+    </div>
+</footer>

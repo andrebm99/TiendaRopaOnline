@@ -1,0 +1,68 @@
+<div class="signup-wrapper">
+  <!-- Barra Lateral Izquierda de Pasos -->
+  <div class="steps-sidebar">
+    <div class="sidebar-header">
+      <a routerLink="/" class="back-link">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span class="sidebar-logo">L&G FASHION</span>
+      </a>
+      <span class="step-counter">2 / 2</span>
+    </div>
+
+    <div class="sidebar-body">
+      <h3 class="sidebar-title">Pasos a seguir</h3>
+      <p class="sidebar-subtitle">RUTA DE CREACIÓN</p>
+
+      <div class="steps-list">
+        <div class="step-item disabled">
+          <i class="fa-solid fa-user-plus"></i>
+          <span>REGÍSTRATE</span>
+        </div>
+        <div class="step-item active">
+          <i class="fa-solid fa-square-check"></i>
+          <span>CONFIRMAR</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor Derecho: Canvas Punteado con Partículas -->
+  <div class="confirm-content-container">
+    <!-- Partículas Dinámicas -->
+    <div 
+      *ngFor="let p of particles" 
+      class="particle" 
+      [ngClass]="[p.type, p.color]" 
+      [style.top.%]="p.top" 
+      [style.left.%]="p.left"
+      [style.transform]="'rotate(' + p.rotation + 'deg) scale(' + p.scale + ')'"
+    >
+      <svg *ngIf="p.type === 'triangle'" viewBox="0 0 100 100" width="16" height="16">
+        <polygon points="50,15 90,85 10,85" />
+      </svg>
+    </div>
+
+    <!-- Título Principal y Tarjeta de Confirmación -->
+    <div class="confirm-card-wrapper">
+      <h1 class="confirm-title">CONFIRMACIÓN</h1>
+
+      <div class="confirm-card">
+        <div class="check-icon-container">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h2 class="confirm-card-title">PERFIL CREADO</h2>
+        <p class="confirm-card-desc">
+          Oficialmente ya eres parte de L&G Fashion, comienza a buscar el tipo atuendo que mereces.
+        </p>
+
+        <button 
+          type="button" 
+          class="confirm-btn hover-shadow-solid"
+          (click)="onGoToStore()"
+        >
+          ENTRAR A LA TIENDA
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

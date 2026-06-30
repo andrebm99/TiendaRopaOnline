@@ -1,0 +1,129 @@
+<div class="signup-wrapper">
+  <!-- Barra Lateral Izquierda de Pasos -->
+  <div class="steps-sidebar">
+    <div class="sidebar-header">
+      <a routerLink="/" class="back-link">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span class="sidebar-logo">L&G FASHION</span>
+      </a>
+      <span class="step-counter">1 / 2</span>
+    </div>
+
+    <div class="sidebar-body">
+      <h3 class="sidebar-title">Pasos a seguir</h3>
+      <p class="sidebar-subtitle">RUTA DE CREACIÓN</p>
+
+      <div class="steps-list">
+        <div class="step-item active">
+          <!-- ICONO PASO 1 -->
+          <i class="fa-solid fa-user-plus"></i>
+          <span>REGÍSTRATE</span>
+        </div>
+        <div class="step-item disabled">
+          <!-- ICONO PASO 2 -->
+          <i class="fa-solid fa-square-check"></i>
+          <span>CONFIRMAR</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor Derecho del Formulario -->
+  <div class="signup-content-container">
+    <div class="signup-card">
+      <h1 class="signup-card-title">ÚNETE AL CLUB</h1>
+      <div class="promo-banner">
+        <span>OBTÉN 10% EN TU PRIMERA COMPRA</span>
+      </div>
+
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="signup-form">
+        <!-- CONTROL DE CORREO -->
+        <div class="form-group">
+          <label class="form-label" for="email">CORREO</label>
+          <input 
+            type="email" 
+            id="email" 
+            formControlName="email" 
+            placeholder="YOUR@EMAIL.COM" 
+            class="form-control"
+            [class.is-invalid]="signupForm.get('email')?.touched && signupForm.get('email')?.invalid"
+          />
+        </div>
+
+        <!-- CONTROL DE TELÉFONO -->
+        <div class="form-group">
+          <label class="form-label" for="telefono">TELÉFONO</label>
+          <input 
+            type="tel" 
+            id="telefono" 
+            formControlName="telefono" 
+            placeholder="987654321" 
+            class="form-control"
+            [class.is-invalid]="signupForm.get('telefono')?.touched && signupForm.get('telefono')?.invalid"
+          />
+        </div>
+
+        <!-- CONTROL DE CONTRASEÑA -->
+        <div class="form-group">
+          <label class="form-label" for="password">CONTRASEÑA</label>
+          <div class="password-input-wrapper">
+            <input 
+              [type]="showPassword ? 'text' : 'password'" 
+              id="password" 
+              formControlName="password" 
+              placeholder="••••••••" 
+              class="form-control password-control"
+              [class.is-invalid]="signupForm.get('password')?.touched && signupForm.get('password')?.invalid"
+            />
+            <button 
+              type="button" 
+              class="password-toggle-btn"
+              (click)="togglePasswordVisibility()"
+            >
+              <i class="fa-solid" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- CONTROL DE REPETIR CONTRASEÑA -->
+        <div class="form-group">
+          <label class="form-label" for="repetirContrasena">REPETIR CONTRASEÑA</label>
+          <div class="password-input-wrapper">
+            <input 
+              [type]="showRepetirPassword ? 'text' : 'password'" 
+              id="repetirContrasena" 
+              formControlName="repetirContrasena" 
+              placeholder="••••••••" 
+              class="form-control password-control"
+              [class.is-invalid]="signupForm.get('repetirContrasena')?.touched && signupForm.get('repetirContrasena')?.invalid"
+            />
+            <button 
+              type="button" 
+              class="password-toggle-btn"
+              (click)="toggleRepetirPasswordVisibility()"
+            >
+              <i class="fa-solid" [ngClass]="showRepetirPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- MENSAJE DE VALIDACIÓN DE CONTRASEÑAS COINCIDENTES -->
+        <div class="error-alert" *ngIf="signupForm.errors?.['passwordMismatch'] && (signupForm.get('repetirContrasena')?.touched || signupForm.get('password')?.touched)">
+          Las contraseñas no coinciden.
+        </div>
+
+        <button 
+          type="submit" 
+          class="signup-btn hover-shadow-solid"
+          [disabled]="signupForm.invalid || loading"
+        >
+          {{ loading ? 'CREANDO...' : 'CREAR CUENTA' }}
+        </button>
+      </form>
+
+      <p class="login-redirect">
+        ¿Ya tienes una cuenta? <a routerLink="/auth/login">INICIAR SESIÓN</a>
+      </p>
+    </div>
+  </div>
+</div>
