@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
+
+// === VALIDACIÓN DE CONTRASENIAS COINCIDENTES ===
+export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  const password = control.get('password');
+  const repetirContrasena = control.get('repetirContrasena');
+  return password && repetirContrasena && password.value === repetirContrasena.value ? null : { passwordMismatch: true };
+};
 
 @Component({
   selector: 'app-signup-step1',
@@ -11,6 +18,7 @@ import { Router } from '@angular/router';
 export class SignupStep1Component {
   readonly signupForm: FormGroup;
   showPassword = false;
+  showRepetirPassword = false;
   loading = false;
 
   constructor(
@@ -20,13 +28,19 @@ export class SignupStep1Component {
     // === FORMULARIO REACTIVO DE REGISTRO ===
     this.signupForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
+      telefono: ['', [Validators.required, Validators.pattern(/^[0-9]{9}$/)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      repetirContrasena: ['', [Validators.required]]
+    }, { validators: passwordMatchValidator });
   }
 
-  // Ocultar y mostrar contraseña
+  // Ocultar y mostrar contraseñas
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
+  }
+
+  toggleRepetirPasswordVisibility(): void {
+    this.showRepetirPassword = !this.showRepetirPassword;
   }
 
   // === PROCESAR ENVÍO DEL FORMULARIO ===

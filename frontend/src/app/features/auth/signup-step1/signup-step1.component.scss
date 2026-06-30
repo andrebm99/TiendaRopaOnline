@@ -1,6 +1,6 @@
 .signup-wrapper {
   display: flex;
-  min-height: calc(100vh - 120px);
+  min-height: 100vh;
   width: 100%;
   border-bottom: 1px solid var(--border-black);
 
@@ -138,25 +138,25 @@
   background-color: var(--brand-white);
   border: 1px solid var(--brand-black);
   box-shadow: var(--shadow-solid);
-  padding: 40px;
+  padding: 32px;
 
   @media (max-width: 576px) {
-    padding: 24px 16px;
+    padding: 20px 16px;
   }
 
   .signup-card-title {
     font-family: 'Syne', sans-serif;
-    font-size: 48px;
+    font-size: 44px;
     font-weight: 800;
     line-height: 1;
     letter-spacing: -0.05em;
     color: var(--brand-black);
     text-align: center;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     text-transform: uppercase;
 
     @media (max-width: 576px) {
-      font-size: 36px;
+      font-size: 32px;
     }
   }
 
@@ -167,9 +167,9 @@
     padding: 8px 12px;
     text-align: center;
     font-family: 'Syne', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     box-shadow: 2px 2px 0px #111111;
   }
 }
@@ -177,7 +177,7 @@
 .signup-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .form-group {

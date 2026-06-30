@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterModule, Router } from '@angular/router';
+import { RouterOutlet, RouterModule, Router, NavigationEnd } from '@angular/router';
 import { AuthService } from './core/services/auth.service';
 import { CartService } from './core/services/cart.service';
 import { User } from './core/models/user.model';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,8 @@ import { User } from './core/models/user.model';
 export class AppComponent implements OnInit {
   currentUser: User | null = null;
   cartCount: number = 0;
+  showLayout = true;
+  isMobileMenuOpen = false;
 
   constructor(
     private readonly authService: AuthService,
@@ -22,7 +25,18 @@ export class AppComponent implements OnInit {
     private readonly router: Router
   ) {}
 
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
   ngOnInit(): void {
+    // Ocultar Navbar y Footer si la ruta pertenece a AuthModule
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      this.showLayout = !event.urlAfterRedirects.startsWith('/auth');
+    });
+
     // Escuchar el estado de autenticación global
     this.authService.currentUser$.subscribe(user => {
       this.currentUser = user;

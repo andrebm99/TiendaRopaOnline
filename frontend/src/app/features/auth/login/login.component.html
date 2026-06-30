@@ -47,9 +47,7 @@
               class="password-toggle-btn"
               (click)="togglePasswordVisibility()"
             >
-              <span class="material-symbols-outlined">
-                {{ showPassword ? 'visibility_off' : 'visibility' }}
-              </span>
+              <i class="fa-solid" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
             </button>
           </div>
         </div>
@@ -73,14 +71,15 @@
           <span>CONÉCTATE CON</span>
         </div>
         <div class="social-buttons-grid">
+          <!-- ICONOS DE MARCAS -->
           <button type="button" class="social-btn">
-            <span class="material-symbols-outlined">menu</span>
+            <i class="fa-brands fa-apple"></i>
           </button>
           <button type="button" class="social-btn">
-            <span class="material-symbols-outlined">grid_view</span>
+            <i class="fa-brands fa-google"></i>
           </button>
           <button type="button" class="social-btn">
-            <span class="material-symbols-outlined">music_note</span>
+            <i class="fa-brands fa-tiktok"></i>
           </button>
         </div>
       </div>

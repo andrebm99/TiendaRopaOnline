@@ -1,13 +1,13 @@
 <!-- NAVBAR -->
-<nav class="navbar-wrapper">
-    <div class="navbar-left">
+<nav class="navbar-wrapper" *ngIf="showLayout">
+    <div class="navbar-left" [style.display]="isMobileMenuOpen ? 'flex' : ''" [style.flex-direction]="isMobileMenuOpen ? 'column' : ''">
         <div class="search-container">
             <span class="material-symbols-outlined" style="font-size: 20px; margin-right: 8px;">search</span>
             <input class="search-input" placeholder="Buscar..." type="text">
         </div>
     </div>
 
-    <div class="navbar-center">
+    <div class="navbar-center" [style.display]="isMobileMenuOpen ? 'flex' : ''" [style.flex-direction]="isMobileMenuOpen ? 'column' : ''">
         <a class="nav-link" routerLink="/como-comprar">DÓNDE COMPRAR</a>
 
         <div class="nav-logo-group">
@@ -47,7 +47,7 @@
         <a class="nav-action" routerLink="/bolsa">
             <span class="material-symbols-outlined">shopping_bag</span> Bolsa ({{ cartCount }})
         </a>
-        <button class="mobile-menu-btn">
+        <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
             <span class="material-symbols-outlined">menu</span>
         </button>
     </div>
@@ -57,7 +57,7 @@
 <router-outlet></router-outlet>
 
 <!-- FOOTER -->
-<footer class="footer-wrapper">
+<footer class="footer-wrapper" *ngIf="showLayout">
     <div class="footer-left">
         <h4 class="footer-logo">
             <img src="/img/logoTIENDADEROPA.png" alt="Tienda de Ropa Online"
