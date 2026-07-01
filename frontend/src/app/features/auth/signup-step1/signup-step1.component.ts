@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 
 // === VALIDACIÓN DE CONTRASENIAS COINCIDENTES ===
 export const passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -20,13 +21,16 @@ export class SignupStep1Component {
   showPassword = false;
   showRepetirPassword = false;
   loading = false;
+  errorMessage = '';
 
   constructor(
     private readonly fb: FormBuilder,
+    private readonly authService: AuthService,
     private readonly router: Router
   ) {
     // === FORMULARIO REACTIVO DE REGISTRO ===
     this.signupForm = this.fb.group({
+      fullName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       telefono: ['', [Validators.required, Validators.pattern(/^[0-9]{9}$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -50,11 +54,27 @@ export class SignupStep1Component {
     }
     
     this.loading = true;
-    
-    // Simular proceso de registro local y avanzar al paso de confirmación
-    setTimeout(() => {
-      this.loading = false;
-      this.router.navigate(['/auth/confirm']);
-    }, 1000);
+    this.errorMessage = '';
+
+    const formValues = this.signupForm.value;
+    const userData = {
+      fullName: formValues.fullName,
+      email: formValues.email,
+      phoneNumber: formValues.telefono,
+      password: formValues.password
+    };
+
+    // Llamar al registro real en el backend
+    this.authService.register(userData).subscribe({
+      next: () => {
+        this.loading = false;
+        this.router.navigate(['/auth/confirm']);
+      },
+      error: (err) => {
+        this.loading = false;
+        this.errorMessage = 'Hubo un error al registrar la cuenta. Es posible que el correo ya esté en uso.';
+        console.error(err);
+      }
+    });
   }
 }

@@ -37,6 +37,19 @@
       </div>
 
       <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="signup-form">
+        <!-- CONTROL DE NOMBRE COMPLETO -->
+        <div class="form-group">
+          <label class="form-label" for="fullName">NOMBRE COMPLETO</label>
+          <input 
+            type="text" 
+            id="fullName" 
+            formControlName="fullName" 
+            placeholder="JUAN PÉREZ" 
+            class="form-control"
+            [class.is-invalid]="signupForm.get('fullName')?.touched && signupForm.get('fullName')?.invalid"
+          />
+        </div>
+
         <!-- CONTROL DE CORREO -->
         <div class="form-group">
           <label class="form-label" for="email">CORREO</label>
@@ -110,6 +123,11 @@
         <!-- MENSAJE DE VALIDACIÓN DE CONTRASEÑAS COINCIDENTES -->
         <div class="error-alert" *ngIf="signupForm.errors?.['passwordMismatch'] && (signupForm.get('repetirContrasena')?.touched || signupForm.get('password')?.touched)">
           Las contraseñas no coinciden.
+        </div>
+
+        <!-- MENSAJE DE ERROR GENERAL -->
+        <div class="error-alert" *ngIf="errorMessage">
+          {{ errorMessage }}
         </div>
 
         <button 

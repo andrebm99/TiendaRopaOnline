@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.store.spring.app.Interface.UserInterface;
 import com.store.spring.app.Models.User;
+import com.store.spring.app.Models.Role;
+import com.store.spring.app.Models.RoleName;
 import com.store.spring.app.Repositories.RoleRepository;
 import com.store.spring.app.Repositories.UserRepository;
 
@@ -29,8 +31,8 @@ public class UserService implements UserInterface {
     @Override
     public User createUser(User user) {
 
-        var clientRole = roleRepository.findById(4)
-            .orElseThrow(() -> new RuntimeException("Error: El rol ROLE_CLIENT no existe en la base de datos")); 
+        Role clientRole = roleRepository.findByName(RoleName.ROLE_CLIENTE)
+            .orElseGet(() -> roleRepository.save(new Role(RoleName.ROLE_CLIENTE))); 
 
         user.setRole(clientRole);
 

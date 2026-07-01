@@ -16,7 +16,7 @@ export class AuthService {
     this.checkLocalStorageSession();
   }
 
-  // Enviar credenciales a la API de Spring Boot con fallback local
+  // Enviar credenciales a la API de Spring Boot
   login(credentials: any): Observable<any> {
     return this.apiService.post<{ token: string }>('auth/login', credentials).pipe(
       tap(res => {
@@ -24,25 +24,13 @@ export class AuthService {
           localStorage.setItem('token', res.token);
           this.setCurrentUserFromToken(res.token);
         }
-      }),
-      catchError(() => {
-        // Fallback para simulación en desarrollo front-only
-        const mockToken = 'mock-session-token-for-' + credentials.email;
-        localStorage.setItem('token', mockToken);
-        this.setCurrentUserFromToken(mockToken);
-        return of({ token: mockToken });
       })
     );
   }
 
-  // Registrar un nuevo usuario en la base de datos con fallback local
+  // Registrar un nuevo usuario en la base de datos
   register(userData: any): Observable<any> {
-    return this.apiService.post<any>('user', userData).pipe(
-      catchError(() => {
-        // Retornar éxito simulado si el servidor no está disponible
-        return of({ success: true, email: userData.email });
-      })
-    );
+    return this.apiService.post<any>('user', userData);
   }
 
   // Cerrar la sesión del usuario limpiando el almacenamiento local
@@ -69,21 +57,41 @@ export class AuthService {
     }
   }
 
-  // Inicializar el usuario actual basado en el token simple de sesión
+  // Inicializar el usuario actual basado en el token simple de sesión o JWT real
   private setCurrentUserFromToken(token: string): void {
-    if (token && token.startsWith('mock-session-token-for-')) {
-      const email = token.replace('mock-session-token-for-', '');
-      // Obtener un nombre amigable a partir del email
-      const namePart = email.split('@')[0];
-      const fullName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
-      
-      this.currentUserSubject.next({
-        email: email,
-        fullName: fullName,
-        role: { name: 'CLIENTE' }
-      });
-    } else {
-      this.logout();
+    if (token) {
+      if (token.startsWith('mock-session-token-for-')) {
+        const email = token.replace('mock-session-token-for-', '');
+        const namePart = email.split('@')[0];
+        const fullName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
+        
+        this.currentUserSubject.next({
+          email: email,
+          fullName: fullName,
+          role: { name: 'CLIENTE' }
+        });
+      } else {
+        try {
+          const parts = token.split('.');
+          if (parts.length === 3) {
+            const payloadDecoded = atob(parts[1]);
+            const payload = JSON.parse(payloadDecoded);
+            const email = payload.sub; // subject is the email
+            const namePart = email.split('@')[0];
+            const fullName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
+            
+            this.currentUserSubject.next({
+              email: email,
+              fullName: fullName,
+              role: { name: 'CLIENTE' }
+            });
+          } else {
+            this.logout();
+          }
+        } catch (e) {
+          this.logout();
+        }
+      }
     }
   }
 }

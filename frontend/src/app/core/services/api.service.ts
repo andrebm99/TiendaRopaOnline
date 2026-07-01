@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  // URL base del backend Spring Boot configurado en el puerto 9080
-  private readonly baseUrl = 'http://localhost:9080/api';
+  // URL base del backend Spring Boot configurado en el puerto 8080
+  private readonly baseUrl = 'http://localhost:8080/api';
 
   constructor(private readonly http: HttpClient) {}
 
