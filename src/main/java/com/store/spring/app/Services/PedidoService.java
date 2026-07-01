@@ -14,18 +14,25 @@ import java.util.List;
 public class PedidoService implements PedidoInterface {
 
     private final PedidoRepository repository;
-    private final ProductoRepository productoRepository; 
+    private final ProductoRepository productoRepository;
 
     public PedidoService(PedidoRepository repository, ProductoRepository productoRepository) {
         this.repository = repository;
-        this.productoRepository = productoRepository; 
+        this.productoRepository = productoRepository;
     }
 
     @Override
     public Pedido crearPedido(PedidoRequestDTO dto) {
 
         Producto producto = productoRepository.findById(dto.getProductoId())
-            .orElseThrow(() -> new RuntimeException("Producto no encontrado")); 
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+
+        if (producto.getStock() >= dto.getCantidad()) {
+            producto.setStock(producto.getStock() - dto.getCantidad());
+            productoRepository.save(producto);
+        } else {
+            throw new RuntimeException("Stock insuficiente para el producto solicitado");
+        }
 
         Pedido pedido = new Pedido();
         pedido.setClienteNombre(dto.getClienteNombre());
@@ -53,28 +60,28 @@ public class PedidoService implements PedidoInterface {
     @Override
     public Pedido actualizarPedido(Integer id, Pedido pedido) {
         return repository.findById(id).map(p -> {
-            
-            if(pedido.getClienteNombre() != null){
+
+            if (pedido.getClienteNombre() != null) {
                 p.setClienteNombre(pedido.getClienteNombre());
             }
 
-            if(pedido.getClienteEmail() != null){
-                p.setClienteEmail(pedido.getClienteEmail());    
+            if (pedido.getClienteEmail() != null) {
+                p.setClienteEmail(pedido.getClienteEmail());
             }
 
-            if(pedido.getProducto() != null){
+            if (pedido.getProducto() != null) {
                 p.setProducto(pedido.getProducto());
             }
-            
-            if(pedido.getCantidad() != null){
-                 p.setCantidad(pedido.getCantidad());
+
+            if (pedido.getCantidad() != null) {
+                p.setCantidad(pedido.getCantidad());
             }
-            
-            if(pedido.getTotal() != null){
+
+            if (pedido.getTotal() != null) {
                 p.setTotal(pedido.getTotal());
             }
-           
-            if(pedido.getEstado() != null){
+
+            if (pedido.getEstado() != null) {
                 p.setEstado(pedido.getEstado());
             }
 
