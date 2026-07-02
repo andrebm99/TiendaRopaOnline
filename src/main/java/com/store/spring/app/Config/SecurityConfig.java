@@ -30,27 +30,27 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
-            // Usamos la configuración de CORS que tenías en HEAD
-            .cors(cors -> cors.configurationSource(corsConfigurationSource))
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/css/**", "/js/**", "/img/**", "/images/**").permitAll()
-                .requestMatchers("/", "/envios", "/como-comprar", "/catalogo", "/bolsa").permitAll()
-                .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/api-docs/**", "/swagger").permitAll()
-                .requestMatchers("/api/productos/**").permitAll()
-                
-                // Reglas Granulares (de andrebm)
-                .requestMatchers(HttpMethod.GET, "/api/role/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
-                .requestMatchers("/api/user/**").hasRole("ADMIN")
-                
-                .requestMatchers("/api/contact/**").permitAll()
-                .requestMatchers("/api/pedidos/**").permitAll()
-                .anyRequest().authenticated()
-            )
-            .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                .csrf(csrf -> csrf.disable())
+                // Usamos la configuración de CORS que tenías en HEAD
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/css/**", "/js/**", "/img/**", "/images/**").permitAll()
+                        .requestMatchers("/", "/envios", "/como-comprar", "/catalogo", "/bolsa").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/api-docs/**", "/swagger").permitAll()
+                        .requestMatchers("/api/productos/**").permitAll()
+
+                        // Reglas Granulares (de andrebm)
+                        .requestMatchers("/api/role/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/role/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
+                        .requestMatchers("/api/user/**").hasRole("ADMIN")
+
+                        .requestMatchers("/api/contact/**").permitAll()
+                        .requestMatchers("/api/pedidos/**").permitAll()
+                        .anyRequest().authenticated())
+                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
