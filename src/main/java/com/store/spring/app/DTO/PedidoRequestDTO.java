@@ -5,7 +5,7 @@ public class PedidoRequestDTO {
     private String clienteEmail;
     private Integer productoId;
     private Integer cantidad;
-    
+
     public PedidoRequestDTO() {
     }
 
@@ -39,7 +39,5 @@ public class PedidoRequestDTO {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
-    } 
-
-    
+    }
 }

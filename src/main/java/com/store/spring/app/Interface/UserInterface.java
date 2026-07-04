@@ -11,4 +11,7 @@ public interface UserInterface {
 
     boolean deleteUser(Integer id);
 
+    User getUserById(Integer id);
+
+    User updateUser(Integer id, User user);
 }

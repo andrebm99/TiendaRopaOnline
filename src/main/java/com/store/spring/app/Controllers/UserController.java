@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.store.spring.app.Interface.UserInterface;
@@ -58,7 +59,7 @@ public class UserController {
             List<User> users = userInterface.getAllUsers();
             if (users.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            } 
+            }
             return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -67,6 +68,39 @@ public class UserController {
 
     public String getMethodName(@RequestParam String param) {
         return new String();
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "BUSCAR USUARIO", description = "Obtiene un usuario por su ID para ver su perfil.")
+    public ResponseEntity<User> getById(@PathVariable("id") Integer id) {
+        try {
+            User user = userInterface.getUserById(id);
+            if (user == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "ACTUALIZAR USUARIO", description = "Modifica los datos del perfil de un usuario existente.")
+    public ResponseEntity<User> update(@PathVariable("id") Integer id, @RequestBody User user) {
+        try {
+            if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+                String encryptedPassword = passwordEncoder.encode(user.getPassword());
+                user.setPassword(encryptedPassword);
+            }
+
+            User updatedUser = userInterface.updateUser(id, user);
+            if (updatedUser == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @DeleteMapping("/{id}")

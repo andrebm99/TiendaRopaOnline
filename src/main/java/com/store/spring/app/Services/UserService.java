@@ -50,4 +50,28 @@ public class UserService implements UserInterface {
         repository.deleteById(id);
         return true;
     }
+
+    @Override
+    public User getUserById(Integer id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public User updateUser(Integer id, User user) {
+        return repository.findById(id).map(existingUser -> {
+            if (user.getFullName() != null) {
+                existingUser.setFullName(user.getFullName());
+            }
+            if (user.getEmail() != null) {
+                existingUser.setEmail(user.getEmail());
+            }
+            if (user.getPhoneNumber() != null) {
+                existingUser.setPhoneNumber(user.getPhoneNumber());
+            }
+            if (user.getPassword() != null) {
+                existingUser.setPassword(user.getPassword());
+            }
+            return repository.save(existingUser);
+        }).orElse(null);
+    }
 }
