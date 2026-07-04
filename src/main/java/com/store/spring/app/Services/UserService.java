@@ -39,6 +39,7 @@ public class UserService implements UserInterface {
             user.setRole(requestedRole);
         }
 
+
         return repository.save(user);
     }
 
