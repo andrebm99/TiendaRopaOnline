@@ -41,7 +41,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/productos/**").permitAll()
                 
                 // Reglas Granulares (de andrebm)
-                .requestMatchers(HttpMethod.GET, "/api/role/**").hasRole("ADMIN")
+                .requestMatchers("/api/role/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
                 .requestMatchers("/api/user/**").hasRole("ADMIN")
                 
