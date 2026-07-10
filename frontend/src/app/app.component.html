@@ -42,7 +42,16 @@
     </div>
 
     <div class="navbar-right">
-        <span class="nav-action desktop-action" *ngIf="currentUser" style="font-size: 14px; text-transform: uppercase; cursor: default;">Hola, {{ currentUser.fullName }}</span>
+        <!-- CONTENEDOR DEL MENÚ DESPLEGABLE DE USUARIO -->
+        <div class="user-dropdown-container desktop-action" *ngIf="currentUser">
+            <span class="nav-action user-dropdown-toggle" (click)="toggleUserDropdown($event)">
+                HOLA, {{ currentUser.fullName }} <span class="arrow">▾</span>
+            </span>
+            <div class="user-dropdown-menu" [class.show]="isUserDropdownOpen">
+                <a class="user-dropdown-item" routerLink="/perfil" (click)="isUserDropdownOpen = false">Perfil</a>
+                <button class="user-dropdown-item btn-logout-nav" (click)="logout()">Cerrar Sesión</button>
+            </div>
+        </div>
         <a class="nav-action desktop-action" *ngIf="!currentUser" routerLink="/auth/login">Iniciar Sesión</a>
         <a class="nav-action" routerLink="/bolsa">
             <span class="material-symbols-outlined">shopping_bag</span> Bolsa ({{ cartCount }})

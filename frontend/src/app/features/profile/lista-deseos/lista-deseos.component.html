@@ -1,0 +1,57 @@
+<div class="wishlist-container">
+  <div class="header-section">
+    <div>
+      <h1 class="section-title">LISTA DE DESEOS</h1>
+      <p class="section-subtitle" *ngIf="wishlistItems.length > 0">
+        {{ wishlistItems.length }} {{ wishlistItems.length === 1 ? 'ARTÍCULO GUARDADO' : 'ARTÍCULOS GUARDADOS' }}
+      </p>
+      <p class="section-subtitle" *ngIf="wishlistItems.length === 0">TU COLECCIÓN FAVORITA</p>
+    </div>
+  </div>
+
+  <!-- Toast notificación de bolsa de compras -->
+  <div class="toast-notification" *ngIf="mensajeAgregado">
+    <span class="material-symbols-outlined">shopping_bag</span>
+    <span>{{ mensajeAgregado }}</span>
+  </div>
+
+  <!-- ESTADO A: CON PRODUCTOS -->
+  <div class="wishlist-grid" *ngIf="wishlistItems.length > 0">
+    <div class="product-card" *ngFor="let item of wishlistItems">
+      <!-- Botón de remover superior derecho -->
+      <button class="btn-remove-item" (click)="removerItem(item.id)" title="Quitar de favoritos">
+        ×
+      </button>
+
+      <div class="product-image-wrapper">
+        <img [src]="item.imagenUrl" [alt]="item.nombre" class="product-img" onerror="this.src='/img/logoTIENDADEROPA.png'">
+        <div class="product-tag" *ngIf="item.stock && item.stock < 5">ÚLTIMAS UNIDADES</div>
+      </div>
+
+      <div class="product-details">
+        <h3 class="product-name">{{ item.nombre }}</h3>
+        <p class="product-price">{{ item.precio | currency:'USD':'symbol':'1.2-2' }}</p>
+      </div>
+
+      <button class="btn-add-to-cart hover-shadow-solid" (click)="agregarAlCarrito(item)">
+        AÑADIR AL CARRITO
+      </button>
+    </div>
+  </div>
+
+  <!-- ESTADO B: LISTA VACÍA -->
+  <div class="empty-wishlist-wrapper" *ngIf="wishlistItems.length === 0">
+    <div class="empty-card">
+      <div class="heart-avatar">
+        <span class="material-symbols-outlined heart-icon">favorite</span>
+      </div>
+      <h2 class="empty-title">TU LISTA ESTÁ VACÍA</h2>
+      <p class="empty-desc">
+        Guarda tus artículos favoritos aquí para volver a verlos, comparar precios y agregarlos a tu bolsa de compras cuando quieras.
+      </p>
+      <button class="btn-shop hover-shadow-solid" (click)="irALaTienda()">
+        IR A LA TIENDA ➔
+      </button>
+    </div>
+  </div>
+</div>

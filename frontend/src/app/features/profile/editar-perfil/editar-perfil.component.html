@@ -1,0 +1,113 @@
+<div class="edit-profile-container">
+  <h1 class="section-title">EDITAR PERFIL</h1>
+  <p class="section-subtitle">MANTÉN TU IDENTIDAD AL DÍA</p>
+
+  <!-- SECCIÓN DE FOTO DE PERFIL -->
+  <div class="avatar-edit-section">
+    <div class="avatar-frame">
+      <span class="avatar-letter">{{ perfilForm.get('nombreCompleto')?.value?.charAt(0) || 'A' }}</span>
+    </div>
+    <button class="btn-change-avatar" type="button">
+      CAMBIAR FOTO / CHANGE PIC
+    </button>
+  </div>
+
+  <!-- FORMULARIO REACTIVO DE PERFIL -->
+  <form [formGroup]="perfilForm" (ngSubmit)="guardarCambios()" class="profile-form">
+    
+    <!-- Nombre Completo -->
+    <div class="form-group">
+      <label class="form-label" for="nombreCompleto">Nombre Completo</label>
+      <input 
+        id="nombreCompleto" 
+        type="text" 
+        formControlName="nombreCompleto" 
+        class="form-input"
+        placeholder="Introduce tu nombre completo"
+        [class.is-invalid]="perfilForm.get('nombreCompleto')?.invalid && perfilForm.get('nombreCompleto')?.touched"
+      >
+      <div class="error-msg" *ngIf="perfilForm.get('nombreCompleto')?.invalid && perfilForm.get('nombreCompleto')?.touched">
+        El nombre completo es requerido y debe tener al menos 3 caracteres.
+      </div>
+    </div>
+
+    <!-- Correo Electrónico -->
+    <div class="form-group">
+      <label class="form-label" for="correo">Correo Electrónico</label>
+      <input 
+        id="correo" 
+        type="email" 
+        formControlName="correo" 
+        class="form-input"
+        placeholder="tu@ejemplo.com"
+        [class.is-invalid]="perfilForm.get('correo')?.invalid && perfilForm.get('correo')?.touched"
+      >
+      <div class="error-msg" *ngIf="perfilForm.get('correo')?.invalid && perfilForm.get('correo')?.touched">
+        Por favor, introduce un correo electrónico válido.
+      </div>
+    </div>
+
+    <!-- Teléfono -->
+    <div class="form-group">
+      <label class="form-label" for="telefono">Teléfono</label>
+      <input 
+        id="telefono" 
+        type="text" 
+        formControlName="telefono" 
+        class="form-input"
+        placeholder="+51 987654321"
+        [class.is-invalid]="perfilForm.get('telefono')?.invalid && perfilForm.get('telefono')?.touched"
+      >
+      <div class="error-msg" *ngIf="perfilForm.get('telefono')?.invalid && perfilForm.get('telefono')?.touched">
+        Formato de teléfono no válido.
+      </div>
+    </div>
+
+    <!-- Contraseñas en dos columnas para escritorio -->
+    <div class="password-grid">
+      <!-- Contraseña Actual -->
+      <div class="form-group">
+        <label class="form-label" for="contraseniaActual">Contraseña Actual</label>
+        <input 
+          id="contraseniaActual" 
+          type="password" 
+          formControlName="contraseniaActual" 
+          class="form-input"
+          placeholder="••••••"
+          [class.is-invalid]="perfilForm.get('contraseniaActual')?.invalid && perfilForm.get('contraseniaActual')?.touched"
+        >
+      </div>
+
+      <!-- Nueva Contraseña -->
+      <div class="form-group">
+        <label class="form-label" for="nuevaContasenia">Nueva Contraseña</label>
+        <input 
+          id="nuevaContasenia" 
+          type="password" 
+          formControlName="nuevaContasenia" 
+          class="form-input"
+          placeholder="••••••"
+          [class.is-invalid]="perfilForm.get('nuevaContasenia')?.invalid && perfilForm.get('nuevaContasenia')?.touched"
+        >
+      </div>
+    </div>
+    
+    <div class="error-msg password-error" *ngIf="(perfilForm.get('contraseniaActual')?.invalid && perfilForm.get('contraseniaActual')?.touched) || (perfilForm.get('nuevaContasenia')?.invalid && perfilForm.get('nuevaContasenia')?.touched)">
+      Las contraseñas deben tener al menos 6 caracteres.
+    </div>
+
+    <!-- Feedback del guardado -->
+    <div class="feedback-msg success" *ngIf="mensajeExito">
+      {{ mensajeExito }}
+    </div>
+    <div class="feedback-msg error" *ngIf="mensajeError">
+      {{ mensajeError }}
+    </div>
+
+    <!-- Botón de Envío -->
+    <button class="btn-submit hover-shadow-solid" type="submit" [disabled]="cargando">
+      <span *ngIf="!cargando">GUARDAR CAMBIOS ➔</span>
+      <span *ngIf="cargando">GUARDANDO...</span>
+    </button>
+  </form>
+</div>

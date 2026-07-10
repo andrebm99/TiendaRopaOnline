@@ -31,6 +31,11 @@ export const routes: Routes = [
     path: 'bolsa',
     loadComponent: () => import('./features/pages/bolsa/bolsa.component').then(m => m.BolsaComponent)
   },
+  // Perfil / Mi Cuenta del cliente
+  {
+    path: 'perfil',
+    loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)
+  },
   // Redirección por defecto
   {
     path: '**',

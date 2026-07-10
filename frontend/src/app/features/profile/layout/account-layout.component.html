@@ -1,0 +1,49 @@
+<div class="account-container">
+  <!-- BARRA LATERAL DINÁMICA (SIDEBAR) -->
+  <aside class="sidebar-wrapper">
+    <div class="sidebar-header">
+      <button class="btn-volver" (click)="volver()">
+        <span class="arrow">←</span> VOLVER
+      </button>
+    </div>
+
+    <div class="profile-card">
+      <div class="avatar-circle">
+        <span class="avatar-letter">{{ (usuario?.fullName || 'ALEXA VALENCIAGA').charAt(0) }}</span>
+      </div>
+      <div class="profile-info">
+        <h3 class="profile-name">{{ usuario?.fullName || 'ALEXA VALENCIAGA' }}</h3>
+        <p class="profile-email">{{ usuario?.email || 'alexa@krystudio.com' }}</p>
+      </div>
+    </div>
+
+    <nav class="sidebar-menu">
+      <a class="menu-item" [routerLink]="['/perfil/editar']" routerLinkActive="active">
+        MI CUENTA
+      </a>
+      <a class="menu-item" [routerLink]="['/perfil/pedidos']" routerLinkActive="active">
+        MIS PEDIDOS
+      </a>
+      <a class="menu-item" [routerLink]="['/perfil/lista-deseos']" routerLinkActive="active">
+        LISTA DE DESEOS
+      </a>
+      <a class="menu-item" [routerLink]="['/perfil/direcciones']" routerLinkActive="active">
+        DIRECCIONES
+      </a>
+      <a class="menu-item" [routerLink]="['/perfil/metodos-pago']" routerLinkActive="active">
+        MÉTODOS DE PAGO
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="btn-logout" (click)="cerrarSesion()">
+        → CERRAR SESIÓN
+      </button>
+    </div>
+  </aside>
+
+  <!-- CONTENEDOR CENTRAL DE VISTAS HIJAS -->
+  <main class="content-wrapper">
+    <router-outlet></router-outlet>
+  </main>
+</div>

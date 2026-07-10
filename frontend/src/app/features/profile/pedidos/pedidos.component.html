@@ -1,0 +1,91 @@
+<div class="orders-container">
+  <!-- CONTROL DE DESARROLLO PARA EVALUADORES -->
+  <div class="dev-banner">
+    <span class="dev-label">ENTORNO DEMO:</span>
+    <button class="btn-dev-toggle" (click)="alternarEstado()">
+      Alternar Estado ({{ tienePedidos ? 'Ver Estado Vacío' : 'Ver Lista de Pedidos' }})
+    </button>
+  </div>
+
+  <div class="header-section">
+    <div>
+      <h1 class="section-title">MIS PEDIDOS</h1>
+      <p class="section-subtitle">HISTORIAL Y SEGUIMIENTO DE COMPRAS</p>
+    </div>
+  </div>
+
+  <!-- ESTADO A: CON PEDIDOS -->
+  <div class="orders-list-wrapper" *ngIf="tienePedidos">
+    <div class="order-row" *ngFor="let p of pedidos">
+      <div class="order-main-info">
+        <div class="order-image-wrapper">
+          <img [src]="p.items[0].imagenUrl" alt="Prenda de vestir" class="order-thumbnail" onerror="this.src='/img/logoTIENDADEROPA.png'">
+        </div>
+        <div class="order-details">
+          <h4 class="order-id">{{ p.id }}</h4>
+          <p class="order-date">{{ p.fecha }}</p>
+        </div>
+      </div>
+
+      <div class="order-status-col">
+        <span class="status-badge" [class.in-transit]="p.estado === 'En Camino'" [class.delivered]="p.estado === 'Entregado'">
+          {{ p.estado | uppercase }}
+        </span>
+      </div>
+
+      <div class="order-price-col">
+        <span class="price-value">{{ p.precioTotal | currency:'USD':'symbol':'1.2-2' }}</span>
+      </div>
+
+      <div class="order-action-col">
+        <button class="btn-details hover-shadow-solid" (click)="verDetalles(p.id)">
+          VER DETALLES
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESTADO B: SIN PEDIDOS -->
+  <div class="empty-orders-wrapper" *ngIf="!tienePedidos">
+    <div class="empty-card">
+      <div class="hanger-graphic-container">
+        <!-- Perchero/Colgador minimalista en CSS + Icono -->
+        <div class="rack-avatar">
+          <span class="material-symbols-outlined hanger-icon">styler</span>
+        </div>
+      </div>
+      <h2 class="empty-title">AÚN NO TIENES PEDIDOS</h2>
+      <p class="empty-desc">
+        Explora nuestra última colección y encuentra tus prendas favoritas para estrenar hoy.
+      </p>
+      <button class="btn-shop hover-shadow-solid" (click)="irALaTienda()">
+        IR A LA TIENDA ➔
+      </button>
+    </div>
+
+    <!-- SECCIÓN PROMOCIONAL (NEW IN / EDITORIAL) -->
+    <div class="promo-grid">
+      <div class="promo-card" (click)="irALaTienda()">
+        <div class="promo-image-box">
+          <img src="/img/img4.jpg" alt="Nueva Colección" class="promo-img" onerror="this.src='/img/logoTIENDADEROPA.png'">
+          <div class="promo-overlay"></div>
+        </div>
+        <div class="promo-footer">
+          <span class="promo-title">NEW IN</span>
+          <span class="arrow-diagonal">↗</span>
+        </div>
+      </div>
+
+      <div class="promo-card" (click)="irALaTienda()">
+        <div class="promo-image-box">
+          <img src="/img/img2.jpeg" alt="Editorial de Moda" class="promo-img" onerror="this.src='/img/logoTIENDADEROPA.png'">
+          <div class="promo-overlay"></div>
+        </div>
+        <div class="promo-footer">
+          <span class="promo-title">EDITORIAL</span>
+          <span class="arrow-diagonal">↗</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
