@@ -30,7 +30,7 @@ export class PedidosComponent implements OnInit {
       estado: 'En Camino',
       precioTotal: 354.00,
       items: [
-        { nombrePrenda: 'Casaca Abrigadora', imagenUrl: '/img/img1.jpeg' }
+        { nombrePrenda: 'Casaca Abrigadora', imagenUrl: '/img/img1.webp' }
       ]
     },
     {
@@ -39,7 +39,7 @@ export class PedidosComponent implements OnInit {
       estado: 'Entregado',
       precioTotal: 89.00,
       items: [
-        { nombrePrenda: 'Top Noir', imagenUrl: '/img/img2.jpeg' }
+        { nombrePrenda: 'Top Noir', imagenUrl: '/img/img2.webp' }
       ]
     },
     {
@@ -48,14 +48,14 @@ export class PedidosComponent implements OnInit {
       estado: 'Entregado',
       precioTotal: 120.00,
       items: [
-        { nombrePrenda: 'Cargo Rose', imagenUrl: '/img/img3.jpg' }
+        { nombrePrenda: 'Cargo Rose', imagenUrl: '/img/img3.webp' }
       ]
     }
   ];
 
-  constructor(private readonly router: Router) {}
+  constructor(private readonly router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   // Cambiar de estado con fines de demostración
   alternarEstado(): void {

@@ -17,7 +17,7 @@ export class ListaDeseosComponent implements OnInit {
       descripcion: 'Top asimétrico elegante color negro profundo.',
       precio: 89.00,
       stock: 12,
-      imagenUrl: '/img/img1.jpeg',
+      imagenUrl: '/img/img1.webp',
       categoria: 'Tops'
     },
     {
@@ -26,7 +26,7 @@ export class ListaDeseosComponent implements OnInit {
       descripcion: 'Pantalón estilo cargo en color rosa pastel premium.',
       precio: 120.00,
       stock: 6,
-      imagenUrl: '/img/img2.jpeg',
+      imagenUrl: '/img/img2.webp',
       categoria: 'Pantalones'
     },
     {
@@ -35,7 +35,7 @@ export class ListaDeseosComponent implements OnInit {
       descripcion: 'Bolso de cuero con líneas puras y herrajes negros.',
       precio: 95.00,
       stock: 8,
-      imagenUrl: '/img/img3.jpg',
+      imagenUrl: '/img/img3.webp',
       categoria: 'Accesorios'
     },
     {
@@ -44,7 +44,7 @@ export class ListaDeseosComponent implements OnInit {
       descripcion: 'Blazer de corte moderno y hombreras marcadas.',
       precio: 180.00,
       stock: 4,
-      imagenUrl: '/img/img4.jpg',
+      imagenUrl: '/img/img4.webp',
       categoria: 'Sacos'
     }
   ];
@@ -54,9 +54,9 @@ export class ListaDeseosComponent implements OnInit {
   constructor(
     private readonly cartService: CartService,
     private readonly router: Router
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   // Quitar un producto de la lista de deseos
   removerItem(id: number | undefined): void {
@@ -68,7 +68,7 @@ export class ListaDeseosComponent implements OnInit {
   agregarAlCarrito(producto: Producto): void {
     this.cartService.addToCart(producto, 1);
     this.mensajeAgregado = `¡${producto.nombre} AÑADIDO A LA BOLSA!`;
-    
+
     // Auto-ocultar el mensaje después de 2.5 segundos
     setTimeout(() => {
       this.mensajeAgregado = null;

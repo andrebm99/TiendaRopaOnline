@@ -1,7 +1,7 @@
 <div class="login-wrapper">
   <!-- Columna Izquierda: Banner de Imagen con filtro fucsia -->
   <div class="login-banner">
-    <img src="/img/screen.png" alt="L&G Fashion Collection" class="banner-img" />
+    <img src="/img/screen.webp" alt="L&G Fashion Collection" class="banner-img" />
     <div class="banner-overlay"></div>
     <div class="banner-text">
       <p class="season-text">NEW SEASON / VOL. 24</p>
@@ -18,14 +18,8 @@
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
         <div class="form-group">
           <label class="form-label" for="email">CORREO</label>
-          <input 
-            type="email" 
-            id="email" 
-            formControlName="email" 
-            placeholder="YOU@EXAMPLE.COM" 
-            class="form-control"
-            [class.is-invalid]="loginForm.get('email')?.touched && loginForm.get('email')?.invalid"
-          />
+          <input type="email" id="email" formControlName="email" placeholder="YOU@EXAMPLE.COM" class="form-control"
+            [class.is-invalid]="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" />
         </div>
 
         <div class="form-group">
@@ -34,19 +28,10 @@
             <a href="javascript:void(0)" class="forgot-pass-link">¿Olvidaste tu contraseña?</a>
           </div>
           <div class="password-input-wrapper">
-            <input 
-              [type]="showPassword ? 'text' : 'password'" 
-              id="password" 
-              formControlName="password" 
-              placeholder="••••••••" 
-              class="form-control password-control"
-              [class.is-invalid]="loginForm.get('password')?.touched && loginForm.get('password')?.invalid"
-            />
-            <button 
-              type="button" 
-              class="password-toggle-btn"
-              (click)="togglePasswordVisibility()"
-            >
+            <input [type]="showPassword ? 'text' : 'password'" id="password" formControlName="password"
+              placeholder="••••••••" class="form-control password-control"
+              [class.is-invalid]="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" />
+            <button type="button" class="password-toggle-btn" (click)="togglePasswordVisibility()">
               <i class="fa-solid" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
             </button>
           </div>
@@ -56,11 +41,7 @@
           {{ errorMessage }}
         </div>
 
-        <button 
-          type="submit" 
-          class="login-btn hover-shadow-solid"
-          [disabled]="loginForm.invalid || loading"
-        >
+        <button type="submit" class="login-btn hover-shadow-solid" [disabled]="loginForm.invalid || loading">
           {{ loading ? 'CARGANDO...' : 'INICIAR SESIÓN' }}
         </button>
       </form>

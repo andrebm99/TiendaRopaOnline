@@ -19,7 +19,8 @@
     <div class="order-row" *ngFor="let p of pedidos">
       <div class="order-main-info">
         <div class="order-image-wrapper">
-          <img [src]="p.items[0].imagenUrl" alt="Prenda de vestir" class="order-thumbnail" onerror="this.src='/img/logoTIENDADEROPA.png'">
+          <img [src]="p.items[0].imagenUrl" alt="Prenda de vestir" class="order-thumbnail"
+            onerror="this.src='/img/logoTIENDADEROPA.webp'">
         </div>
         <div class="order-details">
           <h4 class="order-id">{{ p.id }}</h4>
@@ -28,7 +29,8 @@
       </div>
 
       <div class="order-status-col">
-        <span class="status-badge" [class.in-transit]="p.estado === 'En Camino'" [class.delivered]="p.estado === 'Entregado'">
+        <span class="status-badge" [class.in-transit]="p.estado === 'En Camino'"
+          [class.delivered]="p.estado === 'Entregado'">
           {{ p.estado | uppercase }}
         </span>
       </div>
@@ -67,7 +69,8 @@
     <div class="promo-grid">
       <div class="promo-card" (click)="irALaTienda()">
         <div class="promo-image-box">
-          <img src="/img/img4.jpg" alt="Nueva Colección" class="promo-img" onerror="this.src='/img/logoTIENDADEROPA.png'">
+          <img src="/img/img4.webp" alt="Nueva Colección" class="promo-img"
+            onerror="this.src='/img/logoTIENDADEROPA.webp'">
           <div class="promo-overlay"></div>
         </div>
         <div class="promo-footer">
@@ -78,7 +81,8 @@
 
       <div class="promo-card" (click)="irALaTienda()">
         <div class="promo-image-box">
-          <img src="/img/img2.jpeg" alt="Editorial de Moda" class="promo-img" onerror="this.src='/img/logoTIENDADEROPA.png'">
+          <img src="/img/img2.webp" alt="Editorial de Moda" class="promo-img"
+            onerror="this.src='/img/logoTIENDADEROPA.webp'">
           <div class="promo-overlay"></div>
         </div>
         <div class="promo-footer">

@@ -24,7 +24,8 @@
       </button>
 
       <div class="product-image-wrapper">
-        <img [src]="item.imagenUrl" [alt]="item.nombre" class="product-img" onerror="this.src='/img/logoTIENDADEROPA.png'">
+        <img [src]="item.imagenUrl" [alt]="item.nombre" class="product-img"
+          onerror="this.src='/img/logoTIENDADEROPA.webp'">
         <div class="product-tag" *ngIf="item.stock && item.stock < 5">ÚLTIMAS UNIDADES</div>
       </div>
 
@@ -47,7 +48,8 @@
       </div>
       <h2 class="empty-title">TU LISTA ESTÁ VACÍA</h2>
       <p class="empty-desc">
-        Guarda tus artículos favoritos aquí para volver a verlos, comparar precios y agregarlos a tu bolsa de compras cuando quieras.
+        Guarda tus artículos favoritos aquí para volver a verlos, comparar precios y agregarlos a tu bolsa de compras
+        cuando quieras.
       </p>
       <button class="btn-shop hover-shadow-solid" (click)="irALaTienda()">
         IR A LA TIENDA ➔

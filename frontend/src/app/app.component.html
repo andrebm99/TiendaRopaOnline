@@ -1,18 +1,20 @@
 <!-- NAVBAR -->
 <nav class="navbar-wrapper" *ngIf="showLayout">
-    <div class="navbar-left" [style.display]="isMobileMenuOpen ? 'flex' : ''" [style.flex-direction]="isMobileMenuOpen ? 'column' : ''">
+    <div class="navbar-left" [style.display]="isMobileMenuOpen ? 'flex' : ''"
+        [style.flex-direction]="isMobileMenuOpen ? 'column' : ''">
         <div class="search-container">
             <span class="material-symbols-outlined" style="font-size: 20px; margin-right: 8px;">search</span>
             <input class="search-input" placeholder="Buscar..." type="text">
         </div>
     </div>
 
-    <div class="navbar-center" [style.display]="isMobileMenuOpen ? 'flex' : ''" [style.flex-direction]="isMobileMenuOpen ? 'column' : ''">
+    <div class="navbar-center" [style.display]="isMobileMenuOpen ? 'flex' : ''"
+        [style.flex-direction]="isMobileMenuOpen ? 'column' : ''">
         <a class="nav-link" routerLink="/como-comprar">DÓNDE COMPRAR</a>
 
         <div class="nav-logo-group">
             <a routerLink="/" style="display: flex; align-items: center;">
-                <img src="/img/logoTIENDADEROPA.png" alt="Tienda de Ropa Online" class="nav-logo-img"
+                <img src="/img/logoTIENDADEROPA.webp" alt="Tienda de Ropa Online" class="nav-logo-img"
                     onerror="this.outerHTML='<span class=\'nav-logo-text\'>TIENDA ONLINE</span>'">
                 <span style="margin-left: 4px; font-size: 20px;">▾</span>
             </a>
@@ -36,7 +38,7 @@
     <!-- Mobile Center Logo -->
     <div class="navbar-mobile-center">
         <a routerLink="/">
-            <img src="/img/logoTIENDADEROPA.png" alt="Tienda de Ropa Online"
+            <img src="/img/logoTIENDADEROPA.webp" alt="Tienda de Ropa Online"
                 onerror="this.outerHTML='<span class=\'nav-logo-text\'>TIENDA ONLINE</span>'">
         </a>
     </div>
@@ -69,7 +71,7 @@
 <footer class="footer-wrapper" *ngIf="showLayout">
     <div class="footer-left">
         <h4 class="footer-logo">
-            <img src="/img/logoTIENDADEROPA.png" alt="Tienda de Ropa Online"
+            <img src="/img/logoTIENDADEROPA.webp" alt="Tienda de Ropa Online"
                 onerror="this.outerHTML='<span style=\'font-family: Syne, sans-serif; font-size: 24px; font-weight: 700; color: #111111; text-transform: uppercase;\'>TIENDA ONLINE</span>'">
         </h4>
         <div class="footer-links-grid">

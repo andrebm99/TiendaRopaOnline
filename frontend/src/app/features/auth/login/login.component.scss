@@ -3,13 +3,13 @@
   min-height: 100vh;
   width: 100%;
   border-bottom: 1px solid var(--border-black);
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
   }
 }
 
-// Columna Izquierda: Banner con imagen recortada de screen.png
+// Columna Izquierda: Banner con imagen recortada de screen
 .login-banner {
   width: 50%;
   position: relative;
@@ -35,7 +35,7 @@
     object-position: 2% 2%; // Enfocado en el cuadrante del banner izquierdo de la captura
     z-index: 1;
     filter: grayscale(20%);
-    
+
     @media (max-width: 768px) {
       width: 200%;
       object-position: 2% 5%;
@@ -74,7 +74,7 @@
       line-height: 1;
       letter-spacing: -0.03em;
       text-transform: uppercase;
-      
+
       @media (max-width: 992px) {
         font-size: 36px;
       }
@@ -154,7 +154,7 @@
     font-size: 11px;
     font-weight: 600;
     color: var(--fuchsia-accent);
-    
+
     &:hover {
       text-decoration: underline;
     }
@@ -201,7 +201,7 @@
       cursor: pointer;
       display: flex;
       align-items: center;
-      
+
       span {
         font-size: 20px;
       }
@@ -243,19 +243,20 @@
 // Conectarse con redes
 .social-login-section {
   margin-top: 32px;
-  
+
   .social-divider {
     display: flex;
     align-items: center;
     text-align: center;
     margin-bottom: 16px;
 
-    &::before, &::after {
+    &::before,
+    &::after {
       content: '';
       flex: 1;
       border-bottom: 1px solid rgba(17, 17, 17, 0.1);
     }
-    
+
     span {
       padding: 0 10px;
       font-family: 'Inter', sans-serif;
@@ -306,7 +307,7 @@
   a {
     color: var(--fuchsia-accent);
     font-weight: 700;
-    
+
     &:hover {
       text-decoration: underline;
     }
