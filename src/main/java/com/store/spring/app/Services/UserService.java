@@ -27,18 +27,33 @@ public class UserService implements UserInterface {
 
     @Override
     public User createUser(User user) {
-
-        if (user.getRole() == null || user.getRole().getId() == null) {
-            var clientRole = roleRepository.findById(4)
-                    .orElseThrow(() -> new RuntimeException("Error: El rol ROLE_CLIENT no existe en la base de datos"));
-            user.setRole(clientRole);
-        } else {
-            var requestedRole = roleRepository.findById(user.getRole().getId())
-                    .orElseThrow(
-                            () -> new RuntimeException("Error: El rol proporcionado no existe en la base de datos"));
-            user.setRole(requestedRole);
+        // Autoseed dinámico de roles si la tabla está vacía
+        if (roleRepository.count() == 0) {
+            roleRepository.save(new com.store.spring.app.Models.Role(com.store.spring.app.Models.RoleName.ROLE_ADMIN));
+            roleRepository.save(new com.store.spring.app.Models.Role(com.store.spring.app.Models.RoleName.ROLE_VENDEDOR));
+            roleRepository.save(new com.store.spring.app.Models.Role(com.store.spring.app.Models.RoleName.ROLE_CLIENTE));
         }
 
+        // Buscar el rol de cliente en base a la enumeración para evitar IDs cableados (3 o 4)
+        com.store.spring.app.Models.Role clientRole = roleRepository.findAll().stream()
+                .filter(r -> r.getName() == com.store.spring.app.Models.RoleName.ROLE_CLIENTE)
+                .findFirst()
+                .orElse(null);
+
+        if (clientRole == null) {
+            clientRole = roleRepository.save(new com.store.spring.app.Models.Role(com.store.spring.app.Models.RoleName.ROLE_CLIENTE));
+        }
+
+        if (user.getRole() == null || user.getRole().getId() == null) {
+            user.setRole(clientRole);
+        } else {
+            var requestedRole = roleRepository.findById(user.getRole().getId()).orElse(null);
+            if (requestedRole == null) {
+                user.setRole(clientRole);
+            } else {
+                user.setRole(requestedRole);
+            }
+        }
 
         return repository.save(user);
     }
@@ -71,6 +86,15 @@ public class UserService implements UserInterface {
             }
             if (user.getPassword() != null) {
                 existingUser.setPassword(user.getPassword());
+            }
+            if (user.getDireccionesJson() != null) {
+                existingUser.setDireccionesJson(user.getDireccionesJson());
+            }
+            if (user.getMetodosPagoJson() != null) {
+                existingUser.setMetodosPagoJson(user.getMetodosPagoJson());
+            }
+            if (user.getWishlistJson() != null) {
+                existingUser.setWishlistJson(user.getWishlistJson());
             }
             return repository.save(existingUser);
         }).orElse(null);

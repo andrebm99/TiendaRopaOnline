@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../../../core/services/cart.service';
 import { Producto } from '../../../core/models/producto.model';
+import { AuthService } from '../../../core/services/auth.service';
+import { ProfileService } from '../../../core/services/profile.service';
+import { User } from '../../../core/models/user.model';
 
 @Component({
   selector: 'app-lista-deseos',
@@ -10,73 +13,75 @@ import { Producto } from '../../../core/models/producto.model';
   styleUrls: ['./lista-deseos.component.scss']
 })
 export class ListaDeseosComponent implements OnInit {
-  wishlistItems: Producto[] = [
-    {
-      id: 101,
-      nombre: 'TOP ASIMÉTRICO NOIR',
-      descripcion: 'Top asimétrico elegante color negro profundo.',
-      precio: 89.00,
-      stock: 12,
-      imagenUrl: '/img/img1.webp',
-      categoria: 'Tops'
-    },
-    {
-      id: 102,
-      nombre: 'PANTALÓN CARGO ROSE',
-      descripcion: 'Pantalón estilo cargo en color rosa pastel premium.',
-      precio: 120.00,
-      stock: 6,
-      imagenUrl: '/img/img2.webp',
-      categoria: 'Pantalones'
-    },
-    {
-      id: 103,
-      nombre: 'BOLSO MINIMALISTA',
-      descripcion: 'Bolso de cuero con líneas puras y herrajes negros.',
-      precio: 95.00,
-      stock: 8,
-      imagenUrl: '/img/img3.webp',
-      categoria: 'Accesorios'
-    },
-    {
-      id: 104,
-      nombre: 'BLAZER ESTRUCTURAL',
-      descripcion: 'Blazer de corte moderno y hombreras marcadas.',
-      precio: 180.00,
-      stock: 4,
-      imagenUrl: '/img/img4.webp',
-      categoria: 'Sacos'
-    }
-  ];
+  // Inicializada vacía por defecto para nuevos usuarios
+  wishlistItems: Producto[] = [];
 
   mensajeAgregado: string | null = null;
+  private currentUser: User | null = null;
 
   constructor(
     private readonly cartService: CartService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly authService: AuthService,
+    private readonly profileService: ProfileService
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.authService.currentUser$.subscribe(user => {
+      if (user && user.email) {
+        this.profileService.obtenerDatosUsuario(user.email).subscribe(datos => {
+          this.currentUser = datos;
+          if (datos.wishlistJson) {
+            try {
+              this.wishlistItems = JSON.parse(datos.wishlistJson);
+            } catch (e) {
+              this.wishlistItems = [];
+            }
+          } else {
+            this.wishlistItems = [];
+          }
+        });
+      }
+    });
+  }
 
   // Quitar un producto de la lista de deseos
   removerItem(id: number | undefined): void {
     if (!id) return;
     this.wishlistItems = this.wishlistItems.filter(item => item.id !== id);
+    this.persistirWishlist();
   }
 
   // Agregar el producto al carrito global y mostrar feedback temporal
   agregarAlCarrito(producto: Producto): void {
     this.cartService.addToCart(producto, 1);
-    this.mensajeAgregado = `¡${producto.nombre} AÑADIDO A LA BOLSA!`;
-
-    // Auto-ocultar el mensaje después de 2.5 segundos
-    setTimeout(() => {
-      this.mensajeAgregado = null;
-    }, 2500);
+    
+    // Solo mostrar confirmación si el usuario está autenticado (si no, cartService lo redirige)
+    this.authService.currentUser$.subscribe(user => {
+      if (user) {
+        this.mensajeAgregado = `¡${producto.nombre} AÑADIDO A LA BOLSA!`;
+        setTimeout(() => {
+          this.mensajeAgregado = null;
+        }, 2500);
+      }
+    }).unsubscribe();
   }
 
   // Redirigir a la tienda
   irALaTienda(): void {
     this.router.navigate(['/catalogo']);
+  }
+
+  private persistirWishlist(): void {
+    if (this.currentUser && this.currentUser.id) {
+      const json = JSON.stringify(this.wishlistItems);
+      // Enviar actualización del perfil con la nueva lista de deseos
+      this.profileService.actualizarPerfil(this.currentUser.id, {
+        ...this.currentUser,
+        wishlistJson: json
+      }).subscribe(updatedUser => {
+        this.currentUser = updatedUser;
+      });
+    }
   }
 }

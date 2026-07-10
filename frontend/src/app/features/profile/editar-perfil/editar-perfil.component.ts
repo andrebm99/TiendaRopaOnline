@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
+import { ProfileService } from '../../../core/services/profile.service';
 import { User } from '../../../core/models/user.model';
 
 @Component({
@@ -14,10 +15,12 @@ export class EditarPerfilComponent implements OnInit {
   mensajeExito: string | null = null;
   mensajeError: string | null = null;
   cargando = false;
+  userId = 999;
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly profileService: ProfileService
   ) {}
 
   ngOnInit(): void {
@@ -39,11 +42,14 @@ export class EditarPerfilComponent implements OnInit {
   // Cargar información del usuario actual en los campos correspondientes
   private cargarDatosUsuario(): void {
     this.authService.currentUser$.subscribe(user => {
-      if (user) {
-        this.perfilForm.patchValue({
-          nombreCompleto: user.fullName,
-          correo: user.email,
-          telefono: user.phoneNumber || ''
+      if (user && user.email) {
+        this.profileService.obtenerDatosUsuario(user.email).subscribe(datos => {
+          this.userId = datos.id || 999;
+          this.perfilForm.patchValue({
+            nombreCompleto: datos.fullName,
+            correo: datos.email,
+            telefono: datos.phoneNumber || ''
+          });
         });
       } else {
         // Valores de simulación si no se ha iniciado sesión
@@ -69,16 +75,26 @@ export class EditarPerfilComponent implements OnInit {
     this.mensajeExito = null;
     this.mensajeError = null;
 
-    // Simulación de guardado con timeout
-    setTimeout(() => {
-      this.cargando = false;
-      this.mensajeExito = '¡CAMBIOS GUARDADOS EXITOSAMENTE!';
-      
-      // Limpiar campos de contraseña por seguridad
-      this.perfilForm.patchValue({
-        contraseniaActual: '',
-        nuevaContasenia: ''
-      });
-    }, 1000);
+    const datos = {
+      nombreCompleto: this.perfilForm.get('nombreCompleto')?.value,
+      email: this.perfilForm.get('correo')?.value,
+      telefono: this.perfilForm.get('telefono')?.value,
+      nuevaContasenia: this.perfilForm.get('nuevaContasenia')?.value
+    };
+
+    this.profileService.actualizarPerfil(this.userId, datos).subscribe({
+      next: (user) => {
+        this.cargando = false;
+        this.mensajeExito = '¡CAMBIOS GUARDADOS EXITOSAMENTE!';
+        this.perfilForm.patchValue({
+          contraseniaActual: '',
+          nuevaContasenia: ''
+        });
+      },
+      error: () => {
+        this.cargando = false;
+        this.mensajeError = 'Hubo un error al intentar guardar los cambios.';
+      }
+    });
   }
 }

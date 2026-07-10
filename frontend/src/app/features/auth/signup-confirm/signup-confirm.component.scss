@@ -42,11 +42,10 @@
       color: var(--brand-black);
       font-weight: 700;
 
-      .sidebar-logo {
-        font-family: 'Syne', sans-serif;
-        font-size: 16px;
-        letter-spacing: -0.05em;
-        text-transform: uppercase;
+      .sidebar-logo-img {
+        height: 36px;
+        width: auto;
+        object-fit: contain;
       }
     }
 

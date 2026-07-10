@@ -22,13 +22,14 @@
 
   @media (min-width: 992px) {
     width: 320px;
-    padding: 48px;
+    padding: 48px 48px 32px 48px;
     border-bottom: none;
     border-right: 2px solid var(--brand-black);
     flex-shrink: 0;
     position: sticky;
     top: 96px;
-    height: calc(100vh - 96px);
+    height: auto;
+    min-height: calc(100vh - 96px);
   }
 }
 

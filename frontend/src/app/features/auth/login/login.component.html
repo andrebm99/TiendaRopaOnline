@@ -12,7 +12,11 @@
   <!-- Columna Derecha: Formulario de Login -->
   <div class="login-form-container">
     <div class="login-form-content">
-      <h2 class="form-logo">L&G FASHION</h2>
+      <div class="form-logo-container">
+        <a routerLink="/">
+          <img src="/img/logoTIENDADEROPA.webp" alt="Tienda de Ropa Online" class="form-logo-img">
+        </a>
+      </div>
       <p class="form-subtitle">INICIA SESIÓN PARA DESBLOQUEAR LOS PRODUCTOS EXCLUSIVOS</p>
 
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">

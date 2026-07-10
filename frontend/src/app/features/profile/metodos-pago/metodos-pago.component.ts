@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../core/services/auth.service';
+import { ProfileService } from '../../../core/services/profile.service';
+import { User } from '../../../core/models/user.model';
 
 interface Tarjeta {
   id: number;
@@ -23,25 +26,9 @@ interface MonederoDigital {
   styleUrls: ['./metodos-pago.component.scss']
 })
 export class MetodosPagoComponent implements OnInit {
-  tarjetas: Tarjeta[] = [
-    {
-      id: 1,
-      tipo: 'VISA',
-      numeroEnmascarado: '•••• 1234',
-      nombreTitular: 'ALEXA VALENCIAGA',
-      expiracion: '08 / 26',
-      predeterminado: true
-    }
-  ];
-
-  monederos: MonederoDigital[] = [
-    {
-      id: 1,
-      tipo: 'YAPE',
-      telefonoEnmascarado: '+51 987 ••• 321',
-      titular: 'Alexa Valenciaga'
-    }
-  ];
+  // Inicializados vacíos por defecto para nuevos usuarios
+  tarjetas: Tarjeta[] = [];
+  monederos: MonederoDigital[] = [];
 
   mostrarModal = false;
   tipoNuevoMetodo: 'TARJETA' | 'MONEDERO' = 'TARJETA';
@@ -56,17 +43,51 @@ export class MetodosPagoComponent implements OnInit {
   monederoTelefono = '';
   monederoTitular = '';
 
-  constructor() {}
+  private currentUser: User | null = null;
 
-  ngOnInit(): void {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly profileService: ProfileService
+  ) {}
+
+  ngOnInit(): void {
+    this.authService.currentUser$.subscribe(user => {
+      if (user && user.email) {
+        this.profileService.obtenerDatosUsuario(user.email).subscribe(datos => {
+          this.currentUser = datos;
+          this.tarjetaTitular = datos.fullName.toUpperCase();
+          this.monederoTitular = datos.fullName;
+          
+          if (datos.metodosPagoJson) {
+            try {
+              const parsed = JSON.parse(datos.metodosPagoJson);
+              this.tarjetas = parsed.tarjetas || [];
+              this.monederos = parsed.monederos || [];
+            } catch (e) {
+              this.tarjetas = [];
+              this.monederos = [];
+            }
+          } else {
+            this.tarjetas = [];
+            this.monederos = [];
+          }
+        });
+      }
+    });
+  }
 
   abrirModal(): void {
     this.mostrarModal = true;
     this.tarjetaNumero = '';
-    this.tarjetaTitular = '';
+    if (this.currentUser) {
+      this.tarjetaTitular = this.currentUser.fullName.toUpperCase();
+      this.monederoTitular = this.currentUser.fullName;
+    } else {
+      this.tarjetaTitular = '';
+      this.monederoTitular = '';
+    }
     this.tarjetaExpiracion = '';
     this.monederoTelefono = '';
-    this.monederoTitular = '';
   }
 
   cerrarModal(): void {
@@ -95,6 +116,7 @@ export class MetodosPagoComponent implements OnInit {
         titular: this.monederoTitular
       });
     }
+    this.persistirMetodos();
     this.cerrarModal();
   }
 
@@ -103,13 +125,32 @@ export class MetodosPagoComponent implements OnInit {
     if (this.tarjetas.length > 0 && !this.tarjetas.some(t => t.predeterminado)) {
       this.tarjetas[0].predeterminado = true;
     }
+    this.persistirMetodos();
   }
 
   eliminarMonedero(id: number): void {
     this.monederos = this.monederos.filter(m => m.id !== id);
+    this.persistirMetodos();
   }
 
   establecerPredeterminado(id: number): void {
     this.tarjetas.forEach(t => t.predeterminado = t.id === id);
+    this.persistirMetodos();
+  }
+
+  private persistirMetodos(): void {
+    if (this.currentUser && this.currentUser.id) {
+      const json = JSON.stringify({
+        tarjetas: this.tarjetas,
+        monederos: this.monederos
+      });
+      // Enviar actualización del perfil con los métodos de pago
+      this.profileService.actualizarPerfil(this.currentUser.id, {
+        ...this.currentUser,
+        metodosPagoJson: json
+      }).subscribe(updatedUser => {
+        this.currentUser = updatedUser;
+      });
+    }
   }
 }

@@ -101,15 +101,26 @@
   width: 100%;
   max-width: 380px;
 
-  .form-logo {
-    font-family: 'Syne', sans-serif;
-    font-size: 32px;
-    font-weight: 800;
-    letter-spacing: -0.05em;
-    color: var(--brand-black);
-    text-align: center;
-    margin-bottom: 8px;
-    text-transform: uppercase;
+  .form-logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+
+    a {
+      display: block;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.03);
+      }
+    }
+  }
+
+  .form-logo-img {
+    height: 96px;
+    width: auto;
+    object-fit: contain;
   }
 
   .form-subtitle {

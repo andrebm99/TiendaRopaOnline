@@ -18,4 +18,9 @@ export class PedidoService {
   getPedidos(): Observable<Pedido[]> {
     return this.apiService.get<Pedido[]>('pedidos');
   }
+
+  // Eliminar / Cancelar un pedido
+  deletePedido(id: number): Observable<any> {
+    return this.apiService.delete<any>(`pedidos/${id}`);
+  }
 }

@@ -373,3 +373,243 @@
   font-weight: 700;
   color: var(--brand-black);
 }
+
+// Modal de detalles de pedidos y advertencia de devolución
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-card {
+  background-color: var(--bg-color);
+  border: 2px solid var(--brand-black);
+  box-shadow: 8px 8px 0px var(--brand-black);
+  width: 500px;
+  max-width: 90%;
+  padding: 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-title {
+  font-family: var(--font-syne);
+  font-size: 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--brand-black);
+  border-bottom: 2px solid var(--brand-black);
+  padding-bottom: 12px;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.modal-info-scroll {
+  max-height: 380px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-right: 8px;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(17, 17, 17, 0.05);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--brand-black);
+  }
+}
+
+.order-summary-box, .product-detail-box, .order-total-box {
+  border: 2px solid var(--brand-black);
+  padding: 16px;
+  background-color: var(--brand-white);
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-hanken);
+  font-size: 13px;
+  padding: 6px 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+  }
+}
+
+.info-label {
+  font-weight: 700;
+  color: rgba(17, 17, 17, 0.6);
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.info-value {
+  font-weight: 700;
+  color: var(--brand-black);
+}
+
+.font-syne {
+  font-family: var(--font-syne);
+}
+
+.box-subtitle {
+  font-family: var(--font-syne);
+  font-size: 13px;
+  font-weight: 800;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+}
+
+.product-item-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.product-thumbnail-small {
+  width: 64px;
+  height: 64px;
+  border: 2px solid var(--brand-black);
+  object-fit: cover;
+}
+
+.product-info-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-hanken);
+  font-size: 12px;
+
+  .product-name {
+    font-weight: 700;
+    color: var(--brand-black);
+    font-size: 14px;
+  }
+  .product-qty, .product-price {
+    font-weight: 600;
+    color: rgba(17, 17, 17, 0.6);
+  }
+}
+
+.order-total-box {
+  background-color: var(--brand-black);
+  color: var(--brand-white);
+
+  .info-row {
+    padding: 0;
+    border: none;
+  }
+  .total-label {
+    font-family: var(--font-syne);
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  .total-value {
+    font-family: var(--font-syne);
+    font-size: 18px;
+    font-weight: 800;
+  }
+}
+
+// Advertencia de seguridad
+.security-warning-box {
+  display: flex;
+  gap: 12px;
+  background-color: #FFF0F1;
+  border: 2px solid var(--brand-black);
+  padding: 16px;
+}
+
+.warning-icon {
+  font-size: 28px;
+  color: var(--fuchsia-accent);
+}
+
+.warning-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-hanken);
+}
+
+.warning-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--fuchsia-accent);
+  letter-spacing: 0.05em;
+}
+
+.warning-desc {
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(17, 17, 17, 0.85);
+  margin: 0;
+}
+
+// Botones de acción del modal
+.modal-actions-grid {
+  display: flex;
+  gap: 16px;
+}
+
+.btn-cancelar-pedido, .btn-cerrar-modal {
+  flex: 1;
+  padding: 14px;
+  font-family: var(--font-syne);
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-sizing: border-box;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+}
+
+.btn-cancelar-pedido {
+  background-color: var(--fuchsia-accent);
+  color: var(--brand-white);
+  border: 2px solid var(--brand-black);
+
+  &:hover {
+    background-color: #d61c54;
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--brand-black);
+  }
+}
+
+.btn-cerrar-modal {
+  background-color: var(--brand-white);
+  color: var(--brand-black);
+  border: 2px solid var(--brand-black);
+
+  &:hover {
+    background-color: #f1ebd9;
+  }
+}
+
+// Estado cancelado badge
+.status-badge {
+  &.cancelled {
+    background-color: #eaeaea;
+    color: #666666;
+    border-color: #666666;
+  }
+}
+

@@ -90,4 +90,22 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Column(columnDefinition = "TEXT")
+    private String direccionesJson;
+
+    @Column(columnDefinition = "TEXT")
+    private String metodosPagoJson;
+
+    @Column(columnDefinition = "TEXT")
+    private String wishlistJson;
+
+    public String getDireccionesJson() { return direccionesJson; }
+    public void setDireccionesJson(String direccionesJson) { this.direccionesJson = direccionesJson; }
+
+    public String getMetodosPagoJson() { return metodosPagoJson; }
+    public void setMetodosPagoJson(String metodosPagoJson) { this.metodosPagoJson = metodosPagoJson; }
+
+    public String getWishlistJson() { return wishlistJson; }
+    public void setWishlistJson(String wishlistJson) { this.wishlistJson = wishlistJson; }
 }

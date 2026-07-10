@@ -36,6 +36,15 @@ export const routes: Routes = [
     path: 'perfil',
     loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)
   },
+  // Páginas Legales (Cumplimiento Perú)
+  {
+    path: 'politica-privacidad',
+    loadComponent: () => import('./features/pages/legal/politica-privacidad/politica-privacidad.component').then(m => m.PoliticaPrivacidadComponent)
+  },
+  {
+    path: 'terminos-condiciones',
+    loadComponent: () => import('./features/pages/legal/terminos-condiciones/terminos-condiciones.component').then(m => m.TerminosCondicionesComponent)
+  },
   // Redirección por defecto
   {
     path: '**',

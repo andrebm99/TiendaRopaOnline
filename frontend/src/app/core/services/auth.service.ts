@@ -39,6 +39,11 @@ export class AuthService {
     this.currentUserSubject.next(null);
   }
 
+  // Actualizar el estado del usuario actual en sesión
+  updateCurrentUserSubject(user: User): void {
+    this.currentUserSubject.next(user);
+  }
+
   // Obtener el token JWT actual
   getToken(): string | null {
     return localStorage.getItem('token');

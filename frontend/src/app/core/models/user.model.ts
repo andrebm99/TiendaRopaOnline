@@ -7,4 +7,7 @@ export interface User {
         id?: number;
         name: string;
     };
+    direccionesJson?: string;
+    metodosPagoJson?: string;
+    wishlistJson?: string;
 }

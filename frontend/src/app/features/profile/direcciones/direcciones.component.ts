@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../core/services/auth.service';
+import { ProfileService } from '../../../core/services/profile.service';
+import { User } from '../../../core/models/user.model';
 
 interface Direccion {
   id: number;
@@ -18,28 +21,8 @@ interface Direccion {
   styleUrls: ['./direcciones.component.scss']
 })
 export class DireccionesComponent implements OnInit {
-  direcciones: Direccion[] = [
-    {
-      id: 1,
-      tipo: 'ENVIO',
-      destinatario: 'ALEXA VALENCIAGA',
-      calle: 'Calle de los Rosales, 125, 4° Izquierda',
-      ubigeo: '28021, Villa de Alcorcón',
-      ciudadPais: 'Madrid, España',
-      telefono: '+34 600 000 000',
-      predeterminada: true
-    },
-    {
-      id: 2,
-      tipo: 'FACTURACION',
-      destinatario: 'ALEXA VALENCIAGA',
-      calle: 'Gran Vía, Planta 12',
-      ubigeo: '28013',
-      ciudadPais: 'Madrid, España',
-      telefono: '+34 600 000 000',
-      predeterminada: false
-    }
-  ];
+  // Inicializada vacía por defecto para nuevos usuarios
+  direcciones: Direccion[] = [];
 
   mostrarModal = false;
   modoEdicion = false;
@@ -53,19 +36,49 @@ export class DireccionesComponent implements OnInit {
   ciudadPais = '';
   telefono = '';
 
-  constructor() {}
+  private currentUser: User | null = null;
 
-  ngOnInit(): void {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly profileService: ProfileService
+  ) {}
+
+  ngOnInit(): void {
+    this.authService.currentUser$.subscribe(user => {
+      if (user && user.email) {
+        this.profileService.obtenerDatosUsuario(user.email).subscribe(datos => {
+          this.currentUser = datos;
+          this.destinatario = datos.fullName.toUpperCase();
+          this.telefono = datos.phoneNumber || '';
+          
+          if (datos.direccionesJson) {
+            try {
+              this.direcciones = JSON.parse(datos.direccionesJson);
+            } catch (e) {
+              this.direcciones = [];
+            }
+          } else {
+            this.direcciones = [];
+          }
+        });
+      }
+    });
+  }
 
   abrirModalNuevo(): void {
     this.modoEdicion = false;
     this.idDireccionEdicion = null;
     this.tipo = 'ENVIO';
-    this.destinatario = 'ALEXA VALENCIAGA';
+    if (this.currentUser) {
+      this.destinatario = this.currentUser.fullName.toUpperCase();
+      this.telefono = this.currentUser.phoneNumber || '';
+    } else {
+      this.destinatario = '';
+      this.telefono = '';
+    }
     this.calle = '';
     this.ubigeo = '';
     this.ciudadPais = 'Lima, Perú';
-    this.telefono = '';
     this.mostrarModal = true;
   }
 
@@ -115,6 +128,7 @@ export class DireccionesComponent implements OnInit {
         predeterminada: this.direcciones.length === 0
       });
     }
+    this.persistirDirecciones();
     this.cerrarModal();
   }
 
@@ -123,9 +137,24 @@ export class DireccionesComponent implements OnInit {
     if (this.direcciones.length > 0 && !this.direcciones.some(d => d.predeterminada)) {
       this.direcciones[0].predeterminada = true;
     }
+    this.persistirDirecciones();
   }
 
   establecerPredeterminada(id: number): void {
     this.direcciones.forEach(d => d.predeterminada = d.id === id);
+    this.persistirDirecciones();
+  }
+
+  private persistirDirecciones(): void {
+    if (this.currentUser && this.currentUser.id) {
+      const json = JSON.stringify(this.direcciones);
+      // Enviar actualización del perfil con la nueva lista de direcciones
+      this.profileService.actualizarPerfil(this.currentUser.id, {
+        ...this.currentUser,
+        direccionesJson: json
+      }).subscribe(updatedUser => {
+        this.currentUser = updatedUser;
+      });
+    }
   }
 }
