@@ -7,14 +7,14 @@ import { Pedido } from '../models/pedido.model';
   providedIn: 'root'
 })
 export class PedidoService {
-  constructor(private readonly apiService: ApiService) {}
+  constructor(private readonly apiService: ApiService) { }
 
   // Enviar orden de compra al backend
   crearPedido(pedido: Pedido): Observable<Pedido> {
     return this.apiService.post<Pedido>('pedidos', pedido);
   }
 
-  // Listar pedidos registrados (para vistas administrativas)
+  // Listar pedidos registrados 
   getPedidos(): Observable<Pedido[]> {
     return this.apiService.get<Pedido[]>('pedidos');
   }

@@ -64,7 +64,7 @@ export class AuthService {
         const email = token.replace('mock-session-token-for-', '');
         const namePart = email.split('@')[0];
         const fullName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
-        
+
         this.currentUserSubject.next({
           email: email,
           fullName: fullName,
@@ -76,10 +76,10 @@ export class AuthService {
           if (parts.length === 3) {
             const payloadDecoded = atob(parts[1]);
             const payload = JSON.parse(payloadDecoded);
-            const email = payload.sub; // subject is the email
+            const email = payload.sub;
             const namePart = email.split('@')[0];
             const fullName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
-            
+
             this.currentUserSubject.next({
               email: email,
               fullName: fullName,

@@ -7,7 +7,7 @@ import { Producto } from '../models/producto.model';
   providedIn: 'root'
 })
 export class ProductoService {
-  constructor(private readonly apiService: ApiService) {}
+  constructor(private readonly apiService: ApiService) { }
 
   // Listar todos los productos del catálogo
   getProductos(): Observable<Producto[]> {
@@ -19,7 +19,7 @@ export class ProductoService {
     return this.apiService.get<Producto>(`productos/${id}`);
   }
 
-  // Crear un producto nuevo (para vista administrador en un futuro)
+  // Crear un producto nuevo 
   createProducto(producto: Producto): Observable<Producto> {
     return this.apiService.post<Producto>('productos', producto);
   }
