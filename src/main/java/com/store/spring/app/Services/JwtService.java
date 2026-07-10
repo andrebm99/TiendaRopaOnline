@@ -2,6 +2,7 @@ package com.store.spring.app.Services;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,10 @@ import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JwtService {
-    private final String SECRET_TOKEN = "CvnWnQHmlVjBwW6ejZuCnvxA5EwCP3ZthAraH3loZmq3ozFU4HZf4JQZ9PgnL2Hd%";
+
+    @Value("${token.jwt.tienda}")
+    private String SECRET_TOKEN;
+    
 
     public String generateToken(UserDetails userDetails) {
         return Jwts.builder()
@@ -30,6 +34,7 @@ public class JwtService {
     public boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        
     }
 
     private boolean isTokenExpired(String token) {

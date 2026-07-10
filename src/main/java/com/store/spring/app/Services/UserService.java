@@ -2,12 +2,9 @@ package com.store.spring.app.Services;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.store.spring.app.Interface.UserInterface;
 import com.store.spring.app.Models.User;
-import com.store.spring.app.Models.Role;
-import com.store.spring.app.Models.RoleName;
 import com.store.spring.app.Repositories.RoleRepository;
 import com.store.spring.app.Repositories.UserRepository;
 
@@ -15,7 +12,7 @@ import com.store.spring.app.Repositories.UserRepository;
 public class UserService implements UserInterface {
 
     private final UserRepository repository;
-    
+
     private final RoleRepository roleRepository;
 
     public UserService(UserRepository repository, RoleRepository roleRepository) {
@@ -31,10 +28,17 @@ public class UserService implements UserInterface {
     @Override
     public User createUser(User user) {
 
-        Role clientRole = roleRepository.findByName(RoleName.ROLE_CLIENTE)
-            .orElseGet(() -> roleRepository.save(new Role(RoleName.ROLE_CLIENTE))); 
+        if (user.getRole() == null || user.getRole().getId() == null) {
+            var clientRole = roleRepository.findById(4)
+                    .orElseThrow(() -> new RuntimeException("Error: El rol ROLE_CLIENT no existe en la base de datos"));
+            user.setRole(clientRole);
+        } else {
+            var requestedRole = roleRepository.findById(user.getRole().getId())
+                    .orElseThrow(
+                            () -> new RuntimeException("Error: El rol proporcionado no existe en la base de datos"));
+            user.setRole(requestedRole);
+        }
 
-        user.setRole(clientRole);
 
         return repository.save(user);
     }
@@ -46,5 +50,29 @@ public class UserService implements UserInterface {
         }
         repository.deleteById(id);
         return true;
+    }
+
+    @Override
+    public User getUserById(Integer id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public User updateUser(Integer id, User user) {
+        return repository.findById(id).map(existingUser -> {
+            if (user.getFullName() != null) {
+                existingUser.setFullName(user.getFullName());
+            }
+            if (user.getEmail() != null) {
+                existingUser.setEmail(user.getEmail());
+            }
+            if (user.getPhoneNumber() != null) {
+                existingUser.setPhoneNumber(user.getPhoneNumber());
+            }
+            if (user.getPassword() != null) {
+                existingUser.setPassword(user.getPassword());
+            }
+            return repository.save(existingUser);
+        }).orElse(null);
     }
 }
