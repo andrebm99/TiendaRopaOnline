@@ -1,0 +1,194 @@
+// Estilos de maquetación de perfil (Barra lateral y contenedor)
+.account-container {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 120px);
+  background-color: var(--bg-color);
+
+  @media (min-width: 992px) {
+    flex-direction: row;
+  }
+}
+
+.sidebar-wrapper {
+  width: 100%;
+  padding: 32px var(--spacing-container-mobile);
+  border-bottom: 2px solid var(--brand-black);
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-sizing: border-box;
+
+  @media (min-width: 992px) {
+    width: 320px;
+    padding: 48px 48px 32px 48px;
+    border-bottom: none;
+    border-right: 2px solid var(--brand-black);
+    flex-shrink: 0;
+    position: sticky;
+    top: 96px;
+    height: auto;
+    min-height: calc(100vh - 96px);
+  }
+}
+
+.btn-volver {
+  background: none;
+  border: none;
+  font-family: var(--font-hanken);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--brand-black);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateX(-4px);
+    color: var(--fuchsia-accent);
+  }
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 16px 0;
+  border-bottom: 1px dashed rgba(17, 17, 17, 0.2);
+
+  @media (min-width: 992px) {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+.avatar-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--brand-black);
+  background-color: #FFF0F1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  box-shadow: 2px 2px 0px var(--brand-black);
+}
+
+.avatar-letter {
+  font-family: var(--font-syne);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--brand-black);
+}
+
+.profile-name {
+  font-family: var(--font-syne);
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--brand-black);
+  margin-bottom: 4px;
+  letter-spacing: -0.5px;
+}
+
+.profile-email {
+  font-family: var(--font-hanken);
+  font-size: 13px;
+  color: rgba(17, 17, 17, 0.6);
+  word-break: break-all;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.menu-item {
+  display: block;
+  width: 100%;
+  padding: 14px 20px;
+  font-family: var(--font-hanken);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: var(--brand-black);
+  background-color: var(--brand-white);
+  border: 2px solid var(--brand-black);
+  box-sizing: border-box;
+  text-align: center;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  letter-spacing: 0.05em;
+
+  @media (min-width: 992px) {
+    text-align: left;
+  }
+
+  &:hover {
+    background-color: #FFF0F1;
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--brand-black);
+  }
+
+  &.active {
+    background-color: var(--fuchsia-accent);
+    color: var(--brand-white);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--brand-black);
+
+    &:hover {
+      background-color: var(--fuchsia-accent);
+      color: var(--brand-white);
+    }
+  }
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.btn-logout {
+  background: none;
+  border: none;
+  font-family: var(--font-hanken);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.6);
+  cursor: pointer;
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+  width: 100%;
+  justify-content: center;
+
+  @media (min-width: 992px) {
+    justify-content: flex-start;
+  }
+
+  &:hover {
+    color: var(--fuchsia-accent);
+  }
+}
+
+.content-wrapper {
+  flex-grow: 1;
+  padding: 32px var(--spacing-container-mobile);
+  box-sizing: border-box;
+
+  @media (min-width: 992px) {
+    padding: 64px;
+    max-width: calc(100% - 320px);
+  }
+}

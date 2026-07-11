@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterModule, Router, NavigationEnd } from '@angular/router';
 import { AuthService } from './core/services/auth.service';
@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   cartCount: number = 0;
   showLayout = true;
   isMobileMenuOpen = false;
+  isUserDropdownOpen = false;
 
   constructor(
     private readonly authService: AuthService,
@@ -27,6 +28,18 @@ export class AppComponent implements OnInit {
 
   toggleMobileMenu(): void {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  toggleUserDropdown(event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+    }
+    this.isUserDropdownOpen = !this.isUserDropdownOpen;
+  }
+
+  @HostListener('document:click')
+  closeDropdowns(): void {
+    this.isUserDropdownOpen = false;
   }
 
   ngOnInit(): void {

@@ -1,0 +1,402 @@
+// Estilos del listado de Direcciones
+.addresses-container {
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.header-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.section-title {
+  font-family: var(--font-syne);
+  font-size: 28px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--brand-black);
+  margin-bottom: 4px;
+  letter-spacing: -0.5px;
+}
+
+.section-subtitle {
+  font-family: var(--font-hanken);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--fuchsia-accent);
+  letter-spacing: 0.1em;
+}
+
+.btn-add {
+  background-color: var(--brand-black);
+  color: var(--brand-white);
+  border: 2px solid var(--brand-black);
+  padding: 12px 24px;
+  font-family: var(--font-syne);
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-sizing: border-box;
+  letter-spacing: 0.05em;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: auto;
+  }
+
+  &:hover {
+    background-color: var(--fuchsia-accent);
+    color: var(--brand-white);
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0px var(--brand-black);
+  }
+}
+
+.addresses-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.address-card {
+  border: 2px solid var(--brand-black);
+  padding: 24px;
+  background-color: var(--brand-white);
+  box-shadow: var(--shadow-solid);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  min-height: 280px;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--brand-black);
+  }
+
+  &.is-default {
+    border-color: var(--brand-black);
+    background-color: var(--brand-white);
+  }
+}
+
+.address-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badge {
+  background-color: var(--brand-black);
+  color: var(--brand-white);
+  padding: 4px 8px;
+  font-family: var(--font-hanken);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  &.badge-billing {
+    background-color: var(--brand-white);
+    color: var(--brand-black);
+    border: 1px solid var(--brand-black);
+  }
+}
+
+.icon-small {
+  font-size: 14px;
+}
+
+.default-pill {
+  background-color: var(--fuchsia-accent);
+  color: var(--brand-white);
+  padding: 4px 8px;
+  font-family: var(--font-hanken);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.address-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.destinatario-name {
+  font-family: var(--font-syne);
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--brand-black);
+  margin-bottom: 12px;
+}
+
+.address-detail {
+  font-family: var(--font-hanken);
+  font-size: 14px;
+  color: rgba(17, 17, 17, 0.8);
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.address-phone {
+  font-family: var(--font-hanken);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(17, 17, 17, 0.6);
+  margin-top: 8px;
+}
+
+.address-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-hanken);
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 24px;
+  border-top: 1px dashed rgba(17, 17, 17, 0.15);
+  padding-top: 14px;
+}
+
+.btn-action {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--font-hanken);
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--brand-black);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: underline;
+
+  &:hover {
+    color: var(--fuchsia-accent);
+  }
+
+  &.btn-delete {
+    color: var(--fuchsia-accent);
+  }
+
+  &.btn-set-default {
+    color: var(--fuchsia-accent);
+  }
+}
+
+.action-icon {
+  font-size: 14px;
+}
+
+.divider {
+  color: rgba(17, 17, 17, 0.2);
+}
+
+// Nueva ubicación vacía
+.new-location-card {
+  border: 2px dashed rgba(17, 17, 17, 0.3);
+  background-color: rgba(251, 249, 246, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  box-sizing: border-box;
+  min-height: 280px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--brand-black);
+    background-color: var(--brand-white);
+    box-shadow: var(--shadow-solid);
+    transform: translate(-2px, -2px);
+  }
+}
+
+.new-location-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.location-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  border: 2px solid var(--brand-black);
+  border-radius: 50%;
+  background-color: #FFF0F1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.location-icon {
+  font-size: 24px;
+  color: var(--brand-black);
+}
+
+.new-location-card:hover .location-icon {
+  color: var(--fuchsia-accent);
+}
+
+.new-location-title {
+  font-family: var(--font-syne);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--brand-black);
+  text-transform: uppercase;
+}
+
+.new-location-desc {
+  font-family: var(--font-hanken);
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(17, 17, 17, 0.6);
+  max-width: 240px;
+}
+
+// Modal de Direcciones
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-card {
+  background-color: var(--bg-color);
+  border: 2px solid var(--brand-black);
+  box-shadow: 8px 8px 0px var(--brand-black);
+  width: 520px;
+  max-width: 90%;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.modal-title {
+  font-family: var(--font-syne);
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--brand-black);
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-family: var(--font-hanken);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--brand-black);
+  letter-spacing: 0.05em;
+}
+
+.form-input, .form-select {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font-hanken);
+  font-size: 14px;
+  color: var(--brand-black);
+  background-color: var(--brand-white);
+  border: 2px solid var(--brand-black);
+  box-sizing: border-box;
+}
+
+.form-select {
+  font-weight: 700;
+  color: var(--brand-black);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.btn-cancel, .btn-save {
+  flex: 1;
+  padding: 14px;
+  font-family: var(--font-syne);
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-sizing: border-box;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+}
+
+.btn-cancel {
+  background-color: var(--brand-white);
+  color: var(--brand-black);
+  border: 2px solid var(--brand-black);
+
+  &:hover {
+    background-color: #ffe5e5;
+  }
+}
+
+.btn-save {
+  background-color: var(--brand-black);
+  color: var(--brand-white);
+  border: 2px solid var(--brand-black);
+
+  &:hover {
+    background-color: var(--fuchsia-accent);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--brand-black);
+  }
+}

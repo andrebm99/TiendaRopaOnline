@@ -1,0 +1,552 @@
+// Estilos de los Métodos de Pago
+.payment-methods-container {
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.header-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.section-title {
+  font-family: var(--font-syne);
+  font-size: 28px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--brand-black);
+  margin-bottom: 4px;
+  letter-spacing: -0.5px;
+}
+
+.section-subtitle {
+  font-family: var(--font-hanken);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--fuchsia-accent);
+  letter-spacing: 0.1em;
+}
+
+.btn-add {
+  background-color: var(--brand-black);
+  color: var(--brand-white);
+  border: 2px solid var(--brand-black);
+  padding: 12px 24px;
+  font-family: var(--font-syne);
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-sizing: border-box;
+  letter-spacing: 0.05em;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: auto;
+  }
+
+  &:hover {
+    background-color: var(--fuchsia-accent);
+    color: var(--brand-white);
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0px var(--brand-black);
+  }
+}
+
+.methods-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.method-card {
+  border: 2px solid var(--brand-black);
+  padding: 24px;
+  background-color: var(--brand-white);
+  box-shadow: var(--shadow-solid);
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  position: relative;
+
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--brand-black);
+  }
+}
+
+.card-visa {
+  background-color: var(--brand-white);
+}
+
+.card-yape {
+  background-color: #FFF0F1; // Fondo rosado suave/crema
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.yape-left {
+  flex: 1;
+}
+
+.yape-right {
+  flex-shrink: 0;
+}
+
+.qr-placeholder {
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--brand-black);
+  background-color: var(--brand-white);
+  position: relative;
+  box-shadow: 2px 2px 0px var(--brand-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-square {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--brand-black);
+  background-color: var(--brand-white);
+
+  &.qr-1 { top: 6px; left: 6px; }
+  &.qr-2 { top: 6px; right: 6px; }
+  &.qr-3 { bottom: 6px; left: 6px; }
+}
+
+.qr-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--brand-black);
+  position: absolute;
+  top: 37px;
+  left: 37px;
+}
+
+.qr-text {
+  font-family: var(--font-syne);
+  font-size: 8px;
+  font-weight: 800;
+  position: absolute;
+  bottom: 2px;
+  right: 6px;
+  color: var(--brand-black);
+  letter-spacing: -0.5px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.badge {
+  background-color: var(--brand-black);
+  color: var(--brand-white);
+  padding: 4px 8px;
+  font-family: var(--font-hanken);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+
+  &.badge-yape {
+    background-color: var(--fuchsia-accent);
+  }
+}
+
+.card-brand {
+  font-family: var(--font-syne);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.card-number {
+  font-family: var(--font-syne);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  color: var(--brand-black);
+}
+
+.phone-number {
+  font-family: var(--font-syne);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  color: var(--brand-black);
+}
+
+.yape-titular {
+  font-family: var(--font-hanken);
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(17, 17, 17, 0.7);
+  margin-bottom: 12px;
+}
+
+.card-footer {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 16px;
+}
+
+.card-holder, .card-expiry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-family: var(--font-hanken);
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(17, 17, 17, 0.5);
+}
+
+.value {
+  font-family: var(--font-hanken);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brand-black);
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-hanken);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--brand-black);
+  text-decoration: underline;
+
+  &:hover {
+    color: var(--fuchsia-accent);
+  }
+
+  &.text-danger {
+    color: var(--fuchsia-accent);
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.divider {
+  color: rgba(17, 17, 17, 0.3);
+}
+
+// Banner de transferencia bancaria
+.bank-transfer-banner {
+  border: 2px solid var(--brand-black);
+  background-color: var(--brand-white);
+  padding: 24px;
+  box-shadow: var(--shadow-solid);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    text-align: left;
+    gap: 24px;
+  }
+}
+
+.banner-icon {
+  width: 56px;
+  height: 56px;
+  border: 2px solid var(--brand-black);
+  background-color: #FFF0F1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-large {
+  font-size: 28px;
+  color: var(--brand-black);
+}
+
+.banner-info {
+  flex-grow: 1;
+}
+
+.banner-title {
+  font-family: var(--font-syne);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.banner-desc {
+  font-family: var(--font-hanken);
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(17, 17, 17, 0.7);
+}
+
+.btn-configure {
+  background-color: var(--brand-white);
+  color: var(--brand-black);
+  border: 2px solid var(--brand-black);
+  padding: 12px 24px;
+  font-family: var(--font-syne);
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: auto;
+  }
+
+  &:hover {
+    background-color: var(--brand-black);
+    color: var(--brand-white);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--fuchsia-accent);
+  }
+}
+
+// Tarjeta vacía punteada
+.empty-dashed-card {
+  border: 2px dashed rgba(17, 17, 17, 0.3);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  background-color: rgba(251, 249, 246, 0.5);
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--brand-black);
+    background-color: var(--brand-white);
+    box-shadow: var(--shadow-solid);
+    transform: translate(-2px, -2px);
+  }
+}
+
+.plus-icon {
+  font-size: 24px;
+  font-weight: 700;
+  color: rgba(17, 17, 17, 0.6);
+}
+
+.empty-dashed-card:hover .plus-icon {
+  color: var(--fuchsia-accent);
+}
+
+.empty-dashed-card .text {
+  font-family: var(--font-hanken);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.6);
+  letter-spacing: 0.05em;
+}
+
+.empty-dashed-card:hover .text {
+  color: var(--brand-black);
+}
+
+// MODAL DE REGISTRO DE MÉTODOS
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-card {
+  background-color: var(--bg-color);
+  border: 2px solid var(--brand-black);
+  box-shadow: 8px 8px 0px var(--brand-black);
+  width: 480px;
+  max-width: 90%;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.modal-title {
+  font-family: var(--font-syne);
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--brand-black);
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.modal-tabs {
+  display: flex;
+  border-bottom: 2px solid var(--brand-black);
+  margin-bottom: 24px;
+}
+
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 12px;
+  font-family: var(--font-hanken);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.5);
+  cursor: pointer;
+  border-bottom: 4px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s ease;
+
+  &.active {
+    color: var(--fuchsia-accent);
+    border-bottom-color: var(--fuchsia-accent);
+  }
+}
+
+.modal-form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+
+.form-select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--brand-black);
+  background-color: var(--brand-white);
+  font-family: var(--font-hanken);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brand-black);
+  box-sizing: border-box;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.btn-cancel, .btn-save {
+  flex: 1;
+  padding: 14px;
+  font-family: var(--font-syne);
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-sizing: border-box;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+}
+
+.btn-cancel {
+  background-color: var(--brand-white);
+  color: var(--brand-black);
+  border: 2px solid var(--brand-black);
+
+  &:hover {
+    background-color: #ffe5e5;
+  }
+}
+
+.btn-save {
+  background-color: var(--brand-black);
+  color: var(--brand-white);
+  border: 2px solid var(--brand-black);
+
+  &:hover {
+    background-color: var(--fuchsia-accent);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--brand-black);
+  }
+}
+
+// Form group inputs and labels inside payment modals
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.form-label {
+  font-family: var(--font-hanken);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--brand-black);
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font-hanken);
+  font-size: 14px;
+  color: var(--brand-black);
+  background-color: var(--brand-white);
+  border: 2px solid var(--brand-black);
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+
+  &:focus {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--brand-black);
+  }
+}

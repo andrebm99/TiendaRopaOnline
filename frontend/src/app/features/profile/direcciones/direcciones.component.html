@@ -1,0 +1,113 @@
+<div class="addresses-container">
+  <div class="header-section">
+    <div>
+      <h1 class="section-title">MIS DIRECCIONES</h1>
+      <p class="section-subtitle">GESTIONA TUS PUNTOS DE ENTREGA</p>
+    </div>
+    <button class="btn-add hover-shadow-solid" (click)="abrirModalNuevo()">
+      + AÑADIR NUEVA DIRECCIÓN
+    </button>
+  </div>
+
+  <div class="addresses-grid">
+    <!-- TARJETAS DE DIRECCIONES EXISTENTES -->
+    <div class="address-card" *ngFor="let d of direcciones" [class.is-default]="d.predeterminada">
+      <div class="address-header">
+        <span class="badge" *ngIf="d.tipo === 'ENVIO'">
+          <span class="material-symbols-outlined icon-small">home</span> DIRECCIÓN DE ENVÍO
+        </span>
+        <span class="badge badge-billing" *ngIf="d.tipo === 'FACTURACION'">
+          <span class="material-symbols-outlined icon-small">receipt_long</span> DIRECCIÓN DE FACTURACIÓN
+        </span>
+        <span class="default-pill" *ngIf="d.predeterminada">PREDETERMINADA</span>
+      </div>
+
+      <div class="address-body">
+        <h3 class="destinatario-name">{{ d.destinatario }}</h3>
+        <p class="address-detail">{{ d.calle }}</p>
+        <p class="address-detail">{{ d.ubigeo }}</p>
+        <p class="address-detail">{{ d.ciudadPais }}</p>
+        <p class="address-phone" *ngIf="d.telefono">Tlf: {{ d.telefono }}</p>
+      </div>
+
+      <div class="address-actions">
+        <button class="btn-action" (click)="abrirModalEditar(d)">
+          <span class="material-symbols-outlined action-icon">edit</span> EDITAR
+        </button>
+        <span class="divider">|</span>
+        <button class="btn-action btn-delete" (click)="eliminarDireccion(d.id)">
+          <span class="material-symbols-outlined action-icon">delete</span> ELIMINAR
+        </button>
+        <ng-container *ngIf="d.tipo === 'ENVIO' && !d.predeterminada">
+          <span class="divider">|</span>
+          <button class="btn-action btn-set-default" (click)="establecerPredeterminada(d.id)">
+            PREDETERMINADA
+          </button>
+        </ng-container>
+      </div>
+    </div>
+
+    <!-- TARJETA VACÍA PARA NUEVA UBICACIÓN -->
+    <div class="new-location-card" (click)="abrirModalNuevo()">
+      <div class="new-location-content">
+        <div class="location-icon-wrapper">
+          <span class="material-symbols-outlined location-icon">add_location_alt</span>
+        </div>
+        <h3 class="new-location-title">NUEVA UBICACIÓN</h3>
+        <p class="new-location-desc">
+          ¿Quieres recibir tus artículos en otra dirección o cambiar esta de registro?
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE AGREGAR/EDITAR DIRECCIÓN -->
+  <div class="modal-overlay" *ngIf="mostrarModal">
+    <div class="modal-card">
+      <h3 class="modal-title">{{ modoEdicion ? 'EDITAR DIRECCIÓN' : 'AÑADIR DIRECCIÓN' }}</h3>
+
+      <div class="modal-form">
+        <div class="form-group">
+          <label class="form-label">TIPO DE DIRECCIÓN</label>
+          <select [(ngModel)]="tipo" class="form-select">
+            <option value="ENVIO">DIRECCIÓN DE ENVÍO</option>
+            <option value="FACTURACION">DIRECCIÓN DE FACTURACIÓN</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">DESTINATARIO (NOMBRE COMPLETO)</label>
+          <input type="text" [(ngModel)]="destinatario" placeholder="ALEXA VALENCIAGA" class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">DIRECCIÓN (CALLE, NÚMERO, DPTO.)</label>
+          <input type="text" [(ngModel)]="calle" placeholder="Calle de los Rosales, 125, 4° Izquierda" class="form-input">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">DISTRITO / CÓDIGO POSTAL</label>
+            <input type="text" [(ngModel)]="ubigeo" placeholder="28021, Villa de Alcorcón" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">CIUDAD / PAÍS</label>
+            <input type="text" [(ngModel)]="ciudadPais" placeholder="Madrid, España" class="form-input">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">TELÉFONO DE CONTACTO</label>
+          <input type="text" [(ngModel)]="telefono" placeholder="+34 600 000 000" class="form-input">
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-cancel" (click)="cerrarModal()">CANCELAR</button>
+        <button class="btn-save" (click)="guardarDireccion()">
+          {{ modoEdicion ? 'GUARDAR' : 'AÑADIR' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

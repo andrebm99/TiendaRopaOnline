@@ -1,0 +1,160 @@
+<div class="orders-container">
+  <div class="header-section">
+     <div>
+       <h1 class="section-title">MIS PEDIDOS</h1>
+       <p class="section-subtitle">HISTORIAL Y SEGUIMIENTO DE COMPRAS</p>
+     </div>
+  </div>
+
+  <!-- ESTADO A: CON PEDIDOS -->
+  <div class="orders-list-wrapper" *ngIf="pedidos && pedidos.length > 0">
+    <div class="order-row" *ngFor="let p of pedidos">
+      <div class="order-main-info">
+        <div class="order-image-wrapper">
+          <img [src]="p.producto?.imagenUrl" alt="Prenda de vestir" class="order-thumbnail"
+            onerror="this.src='/img/logoTIENDADEROPA.webp'">
+        </div>
+        <div class="order-details">
+          <h4 class="order-id">PEDIDO #{{ p.id }}</h4>
+          <p class="order-date">{{ p.producto?.nombre }} (x{{ p.cantidad }})</p>
+        </div>
+      </div>
+
+      <div class="order-status-col">
+        <span class="status-badge" 
+          [class.in-transit]="p.estado === 'PENDIENTE' || p.estado === 'ENVIADO'"
+          [class.delivered]="p.estado === 'ENTREGADO'"
+          [class.cancelled]="p.estado === 'CANCELADO'">
+          {{ p.estado | uppercase }}
+        </span>
+      </div>
+
+      <div class="order-price-col">
+        <span class="price-value">{{ p.total | currency:'USD':'symbol':'1.2-2' }}</span>
+      </div>
+
+      <div class="order-action-col">
+        <button class="btn-details hover-shadow-solid" (click)="abrirDetalle(p)">
+          VER DETALLES
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESTADO B: SIN PEDIDOS -->
+  <div class="empty-orders-wrapper" *ngIf="!pedidos || pedidos.length === 0">
+    <div class="empty-card">
+      <div class="hanger-graphic-container">
+        <div class="rack-avatar">
+          <span class="material-symbols-outlined hanger-icon">styler</span>
+        </div>
+      </div>
+      <h2 class="empty-title">AÚN NO TIENES PEDIDOS</h2>
+      <p class="empty-desc">
+        Explora nuestra última colección y encuentra tus prendas favoritas para estrenar hoy.
+      </p>
+      <button class="btn-shop hover-shadow-solid" (click)="irALaTienda()">
+        IR A LA TIENDA ➔
+      </button>
+    </div>
+
+    <!-- SECCIÓN PROMOCIONAL (NEW IN / EDITORIAL) -->
+    <div class="promo-grid">
+      <div class="promo-card" (click)="irALaTienda()">
+        <div class="promo-image-box">
+          <img src="/img/img4.webp" alt="Nueva Colección" class="promo-img"
+            onerror="this.src='/img/logoTIENDADEROPA.webp'">
+          <div class="promo-overlay"></div>
+        </div>
+        <div class="promo-footer">
+          <span class="promo-title">NEW IN</span>
+          <span class="arrow-diagonal">↗</span>
+        </div>
+      </div>
+
+      <div class="promo-card" (click)="irALaTienda()">
+        <div class="promo-image-box">
+          <img src="/img/img2.webp" alt="Editorial de Moda" class="promo-img"
+            onerror="this.src='/img/logoTIENDADEROPA.webp'">
+          <div class="promo-overlay"></div>
+        </div>
+        <div class="promo-footer">
+          <span class="promo-title">EDITORIAL</span>
+          <span class="arrow-diagonal">↗</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE DETALLES DE PEDIDO -->
+  <div class="modal-overlay" *ngIf="mostrarModal && pedidoSeleccionado">
+    <div class="modal-card">
+      <h2 class="modal-title">Detalle del Pedido</h2>
+      
+      <div class="modal-info-scroll">
+        <div class="order-summary-box">
+          <div class="info-row">
+            <span class="info-label">Número de Pedido:</span>
+            <span class="info-value font-syne">#{{ pedidoSeleccionado.id }}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Cliente:</span>
+            <span class="info-value">{{ pedidoSeleccionado.clienteNombre }}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Email:</span>
+            <span class="info-value">{{ pedidoSeleccionado.clienteEmail }}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Estado:</span>
+            <span class="status-badge" 
+              [class.in-transit]="pedidoSeleccionado.estado === 'PENDIENTE' || pedidoSeleccionado.estado === 'ENVIADO'" 
+              [class.delivered]="pedidoSeleccionado.estado === 'ENTREGADO'"
+              [class.cancelled]="pedidoSeleccionado.estado === 'CANCELADO'">
+              {{ pedidoSeleccionado.estado }}
+            </span>
+          </div>
+        </div>
+
+        <div class="product-detail-box">
+          <h3 class="box-subtitle">Prendas Adquiridas</h3>
+          <div class="product-item-row">
+            <img [src]="pedidoSeleccionado.producto?.imagenUrl" alt="Prenda" class="product-thumbnail-small" onerror="this.src='/img/logoTIENDADEROPA.webp'">
+            <div class="product-info-meta">
+              <span class="product-name">{{ pedidoSeleccionado.producto?.nombre }}</span>
+              <span class="product-qty">Cantidad: {{ pedidoSeleccionado.cantidad }}</span>
+              <span class="product-price">Precio Unitario: {{ pedidoSeleccionado.producto?.precio | currency:'USD':'symbol':'1.2-2' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-total-box">
+          <div class="info-row">
+            <span class="total-label">Total Cancelado</span>
+            <span class="total-value">{{ pedidoSeleccionado.total | currency:'USD':'symbol':'1.2-2' }}</span>
+          </div>
+        </div>
+
+        <!-- ADVERTENCIA DE SEGURIDAD / DEVOLUCIÓN DE DINERO -->
+        <div class="security-warning-box">
+          <span class="material-symbols-outlined warning-icon">warning</span>
+          <div class="warning-text-container">
+            <span class="warning-title font-syne">ADVERTENCIA DE SEGURIDAD</span>
+            <p class="warning-desc">
+              Si procedes a cancelar este pedido, se realizará una reversión automática de fondos a tu medio de pago original. La devolución del 100% de tu dinero se reflejará en un plazo estimado de 48 horas laborales según tu entidad bancaria.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-actions-grid">
+        <button type="button" class="btn-cancelar-pedido hover-shadow-solid" (click)="cancelarPedido(pedidoSeleccionado.id)" *ngIf="pedidoSeleccionado.estado !== 'CANCELADO'">
+          ELIMINAR PEDIDO
+        </button>
+        <button type="button" class="btn-cerrar-modal" (click)="cerrarDetalle()">
+          CERRAR
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

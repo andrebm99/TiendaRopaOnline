@@ -1,0 +1,164 @@
+<div class="payment-methods-container">
+  <div class="header-section">
+    <div>
+      <h1 class="section-title">MIS MÉTODOS DE PAGO</h1>
+      <p class="section-subtitle">GESTIONA TUS CRÉDITOS Y TRANSFERENCIAS</p>
+    </div>
+    <button class="btn-add hover-shadow-solid" (click)="abrirModal()">
+      + AÑADIR NUEVO MÉTODO
+    </button>
+  </div>
+
+  <div class="methods-list">
+    <!-- TARGETAS BANCARIAS -->
+    <div class="method-card card-visa" *ngFor="let t of tarjetas">
+      <div class="card-header">
+        <span class="badge" *ngIf="t.predeterminado">MÉTODO PREDETERMINADO</span>
+        <span class="card-brand">{{ t.tipo }}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-number">{{ t.numeroEnmascarado }}</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-holder">
+          <span class="label">TITULAR</span>
+          <span class="value">{{ t.nombreTitular }}</span>
+        </div>
+        <div class="card-expiry">
+          <span class="label">EXPIRA</span>
+          <span class="value">{{ t.expiracion }}</span>
+        </div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-link" *ngIf="!t.predeterminado" (click)="establecerPredeterminado(t.id)">Establecer Predeterminado</button>
+        <span class="divider" *ngIf="!t.predeterminado">|</span>
+        <button class="btn-link text-danger" (click)="eliminarTarjeta(t.id)">Eliminar</button>
+      </div>
+    </div>
+
+    <!-- BILLETERAS DIGITALES (YAPE / PLIN) -->
+    <div class="method-card card-yape" *ngFor="let m of monederos">
+      <div class="yape-left">
+        <div class="card-header">
+          <span class="badge badge-yape">MÓVIL ASOCIADO</span>
+          <span class="card-brand">{{ m.tipo }}</span>
+        </div>
+        <div class="card-body">
+          <div class="phone-number">{{ m.telefonoEnmascarado }}</div>
+          <div class="yape-titular">{{ m.titular }}</div>
+        </div>
+        <div class="card-actions">
+          <button class="btn-link text-danger" (click)="eliminarMonedero(m.id)">Eliminar Billetera</button>
+        </div>
+      </div>
+      
+      <div class="yape-right">
+        <!-- Código QR simulado -->
+        <div class="qr-placeholder">
+          <div class="qr-square qr-1"></div>
+          <div class="qr-square qr-2"></div>
+          <div class="qr-square qr-3"></div>
+          <div class="qr-dot"></div>
+          <span class="qr-text">QR SCAN</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANNER DE TRANSFERENCIA BANCARIA -->
+    <div class="bank-transfer-banner">
+      <div class="banner-icon">
+        <span class="material-symbols-outlined icon-large">account_balance</span>
+      </div>
+      <div class="banner-info">
+        <h3 class="banner-title">TRANSFERENCIA BANCARIA</h3>
+        <p class="banner-desc">
+          Paga directamente desde tu banca móvil. Disponible en BCP, BBVA, Interbank y Scotiabank. El procesamiento puede tardar hasta 2 horas.
+        </p>
+      </div>
+      <div class="banner-action">
+        <button class="btn-configure hover-shadow-solid">
+          CONFIGURAR
+        </button>
+      </div>
+    </div>
+
+    <!-- TARJETA VACÍA PUNTEADA -->
+    <div class="empty-dashed-card" (click)="abrirModal()">
+      <span class="plus-icon">+</span>
+      <span class="text">AÑADIR OTRO MÉTODO DE PAGO</span>
+    </div>
+  </div>
+
+  <!-- MODAL DE AGREGAR MÉTODO -->
+  <div class="modal-overlay" *ngIf="mostrarModal">
+    <div class="modal-card">
+      <h3 class="modal-title">NUEVO MÉTODO DE PAGO</h3>
+
+      <div class="modal-tabs">
+        <button 
+          [class.active]="tipoNuevoMetodo === 'TARJETA'" 
+          (click)="tipoNuevoMetodo = 'TARJETA'"
+          class="tab-btn"
+        >
+          TARJETA CRÉDITO/DÉBITO
+        </button>
+        <button 
+          [class.active]="tipoNuevoMetodo === 'MONEDERO'" 
+          (click)="tipoNuevoMetodo = 'MONEDERO'"
+          class="tab-btn"
+        >
+          YAPE / PLIN
+        </button>
+      </div>
+
+      <!-- FORMULARIO DE TARJETA -->
+      <div class="modal-form-content" *ngIf="tipoNuevoMetodo === 'TARJETA'">
+        <div class="form-group">
+          <label class="form-label">TIPO DE TARJETA</label>
+          <select [(ngModel)]="tarjetaTipo" class="form-select">
+            <option value="VISA">VISA</option>
+            <option value="MASTERCARD">MASTERCARD</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">NÚMERO DE TARJETA</label>
+          <input type="text" [(ngModel)]="tarjetaNumero" placeholder="4111 1111 1111 1234" maxlength="16" class="form-input">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">TITULAR</label>
+            <input type="text" [(ngModel)]="tarjetaTitular" placeholder="ALEXA VALENCIAGA" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">EXPIRACIÓN</label>
+            <input type="text" [(ngModel)]="tarjetaExpiracion" placeholder="MM / AA" maxlength="7" class="form-input">
+          </div>
+        </div>
+      </div>
+
+      <!-- FORMULARIO DE YAPE/PLIN -->
+      <div class="modal-form-content" *ngIf="tipoNuevoMetodo === 'MONEDERO'">
+        <div class="form-group">
+          <label class="form-label">TIPO BILLETERA</label>
+          <select [(ngModel)]="monederoTipo" class="form-select">
+            <option value="YAPE">YAPE</option>
+            <option value="PLIN">PLIN</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">NÚMERO DE TELÉFONO</label>
+          <input type="text" [(ngModel)]="monederoTelefono" placeholder="987654321" maxlength="9" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label">TITULAR ASOCIADO</label>
+          <input type="text" [(ngModel)]="monederoTitular" placeholder="Alexa Valenciaga" class="form-input">
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-cancel" (click)="cerrarModal()">CANCELAR</button>
+        <button class="btn-save" (click)="guardarMetodo()">AÑADIR</button>
+      </div>
+    </div>
+  </div>
+</div>

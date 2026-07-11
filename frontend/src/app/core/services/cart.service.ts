@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Producto } from '../models/producto.model';
+import { AuthService } from './auth.service';
 
 export interface CartItem {
   producto: Producto;
@@ -15,8 +17,18 @@ export class CartService {
   private readonly cartItemsSubject = new BehaviorSubject<CartItem[]>(this.loadCartFromStorage());
   public readonly cartItems$ = this.cartItemsSubject.asObservable();
 
+  constructor(
+    private readonly authService: AuthService,
+    private readonly router: Router
+  ) {}
+
   // Agregar un producto a la bolsa o incrementar cantidad si ya existe
   addToCart(producto: Producto, cantidad: number = 1): void {
+    if (!this.authService.isAuthenticated()) {
+      // Redirigir al inicio de sesión si no hay una cuenta activa
+      this.router.navigate(['/auth/login']);
+      return;
+    }
     const current = this.cartItemsSubject.value;
     const existingIndex = current.findIndex(item => item.producto.id === producto.id);
     

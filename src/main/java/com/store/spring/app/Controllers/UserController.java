@@ -84,6 +84,23 @@ public class UserController {
         }
     }
 
+    @GetMapping("/email/{email}")
+    @Operation(summary = "BUSCAR USUARIO POR CORREO", description = "Obtiene un usuario por su correo electrónico.")
+    public ResponseEntity<User> getByEmail(@PathVariable("email") String email) {
+        try {
+            User user = userInterface.getAllUsers().stream()
+                .filter(u -> u.getEmail().equalsIgnoreCase(email))
+                .findFirst()
+                .orElse(null);
+            if (user == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PutMapping("/{id}")
     @Operation(summary = "ACTUALIZAR USUARIO", description = "Modifica los datos del perfil de un usuario existente.")
     public ResponseEntity<User> update(@PathVariable("id") Integer id, @RequestBody User user) {

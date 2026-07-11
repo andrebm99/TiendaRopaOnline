@@ -40,11 +40,10 @@
       color: var(--brand-black);
       font-weight: 700;
 
-      .sidebar-logo {
-        font-family: 'Syne', sans-serif;
-        font-size: 16px;
-        letter-spacing: -0.05em;
-        text-transform: uppercase;
+      .sidebar-logo-img {
+        height: 36px;
+        width: auto;
+        object-fit: contain;
       }
     }
 
@@ -121,7 +120,7 @@
   align-items: center;
   justify-content: center;
   padding: 48px 24px;
-  background: linear-gradient(135deg, rgba(255, 42, 109, 0.55) 0%, rgba(17, 17, 17, 0.95) 100%), url('/img/screen.png');
+  background: linear-gradient(135deg, rgba(255, 42, 109, 0.55) 0%, rgba(17, 17, 17, 0.95) 100%), url('/img/screen.webp');
   background-size: 160%;
   background-position: 85% 15%;
   background-repeat: no-repeat;
@@ -234,7 +233,7 @@
       cursor: pointer;
       display: flex;
       align-items: center;
-      
+
       span {
         font-size: 20px;
       }
@@ -281,7 +280,7 @@
   a {
     color: var(--fuchsia-accent);
     text-decoration: none;
-    
+
     &:hover {
       text-decoration: underline;
     }
