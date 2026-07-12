@@ -1,0 +1,249 @@
+/* Variables basadas en tu diseño */
+$color-bg: #fdfdfd; // Fondo crema muy claro
+$color-text: #000000;
+$color-accent: #ff1a75; // El fucsia de "HOT" y "VER TODO"
+$border-thick: 2px solid #000;
+$border-thin: 1px solid #000;
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: $color-bg;
+  color: $color-text;
+  font-family: 'Inter', 'Montserrat', sans-serif; /* Usa la fuente de tu proyecto */
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+  width: 250px;
+  background-color: #fff;
+  border-right: $border-thick;
+  display: flex;
+  flex-direction: column;
+
+  .brand {
+    padding: 2rem;
+    border-bottom: $border-thick;
+    text-align: center;
+    
+    h2 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+    span {
+      font-size: 0.8rem;
+      letter-spacing: 4px;
+    }
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+
+    .nav-item {
+      padding: 1rem 2rem;
+      text-decoration: none;
+      color: $color-text;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: #f0f0f0;
+      }
+
+      &.active {
+        background-color: $color-text;
+        color: #fff;
+        border-right: 5px solid $color-accent;
+      }
+    }
+  }
+}
+
+/* --- MAIN WRAPPER & TOPBAR --- */
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  border-bottom: $border-thick;
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    border: $border-thin;
+    padding: 0.5rem 1rem;
+    width: 300px;
+
+    input {
+      border: none;
+      outline: none;
+      width: 100%;
+      margin-left: 10px;
+      font-family: inherit;
+    }
+  }
+
+  .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    .greeting {
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+
+    .btn-logout {
+      background: none;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}
+
+/* --- CONTENT AREA --- */
+.content {
+  padding: 2rem;
+  
+  .page-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+  }
+}
+
+/* --- KPI CARDS --- */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+
+  .kpi-card {
+    background: #fff;
+    border: $border-thick;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    /* Ligera sombra dura para mantener el estilo de tu web */
+    box-shadow: 4px 4px 0px $color-text; 
+
+    .kpi-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #666;
+    }
+
+    .kpi-value {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    &.highlight {
+      background-color: $color-accent;
+      color: #fff;
+      border-color: $color-text;
+      
+      .kpi-title { color: #fff; }
+    }
+  }
+}
+
+/* --- TABLES --- */
+.data-section {
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: $border-thick;
+    padding-bottom: 0.5rem;
+
+    h2 {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+  }
+
+  .table-container {
+    background: #fff;
+    border: $border-thick;
+  }
+
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+
+    th, td {
+      padding: 1rem;
+      border-bottom: $border-thin;
+    }
+
+    th {
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      background-color: #f9f9f9;
+    }
+
+    /* Badges de estado */
+    .badge {
+      padding: 0.2rem 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border: $border-thin;
+
+      &.pendiente { background-color: #fff3cd; }
+      &.enviado { background-color: #cce5ff; }
+      &.completado { background-color: #d4edda; }
+    }
+  }
+}
+
+/* --- BUTTONS --- */
+.btn-primary {
+  background-color: $color-accent;
+  color: #fff;
+  border: $border-thick;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: transform 0.1s ease;
+
+  &:active {
+    transform: translate(2px, 2px);
+  }
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  font-weight: 800;
+  cursor: pointer;
+  font-size: 0.85rem;
+  
+  &:hover {
+    color: $color-accent;
+  }
+}

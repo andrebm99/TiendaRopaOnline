@@ -1,0 +1,66 @@
+<div class="admin-layout">
+  
+  <aside class="sidebar">
+    <div class="brand">
+      <h2>L&G</h2>
+      <span>ADMIN</span>
+    </div>
+    
+    <nav class="nav-menu">
+      <a href="#" class="nav-item active">DASHBOARD</a>
+      <a href="#" class="nav-item">CATÁLOGO</a>
+      <a href="#" class="nav-item">PEDIDOS</a>
+      <a href="#" class="nav-item">CLIENTES</a>
+      <a href="#" class="nav-item">CONFIGURACIÓN</a>
+    </nav>
+  </aside>
+
+  <div class="main-wrapper">
+    
+    <main class="content">
+      <h1 class="page-title">RESUMEN GENERAL</h1>
+
+      <div class="kpi-grid">
+        <div class="kpi-card" *ngFor="let kpi of kpis; let i = index" [class.highlight]="i === 0">
+          <span class="kpi-title">{{ kpi.title }}</span>
+          <span class="kpi-value">{{ kpi.value }}</span>
+        </div>
+      </div>
+
+      <section class="data-section">
+        <div class="section-header">
+          <h2>ÚLTIMOS PEDIDOS</h2>
+          <button class="btn-primary">VER TODOS</button>
+        </div>
+        
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ORDEN</th>
+                <th>CLIENTE</th>
+                <th>ESTADO</th>
+                <th>TOTAL</th>
+                <th>ACCIÓN</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of recentOrders">
+                <td><strong>{{ order.id }}</strong></td>
+                <td>{{ order.customer }}</td>
+                <td>
+                  <span class="badge" [ngClass]="order.status.toLowerCase()">
+                    {{ order.status }}
+                  </span>
+                </td>
+                <td>{{ order.total }}</td>
+                <td><button class="btn-text">EDITAR ➔</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>

@@ -45,6 +45,10 @@ export const routes: Routes = [
     path: 'terminos-condiciones',
     loadComponent: () => import('./features/pages/legal/terminos-condiciones/terminos-condiciones.component').then(m => m.TerminosCondicionesComponent)
   },
+  {
+    path: 'admin-dashboard',
+    loadComponent: () => import('./features/pages/admin/admin-dashboard/admin-dashboard.component').then(m => m.AdminDashboardComponent)
+  },
   // Redirección por defecto
   {
     path: '**',
