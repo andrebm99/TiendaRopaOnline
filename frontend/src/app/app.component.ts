@@ -1,6 +1,11 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterModule, Router, NavigationEnd } from '@angular/router';
+import {
+  RouterOutlet,
+  RouterModule,
+  Router,
+  NavigationEnd,
+} from '@angular/router';
 import { AuthService } from './core/services/auth.service';
 import { CartService } from './core/services/cart.service';
 import { User } from './core/models/user.model';
@@ -11,19 +16,20 @@ import { filter } from 'rxjs/operators';
   standalone: true,
   imports: [CommonModule, RouterOutlet, RouterModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   currentUser: User | null = null;
   cartCount: number = 0;
   showLayout = true;
+  isAdmin = false;
   isMobileMenuOpen = false;
   isUserDropdownOpen = false;
 
   constructor(
     private readonly authService: AuthService,
     private readonly cartService: CartService,
-    private readonly router: Router
+    private readonly router: Router,
   ) {}
 
   toggleMobileMenu(): void {
@@ -44,15 +50,16 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // Ocultar Navbar y Footer si la ruta pertenece a AuthModule
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: any) => {
-      this.showLayout = !event.urlAfterRedirects.startsWith('/auth');
-    });
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        this.showLayout = !event.urlAfterRedirects.startsWith('/auth');
+      });
 
     // Escuchar el estado de autenticación global
-    this.authService.currentUser$.subscribe(user => {
+    this.authService.currentUser$.subscribe((user) => {
       this.currentUser = user;
+      this.isAdmin = this.authService.isCurrentUserAdmin();
     });
 
     // Escuchar cambios en la bolsa de compras para el contador numérico
