@@ -21,14 +21,22 @@ public class Producto {
     @Column(nullable = false)
     private Integer stock;
 
+    @Column(name = "imagen_url")
+    private String imagenUrl;
+
+    @Column(name = "categoria")
+    private String categoria;
+
     public Producto() {
     }
 
-    public Producto(String nombre, String descripcion, Double precio, Integer stock) {
+    public Producto(String nombre, String descripcion, Double precio, Integer stock, String imagenUrl, String categoria) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.stock = stock;
+        this.imagenUrl = imagenUrl;
+        this.categoria = categoria;
     }
 
     public Integer getId() {
@@ -69,5 +77,21 @@ public class Producto {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 }

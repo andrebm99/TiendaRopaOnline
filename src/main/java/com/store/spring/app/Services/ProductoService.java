@@ -41,6 +41,8 @@ public class ProductoService implements ProductoInterface {
             p.setDescripcion(producto.getDescripcion());
             p.setPrecio(producto.getPrecio());
             p.setStock(producto.getStock());
+            p.setImagenUrl(producto.getImagenUrl());
+            p.setCategoria(producto.getCategoria());
             return repository.save(p);
         }).orElse(null);
     }

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import {AdminProductoComponent} from './admin-producto/admin-producto.component';
 
 export const routes: Routes = [
   // Módulo de autenticación (Carga perezosa de módulo clásico)
@@ -49,6 +50,7 @@ export const routes: Routes = [
     path: 'admin-dashboard',
     loadComponent: () => import('./features/pages/admin/admin-dashboard/admin-dashboard.component').then(m => m.AdminDashboardComponent)
   },
+  { path: 'admin/productos', component: AdminProductoComponent },
   // Redirección por defecto
   {
     path: '**',

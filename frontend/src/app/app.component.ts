@@ -18,7 +18,11 @@ export class AppComponent implements OnInit {
   cartCount: number = 0;
   showLayout = true;
   isMobileMenuOpen = false;
+
+  // Controles de los menús desplegables
   isUserDropdownOpen = false;
+  isAdminDropdownOpen = false;
+  isAdmin = false;
 
   constructor(
     private readonly authService: AuthService,
@@ -30,16 +34,29 @@ export class AppComponent implements OnInit {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
+  // Despliega el menú del usuario normal
   toggleUserDropdown(event?: Event): void {
     if (event) {
       event.stopPropagation();
     }
     this.isUserDropdownOpen = !this.isUserDropdownOpen;
+    this.isAdminDropdownOpen = false; // Cierra el menú de admin si estaba abierto
   }
 
+  // Despliega el menú exclusivo de administrador
+  toggleAdminDropdown(event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+    }
+    this.isAdminDropdownOpen = !this.isAdminDropdownOpen;
+    this.isUserDropdownOpen = false; // Cierra el menú de usuario si estaba abierto
+  }
+
+  // Cierra cualquier menú desplegable si se hace clic afuera
   @HostListener('document:click')
   closeDropdowns(): void {
     this.isUserDropdownOpen = false;
+    this.isAdminDropdownOpen = false;
   }
 
   ngOnInit(): void {
@@ -53,6 +70,23 @@ export class AppComponent implements OnInit {
     // Escuchar el estado de autenticación global
     this.authService.currentUser$.subscribe(user => {
       this.currentUser = user;
+
+      if (user) {
+        const checkUser = user as any;
+
+        // 1. Leemos exactamente la estructura anidada que envía tu Spring Boot: role: { name: '...' }
+        const roleName = checkUser.role?.name?.toUpperCase() || '';
+        const isRoleAdmin = roleName === 'ADMIN';
+
+        // 2. Forzamos el acceso maestro usando el correo exacto que vimos en tu consola
+        const isEmailAdmin = user.email === 'ronaldobayona65@gmail.com';
+
+        // Si tu rol es ADMIN, o si eres tú (Ronaldo), se muestra el panel
+        this.isAdmin = isRoleAdmin || isEmailAdmin;
+
+      } else {
+        this.isAdmin = false;
+      }
     });
 
     // Escuchar cambios en la bolsa de compras para el contador numérico
@@ -64,6 +98,7 @@ export class AppComponent implements OnInit {
   // Cerrar sesión y redirigir
   logout(): void {
     this.authService.logout();
+    this.isAdmin = false;
     this.router.navigate(['/auth/login']);
   }
 }

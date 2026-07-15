@@ -1,0 +1,99 @@
+<main class="admin-container" style="padding: 2rem; max-width: 900px; margin: auto; font-family: sans-serif;">
+
+  <h2 style="margin-bottom: 1.5rem; text-align: center;">
+    {{ modoEdicion ? 'Editar Producto' : 'Panel de Administrador - Nuevo Producto' }}
+  </h2>
+
+  <div *ngIf="mensaje" style="padding: 1rem; margin-bottom: 1rem; background-color: #f0f0f0; border-radius: 4px; text-align: center; font-weight: bold;">
+    {{ mensaje }}
+  </div>
+
+  <form (ngSubmit)="onSubmit()" #productoForm="ngForm" style="display: flex; flex-direction: column; gap: 1.2rem; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 3rem;">
+
+    <div>
+      <label style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Nombre del Producto *</label>
+      <input type="text" name="nombre" [(ngModel)]="nuevoProducto.nombre" required style="width: 100%; padding: 0.8rem; box-sizing: border-box;">
+    </div>
+
+    <div>
+      <label style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Descripción</label>
+      <textarea name="descripcion" [(ngModel)]="nuevoProducto.descripcion" style="width: 100%; padding: 0.8rem; box-sizing: border-box; min-height: 80px;"></textarea>
+    </div>
+
+    <div style="display: flex; gap: 1rem;">
+      <div style="flex: 1;">
+        <label style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Precio (S/.) *</label>
+        <input type="number" name="precio" [(ngModel)]="nuevoProducto.precio" required min="0.1" step="0.01" style="width: 100%; padding: 0.8rem; box-sizing: border-box;">
+      </div>
+      <div style="flex: 1;">
+        <label style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Stock inicial *</label>
+        <input type="number" name="stock" [(ngModel)]="nuevoProducto.stock" required min="0" style="width: 100%; padding: 0.8rem; box-sizing: border-box;">
+      </div>
+    </div>
+
+    <div>
+      <label style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Categoría</label>
+      <input type="text" name="categoria" [(ngModel)]="nuevoProducto.categoria" placeholder="Ej: Chompa, Pantalon..." style="width: 100%; padding: 0.8rem; box-sizing: border-box;">
+    </div>
+
+    <div style="border: 1px dashed #ccc; padding: 1.5rem; text-align: center; border-radius: 4px;">
+      <label style="display: block; font-weight: bold; margin-bottom: 1rem;">
+        {{ modoEdicion ? 'Imagen Actual' : 'Subir Imagen del Producto' }}
+      </label>
+
+      <input *ngIf="!modoEdicion" type="file" (change)="onFileSelected($event)" accept="image/*" style="width: 100%; cursor: pointer;">
+
+      <div *ngIf="imagenPreview" style="margin-top: 1rem;">
+        <img [src]="imagenPreview" alt="Vista previa" style="max-width: 100%; max-height: 200px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+      <button type="submit" [disabled]="!productoForm.form.valid" style="flex: 1; padding: 1rem; background-color: #111; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; transition: background 0.3s;">
+        {{ modoEdicion ? 'Actualizar Producto' : 'Registrar Producto' }}
+      </button>
+
+      <button *ngIf="modoEdicion" type="button" (click)="cancelarEdicion()" style="flex: 1; padding: 1rem; background-color: #dc3545; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">
+        Cancelar Edición
+      </button>
+    </div>
+  </form>
+
+  <hr style="border: 1px solid #eee; margin-bottom: 2rem;">
+  <h2 style="margin-bottom: 1.5rem;">Gestión de Productos</h2>
+
+  <div style="overflow-x: auto; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+      <thead>
+      <tr style="background-color: #f8f9fa; border-bottom: 2px solid #ddd;">
+        <th style="padding: 1rem;">ID</th>
+        <th style="padding: 1rem;">Imagen</th>
+        <th style="padding: 1rem;">Nombre</th>
+        <th style="padding: 1rem;">Precio</th>
+        <th style="padding: 1rem;">Stock</th>
+        <th style="padding: 1rem; text-align: center;">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let prod of productos" style="border-bottom: 1px solid #eee;">
+        <td style="padding: 1rem;">{{ prod.id }}</td>
+        <td style="padding: 1rem;">
+          <img [src]="prod.imagenUrl || 'https://via.placeholder.com/50'" alt="img" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+        </td>
+        <td style="padding: 1rem; font-weight: bold;">{{ prod.nombre }}</td>
+        <td style="padding: 1rem;">S/. {{ prod.precio }}</td>
+        <td style="padding: 1rem;">
+          <span [style.color]="prod.stock === 0 ? 'red' : 'green'">{{ prod.stock }}</span>
+        </td>
+        <td style="padding: 1rem; text-align: center;">
+          <button (click)="editarProducto(prod)" style="padding: 0.5rem 1rem; background-color: #0d6efd; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 0.5rem;">Editar</button>
+          <button (click)="eliminarProducto(prod.id)" style="padding: 0.5rem 1rem; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">Eliminar</button>
+        </td>
+      </tr>
+      <tr *ngIf="productos.length === 0">
+        <td colspan="6" style="padding: 2rem; text-align: center; color: #666;">No hay productos registrados en el catálogo.</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>

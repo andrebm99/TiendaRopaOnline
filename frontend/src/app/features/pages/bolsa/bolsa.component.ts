@@ -4,6 +4,7 @@ import { RouterModule, Router } from '@angular/router';
 import { CartService, CartItem } from '../../../core/services/cart.service';
 import { PedidoService } from '../../../core/services/pedido.service';
 import { forkJoin } from 'rxjs';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-bolsa',
@@ -17,9 +18,13 @@ export class BolsaComponent implements OnInit {
   totalPrice: number = 0;
   loading: boolean = false;
 
+  // 1. Creamos una variable para almacenar el usuario logueado
+  usuarioLogueado: any = null;
+
   constructor(
     private readonly cartService: CartService,
     private readonly pedidoService: PedidoService,
+    private readonly authService: AuthService,
     private readonly router: Router
   ) {}
 
@@ -28,6 +33,11 @@ export class BolsaComponent implements OnInit {
     this.cartService.cartItems$.subscribe(items => {
       this.cartItems = items;
       this.totalPrice = this.cartService.getTotalPrice();
+    });
+
+    // 2. Nos suscribimos al usuario actual desde el AuthService
+    this.authService.currentUser$.subscribe(user => {
+      this.usuarioLogueado = user;
     });
   }
 
@@ -54,13 +64,26 @@ export class BolsaComponent implements OnInit {
     if (this.cartItems.length === 0) {
       return;
     }
-    
+
     this.loading = true;
-    
-    const requests = this.cartItems.map(item => {
+
+    // 3. Usamos la variable que ya guardamos en el ngOnInit
+    const nombreFinal = this.usuarioLogueado?.nombre || this.usuarioLogueado?.username || 'Usuario Desconocido';
+    const emailFinal = this.usuarioLogueado?.email || 'Email Desconocido';
+
+    const itemsValidos = this.cartItems.filter(item => item.producto.id != null && item.producto.id !== undefined);
+
+    if (itemsValidos.length !== this.cartItems.length) {
+      console.error('Bolsa actual:', this.cartItems);
+      alert('Error de sincronización: Algunos productos en tu bolsa perdieron su ID. Por favor, vacía la bolsa y vuelve a agregarlos.');
+      this.loading = false;
+      return;
+    }
+
+    const requests = itemsValidos.map(item => {
       return this.pedidoService.crearPedido({
-        clienteNombre: 'Cliente Final',
-        clienteEmail: 'cliente@tienda.com',
+        clienteNombre: nombreFinal,
+        clienteEmail: emailFinal,
         productoId: item.producto.id!,
         cantidad: item.cantidad
       });

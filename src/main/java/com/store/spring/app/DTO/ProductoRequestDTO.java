@@ -5,6 +5,8 @@ public class ProductoRequestDTO {
     private String descripcion;
     private Double precio;
     private Integer stock;
+    private String imagenUrl;
+    private String categoria;
 
     public ProductoRequestDTO() {
     }
@@ -39,5 +41,21 @@ public class ProductoRequestDTO {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 }

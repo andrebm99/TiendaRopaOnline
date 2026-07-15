@@ -43,25 +43,39 @@
         </a>
     </div>
 
-    <div class="navbar-right">
-        <!-- CONTENEDOR DEL MENÚ DESPLEGABLE DE USUARIO -->
-        <div class="user-dropdown-container desktop-action" *ngIf="currentUser">
-            <span class="nav-action user-dropdown-toggle" (click)="toggleUserDropdown($event)">
-                HOLA, {{ currentUser.fullName }} <span class="arrow">▾</span>
+  <div class="navbar-right">
+
+    <div class="user-dropdown-container desktop-action" *ngIf="isAdmin">
+            <span class="nav-action user-dropdown-toggle" (click)="toggleAdminDropdown($event)" style="color: #dc3545; font-weight: 700;">
+                <span class="material-symbols-outlined" style="font-size: 18px; margin-right: 4px;">admin_panel_settings</span>
+                ADMIN <span class="arrow">▾</span>
             </span>
-            <div class="user-dropdown-menu" [class.show]="isUserDropdownOpen">
-                <a class="user-dropdown-item" routerLink="/perfil" (click)="isUserDropdownOpen = false">Perfil</a>
-                <button class="user-dropdown-item btn-logout-nav" (click)="logout()">Cerrar Sesión</button>
-            </div>
-        </div>
-        <a class="nav-action desktop-action" *ngIf="!currentUser" routerLink="/auth/login">Iniciar Sesión</a>
-        <a class="nav-action" routerLink="/bolsa">
-            <span class="material-symbols-outlined">shopping_bag</span> Bolsa ({{ cartCount }})
-        </a>
-        <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
-            <span class="material-symbols-outlined">menu</span>
-        </button>
+      <div class="user-dropdown-menu" [class.show]="isAdminDropdownOpen">
+        <a class="user-dropdown-item" routerLink="/admin/productos" (click)="isAdminDropdownOpen = false">Gestión de Productos</a>
+        <a class="user-dropdown-item" routerLink="/admin/pedidos" (click)="isAdminDropdownOpen = false">Gestión de Pedidos</a>
+      </div>
     </div>
+
+    <div class="user-dropdown-container desktop-action" *ngIf="currentUser">
+            <span class="nav-action user-dropdown-toggle" (click)="toggleUserDropdown($event)">
+                HOLA, {{ currentUser.fullName | uppercase }} <span class="arrow">▾</span>
+            </span>
+      <div class="user-dropdown-menu" [class.show]="isUserDropdownOpen">
+        <a class="user-dropdown-item" routerLink="/perfil" (click)="isUserDropdownOpen = false">Perfil</a>
+        <button class="user-dropdown-item btn-logout-nav" (click)="logout()">Cerrar Sesión</button>
+      </div>
+    </div>
+
+    <a class="nav-action desktop-action" *ngIf="!currentUser" routerLink="/auth/login">Iniciar Sesión</a>
+
+    <a class="nav-action" routerLink="/bolsa">
+      <span class="material-symbols-outlined">shopping_bag</span> Bolsa ({{ cartCount }})
+    </a>
+
+    <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </div>
 </nav>
 
 <!-- MAIN VIEW CONTENT -->

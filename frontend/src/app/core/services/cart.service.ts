@@ -29,26 +29,37 @@ export class CartService {
       this.router.navigate(['/auth/login']);
       return;
     }
+
+    // --- BLOQUEO DE SEGURIDAD ---
+    // Si el producto no tiene ID (viene corrupto o es de prueba), lo rechazamos
+    if (!producto.id) {
+      console.error('Intento de agregar un producto sin ID a la bolsa:', producto);
+      alert('Error: Este producto no es válido o su información está incompleta.');
+      return;
+    }
+
     const current = this.cartItemsSubject.value;
     const existingIndex = current.findIndex(item => item.producto.id === producto.id);
-    
+
     let updated: CartItem[];
     if (existingIndex > -1) {
-      updated = current.map((item, index) => 
-        index === existingIndex 
-          ? { ...item, cantidad: item.cantidad + cantidad } 
+      updated = current.map((item, index) =>
+        index === existingIndex
+          ? { ...item, cantidad: item.cantidad + cantidad }
           : item
       );
     } else {
       updated = [...current, { producto, cantidad }];
     }
-    
+
     this.cartItemsSubject.next(updated);
     this.saveCartToStorage(updated);
   }
 
   // Quitar un producto por completo de la bolsa
   removeFromCart(productId: number): void {
+    if (!productId) return; // Evitar procesar nulos
+
     const current = this.cartItemsSubject.value;
     const updated = current.filter(item => item.producto.id !== productId);
     this.cartItemsSubject.next(updated);
@@ -57,12 +68,14 @@ export class CartService {
 
   // Actualizar la cantidad de unidades pedidas de un producto
   updateQuantity(productId: number, cantidad: number): void {
+    if (!productId) return; // Evitar procesar nulos
+
     if (cantidad <= 0) {
       this.removeFromCart(productId);
       return;
     }
     const current = this.cartItemsSubject.value;
-    const updated = current.map(item => 
+    const updated = current.map(item =>
       item.producto.id === productId ? { ...item, cantidad } : item
     );
     this.cartItemsSubject.next(updated);
@@ -93,6 +106,13 @@ export class CartService {
   // Cargar la bolsa desde localStorage al inicializar
   private loadCartFromStorage(): CartItem[] {
     const raw = localStorage.getItem('cart');
-    return raw ? JSON.parse(raw) : [];
+
+    // Al cargar, filtramos preventivamente cualquier basura antigua que haya quedado guardada
+    if (raw) {
+      const parsed: CartItem[] = JSON.parse(raw);
+      return parsed.filter(item => item.producto && item.producto.id != null);
+    }
+
+    return [];
   }
 }
