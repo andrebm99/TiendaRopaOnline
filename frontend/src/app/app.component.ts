@@ -1,6 +1,11 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterModule, Router, NavigationEnd } from '@angular/router';
+import {
+  RouterOutlet,
+  RouterModule,
+  Router,
+  NavigationEnd,
+} from '@angular/router';
 import { AuthService } from './core/services/auth.service';
 import { CartService } from './core/services/cart.service';
 import { User } from './core/models/user.model';
@@ -11,7 +16,7 @@ import { filter } from 'rxjs/operators';
   standalone: true,
   imports: [CommonModule, RouterOutlet, RouterModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   currentUser: User | null = null;
@@ -27,7 +32,7 @@ export class AppComponent implements OnInit {
   constructor(
     private readonly authService: AuthService,
     private readonly cartService: CartService,
-    private readonly router: Router
+    private readonly router: Router,
   ) {}
 
   toggleMobileMenu(): void {
@@ -61,34 +66,30 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // Ocultar Navbar y Footer si la ruta pertenece a AuthModule
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: any) => {
-      this.showLayout = !event.urlAfterRedirects.startsWith('/auth');
-    });
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        this.showLayout = !event.urlAfterRedirects.startsWith('/auth');
+      });
 
     // Escuchar el estado de autenticación global
-    this.authService.currentUser$.subscribe(user => {
+    this.authService.currentUser$.subscribe((user) => {
       this.currentUser = user;
 
       if (user) {
         const checkUser = user as any;
 
-        // 1. Leemos exactamente la estructura anidada que envía tu Spring Boot: role: { name: '...' }
         const roleName = checkUser.role?.name?.toUpperCase() || '';
         const isRoleAdmin = roleName === 'ADMIN';
 
-        // 2. Forzamos el acceso maestro usando el correo exacto que vimos en tu consola
         const isEmailAdmin = user.email === 'ronaldobayona65@gmail.com';
 
-        // Si tu rol es ADMIN, o si eres tú (Ronaldo), se muestra el panel
         this.isAdmin = isRoleAdmin || isEmailAdmin;
 
       } else {
         this.isAdmin = false;
       }
     });
-
     // Escuchar cambios en la bolsa de compras para el contador numérico
     this.cartService.cartItems$.subscribe(() => {
       this.cartCount = this.cartService.getTotalItemsCount();

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   // Estado reactivo global de la sesión del usuario
@@ -18,14 +18,16 @@ export class AuthService {
 
   // Enviar credenciales a la API de Spring Boot
   login(credentials: any): Observable<any> {
-    return this.apiService.post<{ token: string }>('auth/login', credentials).pipe(
-      tap(res => {
-        if (res && res.token) {
-          localStorage.setItem('token', res.token);
-          this.setCurrentUserFromToken(res.token);
-        }
-      })
-    );
+    return this.apiService
+      .post<{ token: string }>('auth/login', credentials)
+      .pipe(
+        tap((res) => {
+          if (res && res.token) {
+            localStorage.setItem('token', res.token);
+            this.setCurrentUserFromToken(res.token);
+          }
+        }),
+      );
   }
 
   // Registrar un nuevo usuario en la base de datos
@@ -54,6 +56,12 @@ export class AuthService {
     return this.getToken() !== null;
   }
 
+  isCurrentUserAdmin(): boolean {
+    const user = this.currentUserSubject.getValue();
+    const roleName = user?.role?.name?.toUpperCase();
+    return roleName === 'ADMIN' || roleName === 'ROLE_ADMIN';
+  }
+
   // Verificar al iniciar la aplicación si hay un token persistido
   private checkLocalStorageSession(): void {
     const token = this.getToken();
@@ -69,11 +77,11 @@ export class AuthService {
         const email = token.replace('mock-session-token-for-', '');
         const namePart = email.split('@')[0];
         const fullName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
-        
+
         this.currentUserSubject.next({
           email: email,
           fullName: fullName,
-          role: { name: 'CLIENTE' }
+          role: { name: 'CLIENTE' },
         });
       } else {
         try {
@@ -83,12 +91,20 @@ export class AuthService {
             const payload = JSON.parse(payloadDecoded);
             const email = payload.sub; // subject is the email
             const namePart = email.split('@')[0];
-            const fullName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
-            
+            const fullName =
+              namePart.charAt(0).toUpperCase() + namePart.slice(1);
+
+            const roleName =
+              payload.role || payload.roles || payload.authorities || 'CLIENTE';
+            const normalizedRole =
+              typeof roleName === 'string'
+                ? roleName
+                : roleName[0] || 'CLIENTE';
+
             this.currentUserSubject.next({
               email: email,
               fullName: fullName,
-              role: { name: 'CLIENTE' }
+              role: { name: String(normalizedRole).toUpperCase() },
             });
           } else {
             this.logout();
