@@ -39,6 +39,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/api-docs/**", "/swagger").permitAll()
                 .requestMatchers("/api/productos/**").permitAll()
+                    .requestMatchers("/api/admin/**").hasRole("ADMIN")
                 
                 // Reglas Granulares (de andrebm)
                 .requestMatchers("/api/role/**").hasRole("ADMIN")
@@ -47,9 +48,9 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/user/{id}").authenticated()
                 .requestMatchers(HttpMethod.PUT, "/api/user/{id}").authenticated()
                 .requestMatchers("/api/user/**").hasRole("ADMIN")
-
-                 // Admin
-                    .requestMatchers("/admin/productos/").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/api/productos/**").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "/api/productos/**").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.DELETE, "/api/productos/**").hasRole("ADMIN")
                     .requestMatchers("/uploads/**").permitAll()
                     .requestMatchers("/api/**").permitAll()
                 

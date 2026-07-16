@@ -78,7 +78,11 @@ export const routes: Routes = [
       ),
     canActivate: [adminGuard],
   },
-  { path: 'admin/productos', component: AdminProductoComponent },
+  {
+    path: 'admin/productos',
+    component: AdminProductoComponent,
+    canActivate: [adminGuard]
+  },
   // Redirección por defecto
   {
     path: '**',

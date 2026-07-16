@@ -1,4 +1,3 @@
-<!-- NAVBAR -->
 <nav class="navbar-wrapper" *ngIf="showLayout">
   <div
     class="navbar-left"
@@ -9,7 +8,7 @@
       <span
         class="material-symbols-outlined"
         style="font-size: 20px; margin-right: 8px"
-        >search</span
+      >search</span
       >
       <input class="search-input" placeholder="Buscar..." type="text" />
     </div>
@@ -36,18 +35,17 @@
         <span style="margin-left: 4px; font-size: 20px">▾</span>
       </a>
 
-      <!-- Dropdown -->
       <div class="dropdown-wrapper">
         <div class="dropdown-menu">
           <a class="dropdown-item" routerLink="/catalogo"
-            >-LO NUEVO: Otoño-Invierno</a
+          >-LO NUEVO: Otoño-Invierno</a
           >
           <a class="dropdown-item" routerLink="/catalogo">-Casacas</a>
           <a class="dropdown-item" routerLink="/catalogo">-Faldas</a>
           <a class="dropdown-item" routerLink="/catalogo">-Polos</a>
           <a class="dropdown-item" routerLink="/catalogo">-Corsets</a>
           <a class="dropdown-item highlight" routerLink="/catalogo"
-            >-Ofertas! Última oportunidad</a
+          >-Ofertas! Última oportunidad</a
           >
         </div>
       </div>
@@ -56,7 +54,6 @@
     <a class="nav-link" routerLink="/envios">ENVÍOS / SHIPPING</a>
   </div>
 
-  <!-- Mobile Center Logo -->
   <div class="navbar-mobile-center">
     <a routerLink="/">
       <img
@@ -68,29 +65,6 @@
       />
     </a>
   </div>
-            <!-- Dropdown -->
-            <div class="dropdown-wrapper">
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" routerLink="/catalogo">-LO NUEVO: Otoño-Invierno</a>
-                    <a class="dropdown-item" routerLink="/catalogo">-Casacas</a>
-                    <a class="dropdown-item" routerLink="/catalogo">-Faldas</a>
-                    <a class="dropdown-item" routerLink="/catalogo">-Polos</a>
-                    <a class="dropdown-item" routerLink="/catalogo">-Corsets</a>
-                    <a class="dropdown-item highlight" routerLink="/catalogo">-Ofertas! Última oportunidad</a>
-                </div>
-            </div>
-        </div>
-
-        <a class="nav-link" routerLink="/envios">ENVÍOS / SHIPPING</a>
-    </div>
-
-    <!-- Mobile Center Logo -->
-    <div class="navbar-mobile-center">
-        <a routerLink="/">
-            <img src="/img/logoTIENDADEROPA.webp" alt="Tienda de Ropa Online"
-                onerror="this.outerHTML='<span class=\'nav-logo-text\'>TIENDA ONLINE</span>'">
-        </a>
-    </div>
 
   <div class="navbar-right">
 
@@ -127,10 +101,8 @@
   </div>
 </nav>
 
-<!-- MAIN VIEW CONTENT -->
 <router-outlet></router-outlet>
 
-<!-- FOOTER -->
 <footer class="footer-wrapper" *ngIf="showLayout">
   <div class="footer-left">
     <h4 class="footer-logo">
@@ -146,7 +118,7 @@
     <div class="footer-links-grid">
       <a class="footer-link" routerLink="/">Guía de Tallas</a>
       <a class="footer-link" routerLink="/terminos-condiciones"
-        >Términos y Condiciones</a
+      >Términos y Condiciones</a
       >
       <a class="footer-link" routerLink="/envios">Info de Envíos</a>
       <a class="footer-link" routerLink="/politica-privacidad">Privacidad</a>
@@ -165,8 +137,6 @@
         más.
       </p>
     </div>
-<<<<<<< HEAD
-=======
     <form class="newsletter-form">
       <div class="input-group">
         <label class="input-label">Correo Electrónico</label>
@@ -181,5 +151,4 @@
       </button>
     </form>
   </div>
->>>>>>> b50d6b26a680f88517bcd22707f0f6c8c3261fa5
 </footer>
