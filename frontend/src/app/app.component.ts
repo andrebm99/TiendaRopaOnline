@@ -82,7 +82,7 @@ export class AppComponent implements OnInit {
         const roleName = checkUser.role?.name?.toUpperCase() || '';
         const isRoleAdmin = roleName === 'ADMIN';
 
-        const isEmailAdmin = user.email === 'ronaldobayona65@gmail.com';
+        const isEmailAdmin = user.email === 'admin@gmail.com';
 
         this.isAdmin = isRoleAdmin || isEmailAdmin;
 
